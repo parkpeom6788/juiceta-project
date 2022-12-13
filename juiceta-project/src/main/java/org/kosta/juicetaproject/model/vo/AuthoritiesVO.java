@@ -1,5 +1,5 @@
 package org.kosta.juicetaproject.model.vo;
 
-public class AuthoritesVO {
+public class AuthoritiesVO {
 	private String authority;
 }

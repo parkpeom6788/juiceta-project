@@ -10,6 +10,6 @@ public class CustomerVO implements Serializable{
 	private String address;
 	private String phone;
 	private int enabled;
-	//private AuthoritiesVO authoritiesVO;
+	private AuthoritiesVO authoritiesVO;
 
 }

@@ -7,5 +7,5 @@ public class QuestionVO {
 	private String questionTime;
 	private int checkAnswer;
 	private CustomerVO customerVO;
-	//private ProductVO productVO;
+	private ProductVO productVO;
 }
