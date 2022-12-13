@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>shop</title>
+</head>
+
+ 	<div layout:fragment="content" class="container">
+ 		<div class="row justify-content-center">
+ 			<div class="col-md-10 mb-5 text-center">
+ 				<ul class="product-category">
+ 					<li><a href="#" class="active">All</a></li>
+ 					<li><a href="#">Juice</a></li>
+ 					<li><a href="#">Tea</a></li>
+ 				</ul>
+ 			</div>
+ 		</div>
+ 		<div class="row">
+ 			<div class="col-md-6 col-lg-3 ftco-animate">
+ 				<div class="product">
+ 					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-1.jpg" alt="Colorlib Template">
+ 						<span class="status">할인율(%)</span>
+ 						<div class="overlay"></div>
+ 					</a>
+ 					<div class="text py-3 pb-4 px-3 text-center">
+ 						<h3><a href="#">상품명</a></h3>
+ 						<div class="d-flex">
+ 							<div class="pricing">
+   								<p class="price"><span class="mr-2 price-dc">실제가격</span><span class="price-sale">할인적용가격</span></p>
+   							</div>
+  						</div>
+	  					<div class="bottom-area d-flex px-3">
+	  						<div class="m-auto d-flex">
+	  							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	  								<span><i class="ion-ios-cart"></i></span>
+	  							</a>
+	  							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	  								<span><i class="ion-ios-heart"></i></span>
+	  							</a>
+ 							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			<div class="col-md-6 col-lg-3 ftco-animate">
+ 				<div class="product">
+ 					<a href="#" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" alt="Colorlib Template">
+ 						<div class="overlay"></div>
+ 					</a>
+ 					<div class="text py-3 pb-4 px-3 text-center">
+ 						<h3><a href="#">상품명</a></h3>
+ 						<div class="d-flex">
+ 							<div class="pricing">
+   								<p class="price"><span>상품가격</span></p>
+   							</div>
+  						</div>
+ 						<div class="bottom-area d-flex px-3">
+	  						<div class="m-auto d-flex">
+	  							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	  								<span><i class="ion-ios-cart"></i></span>
+	  							</a>
+	  							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	  								<span><i class="ion-ios-heart"></i></span>
+	  							</a>
+							</div>
+ 						</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 		</div>
+ 		
+ 		<!--/* Pagination 부분 */-->
+ 		<div class="row mt-5">
+       		<div class="col text-center">
+         		<div class="block-27">
+		           <ul>
+		             <li><a href="#">&lt;</a></li>
+		             <li class="active"><span>1</span></li>
+		             <li><a href="#">2</a></li>
+		             <li><a href="#">3</a></li>
+		             <li><a href="#">4</a></li>
+		             <li><a href="#">5</a></li>
+		             <li><a href="#">&gt;</a></li>
+		           </ul>
+         		</div>
+       		</div>
+   		</div>
+   		<!--/* Pagination 부분 */-->
+   		
+ 	</div>
+
+</html>

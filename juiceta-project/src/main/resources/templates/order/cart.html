@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>cart</title>
+</head>
+
+	<div layout:fragment="content" class="container">
+		<div class="row">
+  			<div class="col-md-12 ftco-animate">
+  				<div class="cart-list">
+	   				<table class="table">
+					    <thead class="thead-primary">
+					      <tr class="text-center">
+					        <th>&nbsp;</th>
+					        <th>&nbsp;</th>
+					        <th>Product name</th>
+					        <th>Price</th>
+					        <th>Quantity</th>
+					        <th>Total</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr class="text-center">
+					        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
+					        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
+					        <td class="product-name">
+					        	<h3>상품명</h3>
+					        	<p>상품상세설명</p>
+					        </td>					        
+					        <td class="price">상품가격</td>					        
+					        <td class="quantity">
+					        	<div class="input-group mb-3">
+									<span class="input-group-btn mr-2">
+			              				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+			                 				<i class="ion-ios-remove"></i>
+			              				</button>
+			          				</span>
+			           				<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+			           				<span class="input-group-btn ml-2">
+			              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+			                   				<i class="ion-ios-add"></i>
+			               				</button>
+			           				</span>
+			        			</div>
+				          	</td>					   
+					        <td class="total">(상품가격*수량)합계</td>
+					      </tr>
+					    </tbody>
+					  </table>
+			  	</div>
+  			</div>
+  		</div>
+  		<div class="row justify-content-end">
+  			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
+  				<div class="cart-total mb-3">
+  					<h3>Cart Totals</h3>
+  					<hr>
+  					<p class="d-flex total-price">
+  						<span>Total</span>
+  						<span>총합계</span>
+  					</p>
+  				</div>
+  				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+  			</div>
+  		</div>
+    	
+    	<script type="text/javascript">
+			$(document).ready(function(){
+				let quantitiy=0;
+
+			   	$(".quantity-right-plus").click(function(e){	        
+			        // Stop acting like a button
+			        e.preventDefault();
+			        // Get the field name
+			        quantity = parseInt($('#quantity').val());			 
+			        // If is not undefined
+			 		$("#quantity").val(quantity + 1);
+					 // Increment  
+			    	});
+
+			     	$(".quantity-left-minus").click(function(e){
+			        	// Stop acting like a button
+			        	e.preventDefault();
+			        	// Get the field name
+			        	quantity = parseInt($("#quantity").val());			        
+			       		 // If is not undefined
+			            // Increment
+			            if(quantity>0){
+			            	$("#quantity").val(quantity - 1);
+			            }
+			    	});
+			     	
+				});
+    	</script>
+    		
+	</div>
+
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* 
+		필요한 html 요소만 정의한다 		 
+		th:fragment="headerFragment" 는 반드시 명시하도록 한다 
+ */-->
+     <nav th:fragment="headerFragment" class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">JUICETA</a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu 
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="shop.html" class="nav-link">Shop</a></li>
+	          <li class="nav-item"><a href="wishlist.html" class="nav-link">Wishlist</a></li>
+	          <li class="nav-item"><a href="product-detail.html" class="nav-link">Single Product</a></li>
+	          <li class="nav-item"><a href="cart.html" class="nav-link">Cart</a></li>
+	          <li class="nav-item"><a href="checkout.html" class="nav-link">Checkout</a></li>
+	          <li class="nav-item cta cta-colored"><a href="cart.html" class="nav-link"><span class="icon-shopping_cart"></span>[0]</a></li>
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+
+</html>
