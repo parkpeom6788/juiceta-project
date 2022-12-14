@@ -2,6 +2,10 @@ package org.kosta.juicetaproject.model.vo;
 
 import java.io.Serializable;
 
+import lombok.Builder;
+import lombok.Data;
+@Data
+@Builder
 public class CustomerVO implements Serializable{
 	private static final long serialVersionUID = 2369600641845334659L;
 	private String id;
