@@ -5,11 +5,15 @@
   layout:decorate="~{layouts/layout}"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
-	<title>checkout</title>
+	<title>LoginForm</title>
 </head>
 
 	<div layout:fragment="content" class="container">
-		
+		<form action="" th:href="@{/loginForm}" method="post">
+			<input type="text" name="id" placeholder="ID" required="required"><br>
+			<input type="password" name="password" placeholder="PASSWORD" required="required"><br>
+			<button type="submit">로그인</button>
+		</form>
 	</div>
 
 </html>
