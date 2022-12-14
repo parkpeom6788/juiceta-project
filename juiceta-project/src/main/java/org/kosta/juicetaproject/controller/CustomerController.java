@@ -9,4 +9,9 @@ public class CustomerController {
 		public String customerLogin() {
 			return "customer/login-form";
 	}
+	
+	@RequestMapping("mypage")
+	public String mypage() {
+		return "customer/mypage";
+	}
 }
