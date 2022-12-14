@@ -2,6 +2,7 @@ package org.kosta.juicetaproject;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CustomerMapper;
+import org.kosta.juicetaproject.model.vo.CustomerVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,5 +20,28 @@ class Testpjs {
 	void contextLoads() {
 		System.out.println(customerMapper);
 	}
-
+	@Test
+	void login() {
+		String id="javakong";
+		String password="a";
+		CustomerVO customerVO=customerMapper.login(id,password);
+		System.out.println("로그인된 회원정보 "+customerVO);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
