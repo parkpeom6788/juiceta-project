@@ -120,7 +120,7 @@ CREATE TABLE juiceta_board(
 	board_title VARCHAR2(100) NOT NULL,
 	board_content CLOB NOT NULL,
 	board_time DATE NOT NULL,
-	hits NUMBER NOT NULL
+	hits NUMBER default 0
 )
 CREATE SEQUENCE juiceta_board_seq;
 SELECT * FROM juiceta_board;
