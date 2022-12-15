@@ -5,15 +5,16 @@ CREATE TABLE juiceta_customer(
 	name VARCHAR2(100) NOT NULL,
 	address VARCHAR2(100)  NOT NULL,
 	phone VARCHAR2(100) NOT NULL,
-	enabled NUMBER DEFAULT 1 NOT NULL,
-	authority VARCHAR2(30) NOT NULL,
-	CONSTRAINT fk_authority FOREIGN KEY(authority) REFERENCES juiceta_authorities(authority) ON DELETE CASCADE
+	enabled NUMBER DEFAULT 1 NOT NULL
 )
 SELECT * FROM juiceta_customer;
+ALTER TABLE juiceta_customer DROP COLUMN authority;
 
 -- 권한 ( authority 관리자, 회원, 비회원 )
 CREATE TABLE juiceta_authorities(
-	authority VARCHAR2(30) PRIMARY KEY
+	authority VARCHAR2(30) PRIMARY KEY,
+	id VARCHAR2(100) NOT NULL,
+	CONSTRAINT fk_authorities_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE
 )
 SELECT * FROM juiceta_authorities;
 
