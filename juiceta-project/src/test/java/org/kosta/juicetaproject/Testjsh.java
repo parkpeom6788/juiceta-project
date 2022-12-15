@@ -37,6 +37,13 @@ class Testjsh {
 		int result = productMapper.registerProduct(productVO);
 		Assertions.assertEquals(1, result);
 	}
+	
+	@Test
+	void findProductByNo() {
+		int productNo = 1;
+		ProductVO productVO = productMapper.findProductByProductNo(productNo);
+		System.out.println(productVO);
+	}
 
 	
 }
