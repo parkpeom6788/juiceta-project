@@ -6,4 +6,7 @@ import org.kosta.juicetaproject.model.vo.CustomerVO;
 @Mapper
 public interface CustomerMapper {
 	CustomerVO findCustomerInfoById(String id);
+
+	CustomerVO login(String id, String password);
+
 }
