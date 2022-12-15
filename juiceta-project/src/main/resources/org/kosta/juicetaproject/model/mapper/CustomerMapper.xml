@@ -2,4 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="org.kosta.juicetaproject.model.mapper.CustomerMapper">
+	
+	<resultMap type="org.kosta.juicetaproject.model.vo.CustomerVO" id="CustomerResultMap">
+		<result column="id" property="cu"/>
+		<result column="name" property="departmentVO.departmentName"/>
+		<result column="address" property="departmentVO.location"/>
+		<result column="phone" property="departmentVO.location"/>
+	</resultMap>
+		
+	<select id="findCustomerInfoById" parameterType="string" resultMap="CustomerResultMap"> 
+		select
+		e.employee_no,e.name,e.salary,
+		d.department_no,d.department_name,location
+		from springboot_employee e
+		inner join springboot_department d on e.department_no=d.department_no
+		where  e.employee_no=#{value}
+	</select>
 </mapper>
+
