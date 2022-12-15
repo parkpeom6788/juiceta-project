@@ -8,8 +8,8 @@
 	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		<include refid="selectProduct"></include>
 	</select>
-	<insert id="registerProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
-		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 
-		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image},#{category})
-	</insert>
+	<select id="productDetail" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+		<include refid="selectProduct"></include>
+			WHERE product_no=#{value}
+	</select>
 </mapper>

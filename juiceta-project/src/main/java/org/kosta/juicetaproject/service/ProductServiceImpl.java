@@ -19,12 +19,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void registerProduct(ProductVO productVO) {
-		productMapper.registerProduct(productVO);
+	public ProductVO productDetail(int productNo) {
+		return productMapper.productDetail(productNo);
 	}
-
 	
-
 }
 
 

@@ -10,6 +10,6 @@ public interface ProductMapper {
 
 	List<ProductVO> findProductAllList();
 
-	int registerProduct(ProductVO productVO);
+	ProductVO productDetail(int productNo);
 
 }
