@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-
 public class boardController {
 	private final BoardService boardService;
 	

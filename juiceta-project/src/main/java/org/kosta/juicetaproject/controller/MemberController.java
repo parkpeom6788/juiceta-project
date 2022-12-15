@@ -98,6 +98,4 @@ public class MemberController {
 		return new ModelAndView("member/register_result", "memberVO", memberVO);
 	}
 
-
-	
 }
