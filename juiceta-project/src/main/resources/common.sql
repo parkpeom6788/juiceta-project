@@ -12,9 +12,10 @@ ALTER TABLE juiceta_customer DROP COLUMN authority;
 
 -- 권한 ( authority 관리자, 회원, 비회원 )
 CREATE TABLE juiceta_authorities(
-	authority VARCHAR2(30) PRIMARY KEY,
+	authority VARCHAR2(30),
 	id VARCHAR2(100) NOT NULL,
-	CONSTRAINT fk_authorities_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE
+	CONSTRAINT fk_authorities_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE,
+	CONSTRAINT pk_authorities PRIMARY KEY(authority,id)
 )
 SELECT * FROM juiceta_authorities;
 
