@@ -2,4 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="org.kosta.juicetaproject.model.mapper.CustomerMapper">
+	<select id="login" parameterType="org.kosta.juicetaproject.model.vo.CustomerVO" resultType="org.kosta.juicetaproject.model.vo.CustomerVO">
+		SELECT id,password,name,address,phone,enabled,a.authority
+		FROM juiceta_customer c
+		INNER JOIN juiceta_authorities a ON c.authority=a.authority
+		<where>
+			<if test="authoritiesVO!=null and authoritiesVO.authority==회원">
+				WHERE c.id=#{id} AND c.password=#{password}
+			</if>
+		</where>
+	</select>
 </mapper>
