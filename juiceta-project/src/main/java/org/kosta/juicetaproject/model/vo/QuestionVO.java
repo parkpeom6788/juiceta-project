@@ -6,6 +6,6 @@ public class QuestionVO {
 	private String questionContent;
 	private String questionTime;
 	private int checkAnswer;
-	private CustomerVO customerVO;
+	private MemberVO memberVO;
 	private ProductVO productVO;
 }

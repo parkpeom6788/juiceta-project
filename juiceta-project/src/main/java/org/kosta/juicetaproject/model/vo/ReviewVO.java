@@ -5,6 +5,6 @@ public class ReviewVO {
 	private String reviewContent;
 	private int star;
 	private String reviewTime;
-	private CustomerVO customerVO;
+	private MemberVO memberVO;
 	private OrderDetailVO orderDetailVO;
 }

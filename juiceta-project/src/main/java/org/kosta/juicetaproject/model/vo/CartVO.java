@@ -1,7 +1,7 @@
 package org.kosta.juicetaproject.model.vo;
 
 public class CartVO {
-	private CustomerVO customerVO;
+	private MemberVO memberVO;
 	private ProductVO productVO;
 	private int productCount;
 }

@@ -6,5 +6,5 @@ public class OrderVO {
 	private String receiverName;
 	private String receiverPhone;
 	private String receiverAddress;
-	private CustomerVO customerVO;
+	private MemberVO memberVO;
 }	

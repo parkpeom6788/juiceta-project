@@ -1,6 +1,6 @@
 package org.kosta.juicetaproject.model.vo;
 
 public class WishListVO {
-	private CustomerVO customerVO;
+	private MemberVO memberVO;
 	private ProductVO productVO;
 }

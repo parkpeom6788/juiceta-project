@@ -12,7 +12,8 @@ import lombok.RequiredArgsConstructor;
 
 public class boardController {
 	private final BoardService boardService;
-	@RequestMapping("/board")
+	
+	@RequestMapping("guest/board")
 	public String board(Model model){
 		model.addAttribute("boardAllList",boardService.findProductAllList());
 		return "board/board-list";
