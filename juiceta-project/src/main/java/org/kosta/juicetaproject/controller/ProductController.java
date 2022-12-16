@@ -3,6 +3,7 @@ package org.kosta.juicetaproject.controller;
 import java.util.List;
 
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.kosta.juicetaproject.service.QuestionService;
 import org.springframework.stereotype.Controller;
@@ -39,15 +40,24 @@ public class ProductController {
 	}
 	@RequestMapping("registerProductForm")
 	public String registerProductForm() {
+		
 		return "product/register-form";
 	}
 	@RequestMapping("updateProductForm")
-	public String updateProductForm() {
+	public String updateProductForm(Model model, int productNo) {
+		System.out.println(productNo);
+		model.addAttribute("productVO",productMapper.findProductByProductNo(productNo));
 		return "product/update-form";
 	}
-	@PostMapping("updateProduct")
-	public String updateProduct() {
-		return "redirect:update";
+	@PostMapping("update")
+	public String updateProduct(ProductVO productVO) {
+		System.out.println(1);
+		productMapper.updateProduct(productVO);
+		return "redirect:updateProductResult";
+	}
+	@RequestMapping("updateProductResult")
+	public String updateResult() {
+		return "/product/update-result";
 	}
 }
 

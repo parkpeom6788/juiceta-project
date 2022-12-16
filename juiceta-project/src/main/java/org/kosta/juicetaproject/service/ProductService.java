@@ -14,5 +14,5 @@ public interface ProductService {
 
 	ProductVO productDetail(int productNo);
 	
-
+	int updateProduct(ProductVO productVO);
 }

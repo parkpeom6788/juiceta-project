@@ -34,6 +34,11 @@ public class ProductServiceImpl implements ProductService {
 		
 	}
 
+	@Override
+	public int updateProduct(ProductVO productVO) {
+		return productMapper.updateProduct(productVO);
+	}
+
 	
 }
 

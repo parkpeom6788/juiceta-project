@@ -10,7 +10,16 @@
 </head>
 
 	<div layout:fragment="content" class="container">
-		여기는 상품수정 페이지입니다
+		<form action="" th:action="@{/update}" method="post">
+			<input type="text" name="productNo" placeholder="상품번호" readonly="readonly" th:value="${productVO.productNo}"><br>
+			<input type="text" name="productName" placeholder="상품명" required="required" th:value="${productVO.productName}" ><br>
+			<input type="text" name="price" placeholder="상품가격" required="required" th:value="${productVO.price}"><br>
+			<input type="text" name="productCount" placeholder="상품수량" required="required" th:value="${productVO.productCount}"><br>
+			<input type="text" name="productDetail" placeholder="상품설명" required="required" th:value="${productVO.productDetail}"><br>
+			<input type="text" name="image" placeholder="상품이미지" readonly="readonly" th:value="${productVO.image}"><br>
+			<input type="text" name="category" placeholder="상품카테고리" required="required" th:value="${productVO.category}"><br>
+			<button type="submit">수정</button>&nbsp;&nbsp;<button type="reset">취소</button>
+		</form>
 	</div>
 
 </html>

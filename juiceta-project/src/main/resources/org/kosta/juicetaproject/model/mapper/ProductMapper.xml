@@ -21,6 +21,12 @@
 		<include refid="selectProduct"></include>
 			WHERE product_no=#{value}
 	</select>
+	<update id="updateProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
+		UPDATE juiceta_product SET product_no=#{productNo},product_name=#{productName},
+		price=#{price},product_count=#{productCount},product_detail=#{productDetail},
+		image=#{image},category=#{category}
+		WHERE product_no=#{productNo}
+	</update>
 </mapper>
 
 

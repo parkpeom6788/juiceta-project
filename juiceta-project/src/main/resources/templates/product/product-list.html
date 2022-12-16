@@ -31,12 +31,13 @@
 		 	</thead>
 		 	<tbody>
 		 		<tr th:each="product:${productVO}">
-		 		  <td th:text="${productStat.count}">상품번호</td>
-		 		  <td th:text="${product.productName}">상품명</td>
-		 		  <td th:text="${product.price}">가격</td>
-		 		  <td th:text="${product.productCount}">수량</td>
+		 		  <td th:text="${product.productNo}" class="col-sm-1">상품번호</td>
+		 		  <td th:text="${product.productName}" class="col-sm-3">상품명</td>
+		 		  <td th:text="|${product.price}원|" class="col-sm-2">가격</td>
+		 		  <td th:text="|${product.productCount}box|" class="col-sm-2">수량</td>
 		 		  <td>
-		 		  <form action="" th:action="@{/updateProductForm}" id="aaa">
+		 		  <form action="" th:action="@{/updateProductForm}">
+		 		 	 <input type="hidden" th:value="${product.productNo}" name="productNo">
 		 		    <button type="submit" id="updateProduct">수정</button>
 		 		  </form>
 		 		  </td>
@@ -47,10 +48,13 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#updateProduct").click(function() {
-					let message=confirm("상품을 수정하시겠습니까?");
-					if(message==true){
-						
-					}
+					return confirm("상품을 수정하시겠습니까?");
+				});//click
+				$("#deleteProduct").click(function() {
+					let message=confirm("상품을 삭제하시겠습니까?");
+					if(message==false)
+						return false
+					  alert("상품 삭제가 완료되었습니다");
 				});//click
 			});//ready
 		</script>
