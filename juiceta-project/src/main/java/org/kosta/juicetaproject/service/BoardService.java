@@ -10,7 +10,7 @@ public interface BoardService {
 	void registerBoard(BoardVO boardVO);
 	void updateBoard(BoardVO boardVO);
 	void deleteBoard(int boardNo);
-	BoardVO boardDetail(int baordNo);
+	BoardVO boardDetail(int No);
 	
 	
 

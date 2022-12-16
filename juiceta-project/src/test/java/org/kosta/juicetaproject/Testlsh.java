@@ -27,5 +27,9 @@ class Testlsh {
 		for(BoardVO vo : list)
 			System.out.println(vo);
 	}
-
+	
+	@Test
+	public void boardDetail() {
+		
+	}
 }
