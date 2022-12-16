@@ -9,10 +9,11 @@
 	<title>product-list</title>
 </head>
 	<div layout:fragment="content" class="container">
+		<h1>상품관리</h1>
 		<form action="">
 		  <input type="text" name="productName" placeholder="상품명" required="required">
 		  <button type="submit" id="selectProduct">상품검색</button>&nbsp;&nbsp;&nbsp;
-		</form>
+		</form><br>
 		  <form action="" th:action="@{/registerProductForm}">
 		  <button type="submit">상품등록</button>
 		  </form>
@@ -35,28 +36,24 @@
 		 		  <td th:text="${product.price}">가격</td>
 		 		  <td th:text="${product.productCount}">수량</td>
 		 		  <td>
-		 		  <form action="" th:action="@{/updateProductForm}">
-		 		    <button type="submit">수정</button>
+		 		  <form action="" th:action="@{/updateProductForm}" id="aaa">
+		 		    <button type="submit" id="updateProduct">수정</button>
 		 		  </form>
 		 		  </td>
 		 		  <td><button type="button" id="deleteProduct">삭제</button></td>
 		 		</tr>
 		 	</tbody>
 		 </table>
-		 <script type="text/javascript">
-		 	$(document).ready(function() {
-		 		$("#updateProductForm").click(function() {
-					$.ajax({
-						type:"post",
-						url:"updateProduct",
-						data:"productNo=1",
-						success:function(result){
-							alert(result);
-						}//success
-					});
-		 		});//click
-		 	});//ready
-		 </script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#updateProduct").click(function() {
+					let message=confirm("상품을 수정하시겠습니까?");
+					if(message==true){
+						
+					}
+				});//click
+			});//ready
+		</script>
 	</div>
 </html>
 

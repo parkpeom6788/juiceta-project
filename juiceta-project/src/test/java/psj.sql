@@ -119,7 +119,14 @@ CREATE TABLE juiceta_product(
 )
 CREATE SEQUENCE juiceta_product_seq;
 SELECT * FROM juiceta_product;
-UPDATE juiceta_product SET price
+INSERT INTO juiceta_product  VALUES (juiceta_product_seq.nextval,'즙',500,100,'즙즙','product-6.jpg','즙즙즙')
+update juiceta_product set price=9000 WHERE product_no=5
+
+UPDATE juiceta_product 
+SET product_no=6,product_name='브로콜asdasd즙',
+price=5000,product_count=20,product_detail='맛있는 브ads로콜리즙',
+image='product-6.jpg',category='과일즙'
+WHERE product_no=21
 
 -- 공지사항
 CREATE TABLE juiceta_board(
