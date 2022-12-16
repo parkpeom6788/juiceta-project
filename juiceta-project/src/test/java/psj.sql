@@ -20,9 +20,7 @@ CREATE TABLE juiceta_authorities(
 	CONSTRAINT pk_authorities PRIMARY KEY(authority,id)
 )
 SELECT * FROM juiceta_authorities;
-INSERT INTO juiceta_authorities (authority,id) VALUES ('ROLE_ADMIN','pjs');
-INSERT INTO juiceta_authorities (authority,id) VALUES ('ROLE_MEMBER','pjs');
-INSERT INTO juiceta_authorities (authority,id) VALUES ('ROLE_MEMBER','spring');
+INSERT INTO juiceta_authorities (authority,id) VALUES ('ROLE_ADMIN','zzzzz');
 
 
 -- 리뷰
@@ -121,6 +119,7 @@ CREATE TABLE juiceta_product(
 )
 CREATE SEQUENCE juiceta_product_seq;
 SELECT * FROM juiceta_product;
+UPDATE juiceta_product SET price
 
 -- 공지사항
 CREATE TABLE juiceta_board(
