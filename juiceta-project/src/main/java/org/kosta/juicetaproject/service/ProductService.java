@@ -11,4 +11,8 @@ public interface ProductService {
 	void registerProduct(ProductVO productVO);
 
 	ProductVO findProductByProductNo(int productNo);
+
+	ProductVO productDetail(int productNo);
+	
+
 }

@@ -2,7 +2,6 @@ package org.kosta.juicetaproject;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -31,14 +30,9 @@ class Testjsh {
 			System.out.println(vo);
 	}
 	
-	@Test
-	void registerProduct() {
-		ProductVO productVO = ProductVO.builder().productName("토마토차").price(8500).productCount(10).productDetail("맛있는 토마토차").image("product-5.jpg").category("과일차").build();
-		int result = productMapper.registerProduct(productVO);
-		Assertions.assertEquals(1, result);
-	}
 	
 	
+
 }
 
 
