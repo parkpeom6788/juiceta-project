@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security" 
+  layout:decorate="~{layouts/layout}"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>product-list</title>
+</head>
+	<div layout:fragment="content" class="container">
+		<h1>상품관리</h1>
+		<form action="">
+		  <input type="text" name="productName" placeholder="상품명" required="required">
+		  <button type="submit" id="selectProduct">상품검색</button>&nbsp;&nbsp;&nbsp;
+		</form><br>
+		  <form action="" th:action="@{/registerProductForm}">
+		  <button type="submit">상품등록</button>
+		  </form>
+		<br><br>
+		 <table class="table table-bordered">
+		 	<thead style="background-color: gold">
+		 		<tr>
+		 			<th>상품번호</th>
+		 			<th>상품명</th>
+		 			<th>가격</th>
+		 			<th>수량</th>
+		 			<th>수정</th>
+		 			<th>삭제</th>
+		 		</tr>
+		 	</thead>
+		 	<tbody>
+		 		<tr th:each="product:${productVO}">
+		 		  <td th:text="${productStat.count}">상품번호</td>
+		 		  <td th:text="${product.productName}">상품명</td>
+		 		  <td th:text="${product.price}">가격</td>
+		 		  <td th:text="${product.productCount}">수량</td>
+		 		  <td>
+		 		  <form action="" th:action="@{/updateProductForm}" id="aaa">
+		 		    <button type="submit" id="updateProduct">수정</button>
+		 		  </form>
+		 		  </td>
+		 		  <td><button type="button" id="deleteProduct">삭제</button></td>
+		 		</tr>
+		 	</tbody>
+		 </table>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#updateProduct").click(function() {
+					let message=confirm("상품을 수정하시겠습니까?");
+					if(message==true){
+						
+					}
+				});//click
+			});//ready
+		</script>
+	</div>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

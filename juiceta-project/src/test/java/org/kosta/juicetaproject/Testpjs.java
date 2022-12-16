@@ -21,6 +21,11 @@ class Testpjs {
 		ProductVO productVO=productMapper.productDetail(productNo);
 		System.out.println(productVO);
 	}
+	@Test
+	void updateProduct() {
+		int productNo=21;
+		ProductVO productVO=new ProductVO(productNo, "브로콜즙", 14000, 30, "맛있는 브로콜리즙", "product6-jpg", "과일즙");
+	}
 }
 
 
