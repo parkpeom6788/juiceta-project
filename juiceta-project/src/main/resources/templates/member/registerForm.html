@@ -4,7 +4,7 @@
   layout:decorate="~{layouts/layout}" 
 >
 <head>
-<title>회원가입폼</title>
+<title>RegisterMember</title>
 </head>
 <!--/*
 		Spring Security 적용시에는 
@@ -64,7 +64,11 @@
 				$("#idCheckView").text("");
 			}
 			if(id.length<4 || id.length>10){
-				$("#idCheckView").html("** 아이디는 4자이상 10자 이하로 입력하세요 **").css("color","red");
+				if(id.length<1){
+					$("#idCheckView").html("");					
+				}else{
+					$("#idCheckView").html("** 아이디는 4자이상 10자 이하로 입력하세요 **").css("color","red");
+				}
 				checkResultId="";
 				return;
 			}

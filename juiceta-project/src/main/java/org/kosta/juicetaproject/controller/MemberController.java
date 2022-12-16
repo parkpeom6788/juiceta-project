@@ -1,7 +1,7 @@
 package org.kosta.juicetaproject.controller;
 
-import org.kosta.juicetaproject.service.MemberService;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.kosta.juicetaproject.service.MemberService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService memberService;
+	
 	//비인증 상태에서도 접근 가능하도록 /guest/ 이하로 url 등록 
 	//org.kosta.myproject.config.security.WebSecurityConfig 설정되어 있음 
 	@RequestMapping("guest/findMemberById")
@@ -42,29 +42,21 @@ public class MemberController {
 	public String loginFail() {
 		return "member/login_fail";
 	}
+	
     //spring security에서 로그인 , 로그아웃 처리를 하므로 login , logout 관련 메서드는 필요없다  
 	//guest/ 가 아닌 모든 컨트롤러는 인증이 되어야 한다. 비인증 상태에서 접근할 경우 로그인 폼이 있는 home으로 redirect 됨 
-	@RequestMapping("enterCafe")
-	public String enterCafe() {
-		return "member/ajax-cafe";
-	}
 	
 	@RequestMapping("guest/idcheckAjax")
 	@ResponseBody
 	public String idcheckAjax(String id) {
 		return memberService.idcheck(id);
 	}
+	
 	@GetMapping("getMemberTotalCount")	
 	@ResponseBody
 	public int getMemberTotalCount() {
 		return memberService.getMemberCount();
 	}
-	@PostMapping("postAjaxTest")
-	@ResponseBody
-	public String postAjaxTest(String message) {
-		//log.debug("post ajax 는 csrf token 이 필요합니다 {}",message);
-		return message+" ajax 요청에 대한 응답입니다";
-	}	
 	
 	@RequestMapping("updateForm")
 	//@AuthenticationPrincipal : Spring Security를 통해 로그인한 인증정보를 받아오는 어노테이션 
@@ -84,24 +76,62 @@ public class MemberController {
 		vo.setAddress(memberVO.getAddress());	
 		return "redirect:updateResult";
 	}
+	
 	@GetMapping("updateResult")	
 	public String updateResult(){
-		return "member/update_result";
+		return "member/mypage";
 	}
+	
 	@RequestMapping("guest/registerForm")
 	public String registerForm() {
 		return "member/registerForm";
 	}
+	
 	@PostMapping("guest/registerMember")
 	public String register(MemberVO memberVO) {
 		memberService.registerMember(memberVO);//등록시 service에서 비밀번호를 암호화 한다 
-		return "redirect:/guest/registerResultView?id=" + memberVO.getId();
+		return "redirect:/guest/registerResult";
 	}
 
-	@RequestMapping("guest/registerResultView")
-	public ModelAndView registerResultView(String id) {
-		MemberVO memberVO = memberService.findMemberById(id);
-		return new ModelAndView("member/register_result", "memberVO", memberVO);
+	@RequestMapping("guest/registerResult")
+	public String registerResultView() {
+		return "member/login-form";
+	}
+	
+	@RequestMapping("mypage")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
+	@RequestMapping("deleteMemberForm")
+	public String deleteMemberForm() {
+		return "member/deleteForm";
+	}
+	
+	@RequestMapping("deleteMemberAction")
+	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
+		memberService.deleteMemberAction(memberVO, password);
+		return "redirect:/deleteMemberResult";
+	}
+	
+	@RequestMapping("deleteMemberResult")
+	public String deleteMemberResult() {
+		return "member/delete-result";
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.kosta.juicetaproject.model.vo.Authority;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 public interface MemberService {
 	
@@ -23,4 +24,6 @@ public interface MemberService {
 	String idcheck(String id);
 	
 	List<Authority> findAuthorityById(String id);
+	
+	void deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password);
 }

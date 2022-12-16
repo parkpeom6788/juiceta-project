@@ -52,6 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		FROM	juiceta_authorities
 		WHERE	id=#{id}
 	</select>
+	<update id="deleteMember" parameterType="string">
+		UPDATE juiceta_customer SET enabled=0 WHERE id=#{value}
+	</update>
 </mapper>
 
 
