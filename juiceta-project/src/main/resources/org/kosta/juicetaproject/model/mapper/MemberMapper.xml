@@ -55,6 +55,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="deleteMember" parameterType="string">
 		UPDATE juiceta_customer SET enabled=0 WHERE id=#{value}
 	</update>
+	<select id="findMemberId" parameterType="org.kosta.juicetaproject.model.vo.MemberVO" resultType="string">
+		SELECT id FROM juiceta_customer WHERE name=#{name} AND phone=#{phone} AND enabled=1
+	</select>
 </mapper>
 
 

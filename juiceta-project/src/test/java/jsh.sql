@@ -16,9 +16,10 @@ SELECT * FROM juiceta_customer;
 
 -- 회원탈퇴 ( 비활성상태 )
 UPDATE juiceta_customer SET enabled=0 WHERE id='jtest';
-DELETE FROM juiceta_customer WHERE id='jtest';
 COMMIT
 
+-- 아이디찾기
+SELECT id FROM juiceta_customer WHERE name='아이유' AND phone='000000000' AND enabled='1';
 
 
 

@@ -26,4 +26,7 @@ public interface MemberService {
 	List<Authority> findAuthorityById(String id);
 	
 	void deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password);
+
+	String findMemberId(MemberVO memberVO);
+
 }

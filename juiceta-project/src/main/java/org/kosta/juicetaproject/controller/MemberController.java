@@ -108,7 +108,7 @@ public class MemberController {
 		return "member/deleteForm";
 	}
 	
-	@RequestMapping("deleteMemberAction")
+	@PostMapping("deleteMemberAction")
 	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
 		memberService.deleteMemberAction(memberVO, password);
 		return "redirect:/deleteMemberResult";
@@ -117,6 +117,17 @@ public class MemberController {
 	@RequestMapping("deleteMemberResult")
 	public String deleteMemberResult() {
 		return "member/delete-result";
+	}
+	
+	@RequestMapping("guest/findMemberIdAndPasswordForm")
+	public String findMemberIdForm() {
+		return "member/find-id-and-password-form";
+	}
+	
+	@RequestMapping("findMemberId")
+	@ResponseBody
+	public String findMemberId(MemberVO memberVO) {
+		return memberService.findMemberId(memberVO);
 	}
 
 }
