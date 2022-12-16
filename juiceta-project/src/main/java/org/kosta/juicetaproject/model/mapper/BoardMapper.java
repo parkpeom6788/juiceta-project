@@ -10,4 +10,6 @@ public interface BoardMapper {
 
 	List<BoardVO> findBoardAllList();
 
+	BoardVO boardDetail(int No);
+
 }

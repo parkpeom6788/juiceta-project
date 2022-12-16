@@ -31,8 +31,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardVO boardDetail(int baordNo) {
-		return null;
+	public BoardVO boardDetail(int No) {
+		return boardMapper.boardDetail(No);
 	}
 
 }
