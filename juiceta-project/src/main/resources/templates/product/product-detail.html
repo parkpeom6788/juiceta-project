@@ -5,79 +5,29 @@
   layout:decorate="~{layouts/layout}"
   xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
-  <head>
-    <title>product-detail</title>
-  </head>
+<head>
+	<title>board</title>
+</head>
 
- 	<div layout:fragment="content" class="container">
- 		<div class="row">
- 			<div class="col-lg-6 mb-5 ftco-animate">
- 				<a href="images/product-1.jpg" class="image-popup"><img src="images/product-1.jpg" class="img-fluid" alt="Colorlib Template"></a>
- 			</div>
- 			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
- 				<h3 th:text="${productDetail.productName}">상품명</h3>
- 				<div class="rating d-flex">
-					<p class="text-left mr-4">
-						<a href="#" class="mr-2">평균별점</a>
-						<a href="#"><span class="ion-ios-star-outline"></span></a>
-						<a href="#"><span class="ion-ios-star-outline"></span></a>
-						<a href="#"><span class="ion-ios-star-outline"></span></a>
-						<a href="#"><span class="ion-ios-star-outline"></span></a>
-						<a href="#"><span class="ion-ios-star-outline"></span></a>
-					</p>
-				</div>
- 				<p class="price" th:text="${productDetail.price}"><span>상품가격</span></p>
- 				<p th:text="${productDetail.productDetail}">상품상세설명</p>
-				<div class="row mt-4">
-					<div class="w-100"></div>
-					<div class="input-group col-md-6 d-flex mb-3">
-           				<span class="input-group-btn mr-2">
-              				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-                 				<i class="ion-ios-remove"></i>
-              				</button>
-          				</span>
-           				<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
-           				<span class="input-group-btn ml-2">
-              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-                   				<i class="ion-ios-add"></i>
-               				</button>
-           				</span>
-        			</div>
-        			<div class="w-100"></div>
-       			</div>
-       			<p><a href="cart.html" class="btn btn-black py-3 px-5">Add to Cart</a></p>
-			</div>
- 		</div>
- 		
- 		  <script>
-		$(document).ready(function(){
-			let quantitiy=0;
-	
-			$(".quantity-right-plus").click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        quantity = parseInt($("#quantity").val());        
-		        // If is not undefined  
-		        $("#quantity").val(quantity + 1);
-		        // Increment
-		    });
-
-		     $(".quantity-left-minus").click(function(e){
-		        // Stop acting like a button
-		        e.preventDefault();
-		        // Get the field name
-		        quantity = parseInt($('#quantity').val());
-		        // If is not undefined
-	            // Increment
-	            if(quantity>0){
-	            	$('#quantity').val(quantity - 1);
-	            }
-		    }); 
-		    
-		});
-	</script>
-	
- 	</div>
-
+	<div layout:fragment="content" class="container">
+	<h2>Q&A</h2>
+		<table class="table table-boardered">
+			<thead>
+			<tr>
+				<th>회원 아이디</th>
+				<th>Q&A제목</th>
+				<th>작성일</th>
+				<th>답변 상태</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr th:each="board:${boardAllList}">
+					<td th:text="${board.boardNo}" class = "col-sm-2"></td>
+					<td class="col-sm-5"><a th:href="@{guest/board/board-detail}" th:text="${board.boardTitle}"></a></td>
+					<td th:text="${board.boardTime}" class = "col-sm-3"></td>
+					<td th:text="${board.hits}" class = "col-sm-2"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 </html>

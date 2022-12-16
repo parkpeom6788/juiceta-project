@@ -10,10 +10,9 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class ProductController {
-	private final ProductService productService;
+
 	@RequestMapping("productDetailView")
-	public String productDetail(int productNo,Model model) {
-		model.addAttribute("productDetail", productService.productDetail(productNo));
+	public String productDetail() {
 		return "product/product-detail";
 	}
 }
