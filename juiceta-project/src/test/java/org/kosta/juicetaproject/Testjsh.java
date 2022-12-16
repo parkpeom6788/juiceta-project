@@ -37,7 +37,7 @@ class Testjsh {
 		int result = productMapper.registerProduct(productVO);
 		Assertions.assertEquals(1, result);
 	}
-
+	
 	
 }
 

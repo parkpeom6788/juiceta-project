@@ -23,6 +23,11 @@ public class ProductServiceImpl implements ProductService {
 		productMapper.registerProduct(productVO);
 	}
 
+	@Override
+	public ProductVO findProductByProductNo(int productNo) {
+		return productMapper.findProductByProductNo(productNo);
+	}
+
 	
 
 }

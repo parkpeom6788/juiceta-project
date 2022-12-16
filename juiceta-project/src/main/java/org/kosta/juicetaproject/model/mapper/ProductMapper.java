@@ -12,4 +12,6 @@ public interface ProductMapper {
 
 	int registerProduct(ProductVO productVO);
 
+	ProductVO findProductByProductNo(int productNo);
+
 }

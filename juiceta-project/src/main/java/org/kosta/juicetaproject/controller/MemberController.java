@@ -31,6 +31,12 @@ public class MemberController {
 			return "member/findMemberById_success" ;
 		}
 	}
+	
+	@RequestMapping("guest/loginForm")
+	public String loginForm() {
+		return "member/login-form";
+	}
+	
 	//WebSecurityConfig에 등록되어 있음 ( failureUrl("/login_fail") )
 	@RequestMapping("login_fail")
 	public String loginFail() {
