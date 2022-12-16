@@ -38,13 +38,6 @@ class Testjsh {
 		Assertions.assertEquals(1, result);
 	}
 	
-	@Test
-	void findProductByNo() {
-		int productNo = 1;
-		ProductVO productVO = productMapper.findProductByProductNo(productNo);
-		System.out.println(productVO);
-	}
-
 	
 }
 
