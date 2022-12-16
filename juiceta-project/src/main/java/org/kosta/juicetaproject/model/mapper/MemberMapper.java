@@ -27,4 +27,6 @@ public interface MemberMapper {
 
 	void registerRole(Authority authority);
 
+	void deleteMember(String id);
+
 }

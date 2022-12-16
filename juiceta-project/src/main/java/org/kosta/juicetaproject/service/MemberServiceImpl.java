@@ -2,10 +2,11 @@ package org.kosta.juicetaproject.service;
 
 import java.util.List;
 
-
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.vo.Authority;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -74,5 +75,12 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public List<Authority> findAuthorityById(String id) {
 		return memberMapper.findAuthorityById(id);
+	}
+
+	@Override
+	public void deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
+        if (!passwordEncoder.matches(password, memberVO.getPassword()))//! 비밀번호가 일치하지 않으면  
+            throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
+        memberMapper.deleteMember(memberVO.getId());
 	}
 }
