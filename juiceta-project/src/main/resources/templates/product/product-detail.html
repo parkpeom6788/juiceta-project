@@ -8,8 +8,8 @@
 <head>
 	<title>board</title>
 </head>
-
 	<div layout:fragment="content" class="container">
+			<span th:text="${questionAllList}"></span>
 	<h2>Q&A</h2>
 		<table class="table table-boardered">
 			<thead>
@@ -17,15 +17,15 @@
 				<th>회원 아이디</th>
 				<th>Q&A제목</th>
 				<th>작성일</th>
-				<th>답변 상태</th>
+				<th>답변상태</th>
 			</tr>
 			</thead>
 			<tbody>
-				<tr th:each="board:${boardAllList}">
-					<td th:text="${board.boardNo}" class = "col-sm-2"></td>
-					<td class="col-sm-5"><a th:href="@{guest/board/board-detail}" th:text="${board.boardTitle}"></a></td>
-					<td th:text="${board.boardTime}" class = "col-sm-3"></td>
-					<td th:text="${board.hits}" class = "col-sm-2"></td>
+				<tr th:each="question:${questionAllList}">
+					<td th:text="${question.memberVO.id}" class = "col-sm-2"></td>
+					<td th:text="${question.questionTitle}" class = "col-sm-3"></td>
+					<td th:text="${question.questionTime}" class = "col-sm-2"></td>
+					<td th:text="${question.checkAnswer}" class = "col-sm-2"></td>
 				</tr>
 			</tbody>
 		</table>
