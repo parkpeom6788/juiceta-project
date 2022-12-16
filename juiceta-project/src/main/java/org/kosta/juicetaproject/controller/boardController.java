@@ -17,4 +17,8 @@ public class boardController {
 		model.addAttribute("boardAllList",boardService.findProductAllList());
 		return "board/board-list";
 	}
+	@RequestMapping("guest/board-detail")
+	public String boardDetail(Model model){
+		return null;
+	}
 }

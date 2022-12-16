@@ -22,10 +22,10 @@
 			</thead>
 			<tbody>
 				<tr th:each="board:${boardAllList}">
-					<td th:text="${board.boardNo}"></td>
-					<td th:text="${board.boardTitle}"></td>
-					<td th:text="${board.boardTime}"></td>
-					<td th:text="${board.hits}"></td>
+					<td th:text="${board.boardNo}" class = "col-sm-2"></td>
+					<td class="col-sm-5"><a th:href="@{guest/board/board-detail}" th:text="${board.boardTitle}"></a></td>
+					<td th:text="${board.boardTime}" class = "col-sm-3"></td>
+					<td th:text="${board.hits}" class = "col-sm-2"></td>
 				</tr>
 			</tbody>
 		</table>
