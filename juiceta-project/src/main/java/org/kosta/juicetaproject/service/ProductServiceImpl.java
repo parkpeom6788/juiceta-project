@@ -23,12 +23,11 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.productDetail(productNo);
 	}
 
-
 	@Override
 	public ProductVO findProductByProductNo(int productNo) {
 		return productMapper.findProductByProductNo(productNo);
 	}
-
+	
 	@Override
 	public void registerProduct(ProductVO productVO) {
 		// TODO Auto-generated method stub
