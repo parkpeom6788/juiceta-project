@@ -11,4 +11,7 @@
 <include refid="boardSelect"></include>
 where board_no = #{value}
 </select>
+<update id="boardUpdate" parameterType="org.kosta.juicetaproject.model.vo.BoardVO">
+update juiceta_board set board_title=#{boardTitle}, board_content=#{boardContent} where board_No = #{boardNo}
+</update>
 </mapper>

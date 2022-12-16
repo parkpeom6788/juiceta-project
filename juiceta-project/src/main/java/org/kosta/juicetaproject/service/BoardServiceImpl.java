@@ -24,6 +24,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void updateBoard(BoardVO boardVO) {
+		boardMapper.boardUpdate(boardVO);
 	}
 
 	@Override

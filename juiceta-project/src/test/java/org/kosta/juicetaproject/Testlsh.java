@@ -29,7 +29,11 @@ class Testlsh {
 	}
 	
 	@Test
-	public void boardDetail() {
-		
+	public void boardUpdate() {
+		BoardVO vo = new BoardVO(1, "수정2", "수정2", null, 0);
+		boardMapper.boardUpdate(vo);
+		List<BoardVO> list = boardMapper.findBoardAllList();
+		for(BoardVO bvo : list)
+			System.out.println(bvo);
 	}
 }

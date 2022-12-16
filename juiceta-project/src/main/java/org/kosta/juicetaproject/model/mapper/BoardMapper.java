@@ -12,4 +12,7 @@ public interface BoardMapper {
 
 	BoardVO boardDetail(int No);
 
+	void boardUpdate(BoardVO vo);
+
+
 }
