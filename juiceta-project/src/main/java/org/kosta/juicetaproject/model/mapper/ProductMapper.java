@@ -16,4 +16,8 @@ public interface ProductMapper {
 
 	int updateProduct(ProductVO productVO);
 
+	int registerProduct(ProductVO productVO);
+
+	int deleteProduct(int productNo);
+
 }

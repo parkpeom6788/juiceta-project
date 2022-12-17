@@ -38,26 +38,43 @@ public class ProductController {
 		model.addAttribute("productVO",productMapper.findProductAllList());
 		return "product/product-list";
 	}
+	
 	@RequestMapping("registerProductForm")
 	public String registerProductForm() {
-		
 		return "product/register-form";
 	}
+	@PostMapping("registerProduct")
+	public String registerProduct(ProductVO productVO) {
+		productMapper.registerProduct(productVO);
+		return "redirect:registerProductResult?";
+	}
+	@RequestMapping("registerProductResult")
+	public String registerProductResult() {
+		return "product/register-result";
+	}
+	
 	@RequestMapping("updateProductForm")
 	public String updateProductForm(Model model, int productNo) {
-		System.out.println(productNo);
 		model.addAttribute("productVO",productMapper.findProductByProductNo(productNo));
 		return "product/update-form";
 	}
 	@PostMapping("update")
 	public String updateProduct(ProductVO productVO) {
-		System.out.println(1);
 		productMapper.updateProduct(productVO);
 		return "redirect:updateProductResult";
 	}
 	@RequestMapping("updateProductResult")
 	public String updateResult() {
 		return "/product/update-result";
+	}
+	@PostMapping("deleteProduct")
+	public String deleteProduct(int productNo) {
+		productMapper.deleteProduct(productNo);
+		return "redirect:deleteResult";
+	}
+	@RequestMapping("deleteResult")
+	public String deleteResult() {
+		return "product/delete-result";
 	}
 }
 

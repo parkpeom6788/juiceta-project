@@ -8,11 +8,13 @@ public interface ProductService {
 
 	List<ProductVO> findProductAllList();
 	
-	void registerProduct(ProductVO productVO);
+	int registerProduct(ProductVO productVO);
 
 	ProductVO findProductByProductNo(int productNo);
 
 	ProductVO productDetail(int productNo);
 	
 	int updateProduct(ProductVO productVO);
+	
+	int deleteProduct(int productNo);
 }

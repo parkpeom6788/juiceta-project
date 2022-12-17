@@ -10,9 +10,34 @@
 </head>
 
 	<div layout:fragment="content" class="container">
-		여기는 상품등록 페이지입니다
+		<h1>상품등록</h1>
+		<form action="" th:action="@{/registerProduct}" method="post">
+			<select required="required" name="category">
+				<option value="">카테고리</option>
+				<option value="과일쥬스">Juice</option>
+				<option value="과일차">Tea</option>
+			</select><br>
+			<input type="text" name="productName" placeholder="상품명" required="required"><br>
+			<input type="text" name="price" placeholder="가격" required="required"><br>
+			<input type="text" name="productCount" placeholder="수량(BOX)" required="required"><br>
+			<input type="text" name="image" placeholder="사진업로드" required="required"><br>
+			<textarea rows="5" cols="23" name="productDetail" placeholder="상세설명글" required="required"></textarea>
+			<button type="reset" id="registerCancleBtn">취소</button>&nbsp;&nbsp;<button type="submit" id="registerOkBtn">등록</button>
+		</form>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#registerCancleBtn").click(function() {
+					return confirm("등록을 취소하시겠습니까?");
+				});//click
+ 				$("#registerOkBtn").click(function() {
+					let message=confirm("상품을 등록하시겠습니까?");
+					if(message==false)
+						return false
+					  //alert("상품 등록이 완료되었습니다");
+				});//click
+			});//ready
+		</script>
 	</div>
-
 </html>
 
 

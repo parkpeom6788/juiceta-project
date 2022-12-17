@@ -27,6 +27,9 @@
 		image=#{image},category=#{category}
 		WHERE product_no=#{productNo}
 	</update>
+	<delete id="deleteProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
+		DELETE FROM juiceta_product WHERE product_no=#{value}
+	</delete>
 </mapper>
 
 

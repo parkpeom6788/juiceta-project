@@ -118,15 +118,25 @@ CREATE TABLE juiceta_product(
 	category VARCHAR2(100) NOT NULL
 )
 CREATE SEQUENCE juiceta_product_seq;
-SELECT * FROM juiceta_product;
-INSERT INTO juiceta_product  VALUES (juiceta_product_seq.nextval,'즙',500,100,'즙즙','product-6.jpg','즙즙즙')
-update juiceta_product set price=9000 WHERE product_no=5
 
+-- 전체 상품 검색 SQL
+SELECT * FROM juiceta_product;
+
+-- 상품 등록 SQL
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'파프리카즙',10000,100,'맛있는 파프리카즙','product-1.jpg','과일즙')
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'딸기즙',11000,100,'맛있는 딸기즙','product-2.jpg','과일즙')
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'당근즙',7000,100,'맛있는 당근즙','product-7.jpg','과일즙')
+
+-- 상품 수정 SQL
 UPDATE juiceta_product 
 SET product_no=6,product_name='브로콜asdasd즙',
 price=5000,product_count=20,product_detail='맛있는 브ads로콜리즙',
 image='product-6.jpg',category='과일즙'
 WHERE product_no=21
+
+-- 상품 삭제 SQL
+DELETE FROM juiceta_product WHERE product_no=50;
+
 
 -- 공지사항
 CREATE TABLE juiceta_board(
