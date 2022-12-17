@@ -21,6 +21,9 @@ COMMIT
 -- 아이디찾기
 SELECT id FROM juiceta_customer WHERE name='아이유' AND phone='000000000' AND enabled='1';
 
+-- 비밀번호찾기 (임시비밀번호발급)
+	-- 회원정보에 해당하는 회원 존재유무 확인
+	SELECT COUNT(*) FROM juiceta_customer WHERE id='jtest0' AND name='아이유' AND phone='000000000';
 
 
 

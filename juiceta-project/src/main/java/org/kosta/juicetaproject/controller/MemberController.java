@@ -93,7 +93,7 @@ public class MemberController {
 		return "redirect:/guest/registerResult";
 	}
 
-	@RequestMapping("guest/registerResult")
+	@GetMapping("guest/registerResult")
 	public String registerResultView() {
 		return "member/login-form";
 	}
@@ -114,7 +114,7 @@ public class MemberController {
 		return "redirect:/deleteMemberResult";
 	}
 	
-	@RequestMapping("deleteMemberResult")
+	@GetMapping("deleteMemberResult")
 	public String deleteMemberResult() {
 		return "member/delete-result";
 	}
@@ -124,10 +124,16 @@ public class MemberController {
 		return "member/find-id-and-password-form";
 	}
 	
-	@RequestMapping("findMemberId")
+	@RequestMapping("guest/findMemberId")
 	@ResponseBody
 	public String findMemberId(MemberVO memberVO) {
 		return memberService.findMemberId(memberVO);
+	}
+	
+	@RequestMapping("guest/findMemberPassword")
+	@ResponseBody
+	public String findMemberPassword(MemberVO memberVO) {
+		return memberService.findMemberPassword(memberVO);
 	}
 
 }

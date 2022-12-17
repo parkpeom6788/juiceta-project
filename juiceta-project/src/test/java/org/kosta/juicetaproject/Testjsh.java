@@ -2,6 +2,7 @@ package org.kosta.juicetaproject;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
@@ -43,7 +44,15 @@ class Testjsh {
 		System.out.println(id);
 	}
 	
-	
+	@Test
+	void findMemberPassword() {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId("jtest0");
+		memberVO.setName("아이유");
+		memberVO.setPhone("000000000");		
+		int result = memberMapper.findMemberPassword(memberVO);
+		Assertions.assertEquals(1, result);
+	}
 
 }
 

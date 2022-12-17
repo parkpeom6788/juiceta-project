@@ -58,6 +58,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findMemberId" parameterType="org.kosta.juicetaproject.model.vo.MemberVO" resultType="string">
 		SELECT id FROM juiceta_customer WHERE name=#{name} AND phone=#{phone} AND enabled=1
 	</select>
+	<select id="findMemberPassword" parameterType="org.kosta.juicetaproject.model.vo.MemberVO" resultType="int">
+		SELECT COUNT(*) FROM juiceta_customer WHERE id=#{id} AND name=#{name} AND phone=#{phone} AND enabled=1
+	</select>
 </mapper>
 
 

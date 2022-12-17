@@ -31,4 +31,6 @@ public interface MemberMapper {
 
 	String findMemberId(MemberVO memberVO);
 
+	int findMemberPassword(MemberVO memberVO);
+
 }

@@ -29,4 +29,6 @@ public interface MemberService {
 
 	String findMemberId(MemberVO memberVO);
 
+	String findMemberPassword(MemberVO memberVO);
+
 }
