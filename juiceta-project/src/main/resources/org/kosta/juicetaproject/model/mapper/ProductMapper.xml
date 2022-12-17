@@ -8,7 +8,6 @@
 	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		<include refid="selectProduct"></include>
 	</select>
-
 	<insert id="registerProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
 		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 
 		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image},#{category})
@@ -30,6 +29,13 @@
 	<delete id="deleteProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
 		DELETE FROM juiceta_product WHERE product_no=#{value}
 	</delete>
+	<select id="productAllListByRnum" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+		SELECT rnum,product_no,product_name,price,product_count
+		FROM (
+		SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count 
+		FROM juiceta_product
+		)
+	</select>
 </mapper>
 
 

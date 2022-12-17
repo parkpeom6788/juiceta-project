@@ -20,4 +20,7 @@ public interface ProductMapper {
 
 	int deleteProduct(int productNo);
 
+	List<ProductVO> productAllListByRnum();
+
+
 }

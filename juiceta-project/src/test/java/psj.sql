@@ -119,8 +119,16 @@ CREATE TABLE juiceta_product(
 )
 CREATE SEQUENCE juiceta_product_seq;
 
--- 전체 상품 검색 SQL
-SELECT * FROM juiceta_product;
+-- 조회된 결과 행 번호를 부여하기 위해 ROW_NUMBER() OVER(정렬) 함수를 이용
+SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count FROM juiceta_product
+
+-- Inline View ( FROM 절의 SUBQUERY ) 를 이용하면 된다
+
+SELECT rnum,product_no,product_name,price,product_count
+FROM (
+	SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count 
+	FROM juiceta_product
+)
 
 -- 상품 등록 SQL
 INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'파프리카즙',10000,100,'맛있는 파프리카즙','product-1.jpg','과일즙')

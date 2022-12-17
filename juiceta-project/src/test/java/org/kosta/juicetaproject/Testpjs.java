@@ -1,5 +1,7 @@
 package org.kosta.juicetaproject;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -39,6 +41,11 @@ class Testpjs {
 		int productNo=49;
 		int result=productMapper.deleteProduct(productNo);
 		System.out.println(result);
+	}
+	@Test
+	void productAllListByRnum() {
+		List<ProductVO> list=productMapper.productAllListByRnum();
+		System.out.println(list);
 	}
 }
 

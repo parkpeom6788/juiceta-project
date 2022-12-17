@@ -42,6 +42,13 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.deleteProduct(productNo);
 	}
 
+	@Override
+	public List<ProductVO> productAllListByRnum() {
+		return productMapper.productAllListByRnum();
+	}
+
+
+	
 	
 }
 

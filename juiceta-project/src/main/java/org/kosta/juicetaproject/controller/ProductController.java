@@ -35,7 +35,7 @@ public class ProductController {
 	}
 	@RequestMapping("productAdmin")
 	public String productAdmin(Model model) {
-		model.addAttribute("productVO",productMapper.findProductAllList());
+		model.addAttribute("productVO",productMapper.productAllListByRnum());
 		return "product/product-list";
 	}
 	

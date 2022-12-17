@@ -17,4 +17,7 @@ public interface ProductService {
 	int updateProduct(ProductVO productVO);
 	
 	int deleteProduct(int productNo);
+	
+	List<ProductVO> productAllListByRnum();
+	
 }
