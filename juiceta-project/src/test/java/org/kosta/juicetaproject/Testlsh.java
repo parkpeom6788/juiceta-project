@@ -36,4 +36,14 @@ class Testlsh {
 		for(BoardVO bvo : list)
 			System.out.println(bvo);
 	}
+	@Test
+	public void boardWrite() {
+		String boardTitle = "test";
+		String boardContent = "text"; 
+		BoardVO vo= new BoardVO(0,boardTitle,boardContent,null,0);
+		boardMapper.registerBoard(vo);
+		List<BoardVO> list = boardMapper.findBoardAllList();
+		for(BoardVO bvo : list)
+			System.out.println(bvo);
+	}
 }

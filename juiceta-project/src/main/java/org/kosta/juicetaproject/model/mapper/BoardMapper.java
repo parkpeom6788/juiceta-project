@@ -14,5 +14,7 @@ public interface BoardMapper {
 
 	void boardUpdate(BoardVO vo);
 
+	void registerBoard(BoardVO boardVO);
+
 
 }

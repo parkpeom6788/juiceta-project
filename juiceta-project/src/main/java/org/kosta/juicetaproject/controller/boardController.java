@@ -47,4 +47,13 @@ public class boardController {
 	public String updateBoardResult() {
 		return "board/update-board-result";
 	}
+	@RequestMapping("guest/boardWriteForm")
+	public String baordWrite() {
+		return "board/write-board";
+	}
+	@PostMapping("guest/boardWrite")
+	public String boardWrite(Model model,BoardVO boardVO) {
+		boardService.registerBoard(boardVO);
+		return "board/register-board-result.html";
+	}
 }
