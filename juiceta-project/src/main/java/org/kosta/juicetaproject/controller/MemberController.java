@@ -108,9 +108,15 @@ public class MemberController {
 		return "member/deleteForm";
 	}
 	
+	@RequestMapping("passwordcheckAjax")
+	@ResponseBody
+	public String passwordcheckAjax(@AuthenticationPrincipal MemberVO memberVO, String password) {
+		return memberService.passwordcheck(memberVO, password);
+	}
+	
 	@PostMapping("deleteMemberAction")
-	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
-		memberService.deleteMemberAction(memberVO, password);
+	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO) {
+		memberService.deleteMemberAction(memberVO);
 		return "redirect:/deleteMemberResult";
 	}
 	

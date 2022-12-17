@@ -13,12 +13,32 @@
 		<div class="row">
 			<div class="col-md-4 offset-md-4">
 				<h2>비밀번호확인</h2>
-				<form method="post" th:action="@{/deleteMemberAction}">
+				<form method="post" th:action="@{/deleteMemberAction}" id="passwordCheckForm">
 					<span style="display: inline-block; width: 70px">패스워드</span><input type="password" name="password" required="required" size="30"><br><br>
-					<button type="submit" class="btn btn-danger btn-block">회원탈퇴</button>
+					<button type="button" id="passwordCheckBtn" class="btn btn-danger btn-block">회원탈퇴</button>
 				</form>
 			</div>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#passwordCheckBtn").click(function() {
+					let password = $("#passwordCheckForm :input[name=password]");
+					$.ajax({
+						type:"get",
+						url:"/passwordcheckAjax",
+						data:"password="+password.val(),
+						success:function(result){
+							if(result=="ok"){
+								$("#passwordCheckForm").submit();
+							}else{
+								alert("비밀번호가 일치하지 않습니다");
+								password.val("").focus();
+							}
+						}
+					});
+				});
+			});
+		</script>
 	</div>
 
 </html>
