@@ -9,9 +9,7 @@ import org.kosta.juicetaproject.model.vo.ProductVO;
 public interface ProductMapper {
 
 	List<ProductVO> findProductAllList();
-
-	ProductVO productDetail(int productNo);
-
+	
 	ProductVO findProductByProductNo(int productNo);
 
 }

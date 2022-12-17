@@ -19,19 +19,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductVO productDetail(int productNo) {
-		return productMapper.productDetail(productNo);
-	}
-
-	@Override
 	public ProductVO findProductByProductNo(int productNo) {
 		return productMapper.findProductByProductNo(productNo);
 	}
 	
 	@Override
 	public void registerProduct(ProductVO productVO) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	

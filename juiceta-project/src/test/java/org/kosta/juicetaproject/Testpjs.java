@@ -18,7 +18,7 @@ class Testpjs {
 	@Test
 	void productDetail() {
 		int productNo=1;
-		ProductVO productVO=productMapper.productDetail(productNo);
+		ProductVO productVO=productMapper.findProductByProductNo(productNo);
 		System.out.println(productVO);
 	}
 	@Test

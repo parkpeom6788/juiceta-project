@@ -12,7 +12,10 @@ VALUES(juiceta_product_seq.nextval,'양배추즙',10000,30,'맛있는 양배추�
 -- 상품리스트 조회
 SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product;
 
+SELECT * FROM juiceta_authorities;
 SELECT * FROM juiceta_customer;
+SELECT * FROM juiceta_product;
+SELECT * FROM juiceta_review;
 
 -- 회원탈퇴 ( 비활성상태 )
 UPDATE juiceta_customer SET enabled=0 WHERE id='jtest';
@@ -25,6 +28,7 @@ SELECT id FROM juiceta_customer WHERE name='아이유' AND phone='000000000' AND
 	-- 회원정보에 해당하는 회원 존재유무 확인
 	SELECT COUNT(*) FROM juiceta_customer WHERE id='jtest0' AND name='아이유' AND phone='000000000';
 
+INSERT INTO juiceta_authorities(authority,id) VALUES('ROLE_ADMIN','jtest3');
 
 
 

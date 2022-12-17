@@ -12,7 +12,4 @@ public interface ProductService {
 
 	ProductVO findProductByProductNo(int productNo);
 
-	ProductVO productDetail(int productNo);
-	
-
 }

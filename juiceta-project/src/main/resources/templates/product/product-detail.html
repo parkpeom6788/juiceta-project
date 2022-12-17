@@ -9,16 +9,83 @@
 	<title>board</title>
 </head>
 	<div layout:fragment="content" class="container">
-			<span th:text="${questionAllList}"></span>
-	<h2>Q&A</h2>
+ 		<div class="row">
+			<div class="col-lg-6 mb-5 ftco-animate">
+				<a href="" th:href="@{/images/}+${productVO.image}" class="image-popup"><img src="" th:src="@{/images/}+${productVO.image}" class="img-fluid" alt="Colorlib Template"></a>
+			</div>
+			<div class="col-lg-6 product-details pl-md-5 ftco-animate">
+				<h3 th:text="${productVO.productName}">상품명</h3>
+				<div class="rating d-flex">
+					<p class="text-left mr-4">
+						<span class="mr-2" style="color: green">평균별점</span>
+						<span class="ion-ios-star" style="color: green"></span>
+						<span class="ion-ios-star-outline" style="color: green"></span>
+						<span class="ion-ios-star-outline" style="color: green"></span>
+						<span class="ion-ios-star-outline" style="color: green"></span>
+						<span class="ion-ios-star-outline" style="color: green"></span>
+					</p>
+				</div>
+				<p class="price"><span>&#8361; </span><span th:text="${productVO.price}">상품가격</span></p>
+				<p th:text="${productVO.productDetail}">상품상세설명</p>
+				<div class="row mt-4">
+					<div class="w-100"></div>
+					<div class="input-group col-md-6 d-flex mb-3">
+	          				<span class="input-group-btn mr-2">
+	             				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+	                				<i class="ion-ios-remove"></i>
+	             				</button>
+	         				</span>
+	          				<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+	          				<span class="input-group-btn ml-2">
+	             				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+	                  				<i class="ion-ios-add"></i>
+	              				</button>
+	          				</span>
+	       			</div>
+       				<div class="w-100"></div>
+      			</div>
+      			<p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+			</div>
+		</div><br><br>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				let quantitiy=0;
+	
+				$(".quantity-right-plus").click(function(e){
+			        // Stop acting like a button
+			        e.preventDefault();
+			        // Get the field name
+			        quantity = parseInt($("#quantity").val());        
+			        // If is not undefined  
+			        $("#quantity").val(quantity + 1);
+			        // Increment
+			    });
+	
+			     $(".quantity-left-minus").click(function(e){
+			        // Stop acting like a button
+			        e.preventDefault();
+			        // Get the field name
+			        quantity = parseInt($('#quantity').val());
+			        // If is not undefined
+		            // Increment
+		            if(quantity>0){
+		            	$('#quantity').val(quantity - 1);
+		            }
+			    }); 
+			    
+			});
+		</script>
+	
+		<!--/* 문의사항 게시판 */-->
+		<h2>Q&A</h2>
 		<table class="table table-boardered">
 			<thead>
-			<tr>
-				<th>회원 아이디</th>
-				<th>Q&A제목</th>
-				<th>작성일</th>
-				<th>답변상태</th>
-			</tr>
+				<tr>
+					<th>회원 아이디</th>
+					<th>Q&A제목</th>
+					<th>작성일</th>
+					<th>답변상태</th>
+				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="question:${questionAllList}">
@@ -29,5 +96,6 @@
 				</tr>
 			</tbody>
 		</table>
+		
 	</div>
 </html>
