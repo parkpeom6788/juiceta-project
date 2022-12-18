@@ -46,4 +46,11 @@ class Testlsh {
 		for(BoardVO bvo : list)
 			System.out.println(bvo);
 	}
+	@Test void deleteBoard() {
+		int No = 1;
+		boardMapper.deleteBoard(No);
+		List<BoardVO> list = boardMapper.findBoardAllList();
+		for(BoardVO bvo : list)
+			System.out.println(bvo);
+	}
 }

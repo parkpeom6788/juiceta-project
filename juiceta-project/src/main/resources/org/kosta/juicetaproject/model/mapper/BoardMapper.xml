@@ -17,4 +17,7 @@ update juiceta_board set board_title=#{boardTitle}, board_content=#{boardContent
 <insert id="registerBoard" parameterType="org.kosta.juicetaproject.model.vo.BoardVO">
 insert into juiceta_board(board_no,board_title, board_content, board_time) values (juiceta_board_seq.nextval,#{boardTitle},#{boardContent},sysdate)
 </insert>
+<delete id="deleteBoard" parameterType="int">
+delete from juiceta_board where board_no = #{value}
+</delete>
 </mapper>

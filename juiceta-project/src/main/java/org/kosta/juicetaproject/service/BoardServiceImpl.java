@@ -30,6 +30,7 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public void deleteBoard(int boardNo) {
+		boardMapper.deleteBoard(boardNo);
 	}
 
 	@Override

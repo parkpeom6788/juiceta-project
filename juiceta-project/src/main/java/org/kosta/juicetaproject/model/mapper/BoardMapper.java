@@ -16,5 +16,7 @@ public interface BoardMapper {
 
 	void registerBoard(BoardVO boardVO);
 
+	void deleteBoard(int no);
+
 
 }

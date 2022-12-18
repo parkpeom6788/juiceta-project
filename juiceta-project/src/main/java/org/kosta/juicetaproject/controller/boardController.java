@@ -38,7 +38,6 @@ public class boardController {
 	@PostMapping("guest/boardUpdate")
 	public String updateBoard(BoardVO boardVO){
 		
-		System.out.println(boardVO);
 		boardService.updateBoard(boardVO);
 		
 		return "redirect:updateBoardResult";
@@ -54,6 +53,19 @@ public class boardController {
 	@PostMapping("guest/boardWrite")
 	public String boardWrite(Model model,BoardVO boardVO) {
 		boardService.registerBoard(boardVO);
+		return "redirect:boardWriteResult";
+	}
+	@RequestMapping("guest/boardWriteResult")
+	public String boardWriteResult() {
 		return "board/register-board-result.html";
+	}
+	@PostMapping("guest/boardDelete")
+	public String boardDelete(Model model, int boardNo) {
+		boardService.deleteBoard(boardNo);
+		return "redirect:deleteBoardResult";
+	}
+	@RequestMapping("guest/deleteBoardResult")
+	public String deleteBoardResult() {
+		return "board/delete-board-reuslt";
 	}
 }
