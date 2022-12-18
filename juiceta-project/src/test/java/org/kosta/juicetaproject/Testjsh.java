@@ -1,6 +1,8 @@
 package org.kosta.juicetaproject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,6 +43,27 @@ class Testjsh {
 			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
 
 		List<ProductVO> list = productMapper.findProductAllList(shopPagination);
+		for(ProductVO vo : list)
+			System.out.println(vo);
+	}
+	
+	@Test
+	void findProductAllListByCateory() {
+		int totalProductCount = productMapper.getTotalProductCount();
+		String pageNo = "";
+		ShopPagination shopPagination = null;
+		
+		if(pageNo=="")
+			shopPagination = new ShopPagination(totalProductCount);
+		else
+			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+		
+		String category = "Tea";
+		Map<String, Object> map = new HashMap<>();
+		map.put("PAGINATION", shopPagination);
+		map.put("CATEGORY", category);
+		
+		List<ProductVO> list = productMapper.findProductAllListByCategory(map);
 		for(ProductVO vo : list)
 			System.out.println(vo);
 	}

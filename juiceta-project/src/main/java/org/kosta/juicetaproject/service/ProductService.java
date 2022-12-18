@@ -12,4 +12,6 @@ public interface ProductService {
 
 	ProductVO findProductByProductNo(int productNo);
 
+	Map<String, Object> findProductAllListByCategory(String category, String pageNo);
+
 }

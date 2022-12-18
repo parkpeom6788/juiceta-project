@@ -41,6 +41,26 @@ public class ProductServiceImpl implements ProductService {
 
 	}
 
+	@Override
+	public Map<String, Object> findProductAllListByCategory(String category, String pageNo) {
+		int totalProductCount = productMapper.getTotalProductCountbyCategory(category);
+		ShopPagination shopPagination = null;
+		if(pageNo==null)
+			shopPagination = new ShopPagination(totalProductCount);
+		else
+			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("PAGINATION", shopPagination);
+		map.put("CATEGORY", category);
+		
+		Map<String, Object> paging = new HashMap<>();
+		paging.put("LIST", productMapper.findProductAllListByCategory(map));
+		paging.put("PAGINATION", shopPagination);
+		
+		return paging;
+	}
+
 	
 }
 

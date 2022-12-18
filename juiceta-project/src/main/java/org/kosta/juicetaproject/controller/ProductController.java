@@ -64,6 +64,14 @@ public class ProductController {
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/shop";
 	}
+	
+	@RequestMapping("shopCategory")
+	public String shopCategory(String category, String pageNo, Model model) {
+		Map<String, Object> paging = productService.findProductAllListByCategory(category, pageNo);
+		model.addAttribute("productAllList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
+		return "product/shop-"+(category.equals("Juice")?"juice":"tea");
+	}
 
 }
 

@@ -23,6 +23,18 @@
 	<select id="findProductByProductNo" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		<include refid="selectProduct"></include> WHERE product_no=#{value}
 	</select>
+	<select id="findProductAllListByCategory" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			FROM juiceta_product
+			WHERE category=#{CATEGORY}
+		)
+		WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber}
+	</select>
+	<select id="getTotalProductCountbyCategory" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM juiceta_product WHERE category=#{value}
+	</select>
 
 </mapper>
 
