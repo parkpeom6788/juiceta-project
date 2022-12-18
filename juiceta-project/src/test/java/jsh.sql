@@ -14,7 +14,7 @@ SELECT product_no,product_name,price,product_count,product_detail,image,category
 
 SELECT * FROM juiceta_authorities;
 SELECT * FROM juiceta_customer;
-SELECT * FROM juiceta_product;
+SELECT * FROM juiceta_product ORDER BY product_no;
 SELECT * FROM juiceta_review;
 
 -- 회원탈퇴 ( 비활성상태 )
@@ -50,7 +50,6 @@ UPDATE juiceta_product SET product_count=0 WHERE product_no=3;
 SELECT * FROM juiceta_wishlist;
 INSERT INTO juiceta_wishlist VALUES('jtest1',126);
 SELECT COUNT(*) FROM juiceta_wishlist WHERE id='jtest1' AND product_no=126;
-
 
 
 

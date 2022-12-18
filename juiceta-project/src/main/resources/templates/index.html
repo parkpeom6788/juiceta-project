@@ -83,10 +83,11 @@
 	    					</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
+	    							<span th:data-product="${product.productNo}"></span>
 	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
-	    							<a href="#" class="heart d-flex justify-content-center align-items-center ">
+	    							<a class="heart d-flex justify-content-center align-items-center btn addwishlist">
 	    								<span><i class="ion-ios-heart"></i></span>
 	    							</a>
     							</div>
@@ -94,6 +95,24 @@
     					</div>
     				</div>
     			</div>
+    			<script type="text/javascript">
+    				$(document).ready(function() {
+    					$(".addwishlist").click(function() {
+    						let productNo = $(this).prev().prev().data("product");
+    						$.ajax({
+    							type:"get",
+    							url:"addWishlistAjax",
+    							data:"productNo="+productNo,
+    							success:function(result){
+    								if(result=="fail")
+    									alert("이미 찜목록에 추가된 상품입니다");
+    								else
+    									alert("찜 목록에 추가하였습니다");
+    							}
+    						});
+    					});
+    				});
+    			</script>
     		</div>
     	</div>
     	<!--/* Pagination 부분 */-->
