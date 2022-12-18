@@ -130,13 +130,13 @@ public class MemberController {
 		return "member/find-id-and-password-form";
 	}
 	
-	@RequestMapping("guest/findMemberId")
+	@RequestMapping("guest/findMemberIdAjax")
 	@ResponseBody
 	public String findMemberId(MemberVO memberVO) {
 		return memberService.findMemberId(memberVO);
 	}
 	
-	@RequestMapping("guest/findMemberPassword")
+	@RequestMapping("guest/findMemberPasswordAjax")
 	@ResponseBody
 	public String findMemberPassword(MemberVO memberVO) {
 		return memberService.findMemberPassword(memberVO);
