@@ -20,5 +20,7 @@ public interface ProductMapper {
 
 	int getTotalProductCountbyCategory(String category);
 
+	List<ProductVO> findProductByProductNameKeyword(String keyword);
+
 
 }

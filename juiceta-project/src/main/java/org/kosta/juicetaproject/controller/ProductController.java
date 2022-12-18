@@ -71,6 +71,12 @@ public class ProductController {
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/shop-"+(category.equals("Juice")?"juice":"tea");
 	}
+	
+	@RequestMapping("/guest/findProductByProductNameKeyword")
+	public String findProductByProductNameKeyword(String searchKeyword, Model model) {
+		model.addAttribute("productList", productService.findProductByProductNameKeyword(searchKeyword));
+		return "product/product-search-keyword";
+	}
 
 }
 

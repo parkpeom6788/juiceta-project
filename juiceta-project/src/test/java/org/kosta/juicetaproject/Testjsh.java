@@ -100,6 +100,14 @@ class Testjsh {
 		int result = cartAndWishlistMapper.findWishlistByIdAndProductNo(map);
 		System.out.println(result);
 	}
+	
+	@Test
+	void findProductByProductNameKeyword() {
+		String keyword = "양";
+		List<ProductVO> list = productMapper.findProductByProductNameKeyword(keyword);
+		for(ProductVO vo : list)
+			System.out.println(vo);
+	}
 
 }
 

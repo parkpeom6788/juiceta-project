@@ -56,4 +56,14 @@ SELECT c.id, c.name,c.address,c.phone,c.enabled,a.authority FROM juiceta_custome
 INNER JOIN juiceta_authorities a ON c.id=a.id
 ORDER BY c.id DESC;
 
+-- 상품명으로 상품검색
+SELECT * FROM juiceta_product
+WHERE product_name LIKE '%양%';
+
+
+
+
+
+
+
 
