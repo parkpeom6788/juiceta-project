@@ -10,8 +10,8 @@
 </head>
 	<div layout:fragment="content" class="container">
 		<h1>상품관리</h1>
-		<form action="">
-		  <input type="text" name="productName" placeholder="상품명">
+		<form action="" th:action="@{/productAdmin}">
+		  <input type="text" name="productKeyword" placeholder="상품명">
 		  <button type="submit" id="selectProduct" class="btn btn-outline-success">상품검색</button>&nbsp;&nbsp;&nbsp;
 		</form><br>
 		  <form action="" th:action="@{/registerProductForm}">
@@ -30,7 +30,7 @@
 		 		</tr>
 		 	</thead>
 		 	<tbody id="productInfo">
-		 		<tr th:each="product:${productVO}">
+		 		<tr th:each="product:${productList}">
 		 		  <td th:text="${product.rnum}" class="col-sm-1">상품번호</td>
 		 		  <td th:text="${product.productName}" class="col-sm-3" id="productName">상품명</td>
 		 		  <td th:text="|${product.price}원|" class="col-sm-2">가격</td>

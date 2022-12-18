@@ -20,4 +20,6 @@ public interface ProductService {
 	
 	List<ProductVO> productAllListByRnum();
 	
+	List<ProductVO> findProductListByKeyword(String keyword);
+	
 }

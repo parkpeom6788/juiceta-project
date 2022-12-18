@@ -47,6 +47,11 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.productAllListByRnum();
 	}
 
+	@Override
+	public List<ProductVO> findProductListByKeyword(String keyword) {
+		return productMapper.findProductListByKeyword(keyword);
+	}
+
 
 	
 	
