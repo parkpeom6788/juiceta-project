@@ -32,7 +32,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("guest/loginForm")
+	@RequestMapping("loginForm")
 	public String loginForm() {
 		return "member/login-form";
 	}

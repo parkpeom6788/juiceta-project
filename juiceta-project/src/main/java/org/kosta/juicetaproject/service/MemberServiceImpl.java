@@ -6,7 +6,6 @@ import java.util.Random;
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.vo.Authority;
 import org.kosta.juicetaproject.model.vo.MemberVO;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -83,7 +82,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO) {
+	public void deleteMemberAction(MemberVO memberVO) {
         memberMapper.deleteMember(memberVO.getId());
 	}
 

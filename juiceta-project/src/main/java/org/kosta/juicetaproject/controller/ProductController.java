@@ -3,7 +3,6 @@ package org.kosta.juicetaproject.controller;
 import java.util.List;
 import java.util.Map;
 
-import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.kosta.juicetaproject.service.ProductService;
@@ -13,14 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@Data
 public class ProductController {
-	private final ProductMapper productMapper;
 	private final QuestionService QuestionService;
 	private final ProductService productService;
 	
@@ -37,8 +33,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping("productAdmin")
-	public String productAdmin(Model model) {
-		//model.addAttribute("productVO",productMapper.findProductAllList());
+	public String productAdmin(String pageNo, Model model) {
+		Map<String, Object> paging = productService.findProductAllList(pageNo);
+		
+		model.addAttribute("productAllList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";
 	}
 	

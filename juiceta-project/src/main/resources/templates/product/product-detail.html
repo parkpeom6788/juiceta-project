@@ -44,9 +44,32 @@
 	       			</div>
        				<div class="w-100"></div>
       			</div>
-      			<p><a href="#" class="btn btn-black py-3 px-5">Add to Cart</a></p>
+      			<span id="addWishlist" class="btn btn-black py-3 px-5">찜하기</span>&nbsp;&nbsp;
+      			<span id="addCart" class="btn btn-black py-3 px-4">장바구니담기</span>&nbsp;&nbsp;
+      			<span><a href="#" th:href="@{/checkoutForm}" class="btn btn-black py-3 px-4">바로구매하기</a></span>
 			</div>
 		</div><br><br>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#addWishlist").click(function() {
+					let urlSearch = new URLSearchParams(location.search);
+					let productNo = urlSearch.get("productNo");
+					$.ajax({
+						type:"get",
+						url:"/addWishlistAjax",
+						data:"productNo="+productNo,
+						success:function(result){
+							if(result=="fail"){
+								alert("이미 찜목록에 추가된 상품입니다");
+							}else{
+								alert("찜 목록에 추가하였습니다");
+							}
+						}
+					});
+				});
+			});
+		</script>
+		
 		<script type="text/javascript">
 			$(document).ready(function(){
 				let quantitiy=0;
@@ -71,7 +94,7 @@
 		            if(quantity>0){
 		            	$('#quantity').val(quantity - 1);
 		            }
-			    }); 
+		    	 });
 			    
 			});
 		</script>

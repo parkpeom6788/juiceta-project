@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
@@ -18,12 +19,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 class Testjsh {
 	private final ProductMapper productMapper;
 	private final MemberMapper memberMapper;
+	private final CartAndWishlistMapper cartAndWishlistMapper;
 
 	@Autowired
-	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper) {
+	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper, CartAndWishlistMapper cartAndWishlistMapper) {
 		super();
 		this.productMapper = productMapper;
 		this.memberMapper = memberMapper;
+		this.cartAndWishlistMapper = cartAndWishlistMapper;
 	}
 
 	@Test
@@ -85,6 +88,17 @@ class Testjsh {
 		memberVO.setPhone("000000000");		
 		int result = memberMapper.findMemberPassword(memberVO);
 		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	void findWishlistByIdAndProductNo() {
+		String id = "jtest1";
+		int productNo = 126;
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID",id);
+		map.put("PRODUCT_NO", productNo);
+		int result = cartAndWishlistMapper.findWishlistByIdAndProductNo(map);
+		System.out.println(result);
 	}
 
 }

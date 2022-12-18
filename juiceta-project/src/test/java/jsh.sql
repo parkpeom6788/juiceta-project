@@ -46,7 +46,10 @@ UPDATE juiceta_product SET product_count=0 WHERE product_no=3;
 	)
 	WHERE rnum BETWEEN 1 AND 8;
 
-
+-- 찜목록조회
+SELECT * FROM juiceta_wishlist;
+INSERT INTO juiceta_wishlist VALUES('jtest1',126);
+SELECT COUNT(*) FROM juiceta_wishlist WHERE id='jtest1' AND product_no=126;
 
 
 
