@@ -51,6 +51,9 @@ SELECT * FROM juiceta_wishlist;
 INSERT INTO juiceta_wishlist VALUES('jtest1',126);
 SELECT COUNT(*) FROM juiceta_wishlist WHERE id='jtest1' AND product_no=126;
 
-
+-- 회원리스트 조회
+SELECT c.id, c.name,c.address,c.phone,c.enabled,a.authority FROM juiceta_customer c
+INNER JOIN juiceta_authorities a ON c.id=a.id
+ORDER BY c.id DESC;
 
 
