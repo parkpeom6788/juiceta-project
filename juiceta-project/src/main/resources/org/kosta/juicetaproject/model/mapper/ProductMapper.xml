@@ -5,8 +5,16 @@
 	<sql id="selectProduct">
 		SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product
 	</sql>
-	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		<include refid="selectProduct"></include>
+	<select id="getTotalProductCount" resultType="int">
+		SELECT COUNT(*) FROM juiceta_product
+	</select>
+	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO" parameterType="org.kosta.juicetaproject.model.vo.ShopPagination">
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			FROM juiceta_product
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 	</select>
 	<insert id="registerProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
 		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 

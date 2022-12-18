@@ -1,12 +1,12 @@
 package org.kosta.juicetaproject.service;
 
-import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.ProductVO;
 
 public interface ProductService {
 
-	List<ProductVO> findProductAllList();
+	Map<String, Object> findProductAllList(String pageNo);
 	
 	void registerProduct(ProductVO productVO);
 

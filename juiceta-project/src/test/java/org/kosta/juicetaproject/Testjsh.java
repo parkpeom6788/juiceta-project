@@ -8,6 +8,7 @@ import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -30,7 +31,16 @@ class Testjsh {
 	
 	@Test
 	void findProductAllList() {
-		List<ProductVO> list = productMapper.findProductAllList();
+		int totalProductCount = productMapper.getTotalProductCount();
+		String pageNo = "";
+		ShopPagination shopPagination = null;
+		
+		if(pageNo=="")
+			shopPagination = new ShopPagination(totalProductCount);
+		else
+			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+
+		List<ProductVO> list = productMapper.findProductAllList(shopPagination);
 		for(ProductVO vo : list)
 			System.out.println(vo);
 	}

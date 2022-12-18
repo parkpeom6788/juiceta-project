@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -37,7 +38,7 @@ public class ProductController {
 	
 	@RequestMapping("productAdmin")
 	public String productAdmin(Model model) {
-		model.addAttribute("productVO",productMapper.findProductAllList());
+		//model.addAttribute("productVO",productMapper.findProductAllList());
 		return "product/product-list";
 	}
 	
@@ -57,9 +58,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping("shop")
-	public String shop() {
+	public String shop(String pageNo, Model model) {
+		Map<String, Object> paging = productService.findProductAllList(pageNo);
+		model.addAttribute("productAllList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/shop";
 	}
+
 }
 
 
