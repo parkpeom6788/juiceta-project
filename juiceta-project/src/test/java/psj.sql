@@ -127,8 +127,8 @@ SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_na
 SELECT rnum,product_no,product_name,price,product_count
 FROM (
 	SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count 
-	FROM juiceta_product
-)
+	FROM juiceta_product 
+)ORDER BY rnum DESC
 
 -- 상품 등록 SQL
 INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'파프리카즙',10000,100,'맛있는 파프리카즙','product-1.jpg','과일즙')
@@ -144,6 +144,14 @@ WHERE product_no=21
 
 -- 상품 삭제 SQL
 DELETE FROM juiceta_product WHERE product_no=50;
+
+-- 상품명으로 상품 검색 
+-- LIKE 연산자 : 데이터의 일부만 포함되어도 정보가 검색되도록 한다 
+-- WHERE 컬럼명 LIKE '%키워드%'
+-- %: 0개 이상의 문자를 의미
+SELECT product_no,product_name,price,product_count,product_detail,image,category
+FROM juiceta_product
+WHERE product_name LIKE '%차%'
 
 
 -- 공지사항

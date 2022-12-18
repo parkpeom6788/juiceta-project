@@ -9,7 +9,6 @@ import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @SpringBootTest
 class Testpp {
@@ -24,7 +23,7 @@ class Testpp {
 	@Test
 	public void registerQuestion() {
 		MemberVO memberVO = new MemberVO("pjs","a",null,null,null,null);
-		ProductVO productVO = new ProductVO(1,null,0,0,null,null,null);
+		ProductVO productVO = new ProductVO(1,null,0,0,null,null,null,0);
 		QuestionVO questionVO = new QuestionVO(1,"제목입니다2","답변입니다2","2022-12-16",0,memberVO,productVO);
 		questionMapper.registerQuestion(questionVO);
 	}

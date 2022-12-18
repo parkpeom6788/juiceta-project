@@ -22,5 +22,7 @@ public interface ProductMapper {
 
 	List<ProductVO> productAllListByRnum();
 
+	List<ProductVO> findProductListByKeyword(String keyword);
+
 
 }

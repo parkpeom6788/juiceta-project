@@ -12,10 +12,10 @@
 		<h1>상품관리</h1>
 		<form action="">
 		  <input type="text" name="productName" placeholder="상품명">
-		  <button type="submit" id="selectProduct">상품검색</button>&nbsp;&nbsp;&nbsp;
+		  <button type="submit" id="selectProduct" class="btn btn-outline-success">상품검색</button>&nbsp;&nbsp;&nbsp;
 		</form><br>
 		  <form action="" th:action="@{/registerProductForm}">
-		  <button type="submit">상품등록</button>
+		  <button type="submit" class="btn btn-outline-success">상품등록</button>
 		  </form>
 		<br><br>
 		 <table class="table table-bordered">
@@ -29,22 +29,22 @@
 		 			<th>삭제</th>
 		 		</tr>
 		 	</thead>
-		 	<tbody>
+		 	<tbody id="productInfo">
 		 		<tr th:each="product:${productVO}">
-		 		  <td th:text="${product.productNo}" class="col-sm-1">상품번호</td>
-		 		  <td th:text="${product.productName}" class="col-sm-3">상품명</td>
+		 		  <td th:text="${product.rnum}" class="col-sm-1">상품번호</td>
+		 		  <td th:text="${product.productName}" class="col-sm-3" id="productName">상품명</td>
 		 		  <td th:text="|${product.price}원|" class="col-sm-2">가격</td>
 		 		  <td th:text="|${product.productCount}box|" class="col-sm-2">수량</td>
 		 		  <td>
 		 		  <form action="" th:action="@{/updateProductForm}">
 		 		 	 <input type="hidden" th:value="${product.productNo}" name="productNo">
-		 		    <button type="submit" id="updateProductBtn">수정</button>
+		 		    <button type="submit" id="updateProductBtn" class="btn btn-outline-success" name="updateBtn">수정</button>
 		 		  </form>
 		 		  </td>
 		 		  <td>
 		 		  	  <form action="" th:action="@{/deleteProduct}" method="post">
 		 		  	  <input type="hidden" th:value="${product.productNo}" name="productNo">
-		 		  	  	<button type="submit" id="deleteProductBtn">삭제</button>
+		 		  	  	<button type="submit" id="deleteProductBtn" class="btn btn-outline-success" name="deleteBtn">삭제</button>
 		 		  	  </form>
 		 		  </td>
 		 		</tr>
@@ -52,14 +52,14 @@
 		 </table>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$("#updateProductBtn").click(function() {
-					return confirm("상품을 수정하시겠습니까?");
-				});//click
-				$("#deleteProductBtn").click(function() {
-					let message=confirm("상품을 삭제하시겠습니까?");
-					if(message==false)
-						return false
-				})//click
+			$(document).on("click","button[name='updateBtn']",function() {
+				return confirm("상품을 수정하시겠습니까?");
+			});//click
+			$(document).on("click","button[name='deleteBtn']",function() {
+				let message=confirm("상품을 삭제하시겠습니까?");
+				if(message==false)
+					return false
+			});//click
 			});//ready
 		</script>
 	</div>

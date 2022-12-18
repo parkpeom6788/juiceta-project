@@ -76,6 +76,11 @@ public class ProductController {
 	public String deleteResult() {
 		return "product/delete-result";
 	}
+	@RequestMapping("findProductByKeyword")
+	public String findProductByKeyword(String productName ,Model model) {
+		model.addAttribute("productList", productMapper.findProductAllList());
+		return "product/test :: productBody";
+	}
 }
 
 
