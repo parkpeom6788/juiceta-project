@@ -29,11 +29,31 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public void registerProduct(ProductVO productVO) {
-		// TODO Auto-generated method stub
-		
+	public int registerProduct(ProductVO productVO) {
+		return productMapper.registerProduct(productVO);
+	}
+	@Override
+	public int updateProduct(ProductVO productVO) {
+		return productMapper.updateProduct(productVO);
 	}
 
+	@Override
+	public int deleteProduct(int productNo) {
+		return productMapper.deleteProduct(productNo);
+	}
+
+	@Override
+	public List<ProductVO> productAllListByRnum() {
+		return productMapper.productAllListByRnum();
+	}
+
+	@Override
+	public List<ProductVO> findProductListByKeyword(String keyword) {
+		return productMapper.findProductListByKeyword(keyword);
+	}
+
+
+	
 	
 }
 

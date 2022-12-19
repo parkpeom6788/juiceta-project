@@ -14,4 +14,15 @@ public interface ProductMapper {
 
 	ProductVO findProductByProductNo(int productNo);
 
+	int updateProduct(ProductVO productVO);
+
+	int registerProduct(ProductVO productVO);
+
+	int deleteProduct(int productNo);
+
+	List<ProductVO> productAllListByRnum();
+
+	List<ProductVO> findProductListByKeyword(String keyword);
+
+
 }

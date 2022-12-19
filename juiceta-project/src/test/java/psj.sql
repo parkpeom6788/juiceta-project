@@ -118,15 +118,47 @@ CREATE TABLE juiceta_product(
 	category VARCHAR2(100) NOT NULL
 )
 CREATE SEQUENCE juiceta_product_seq;
-SELECT * FROM juiceta_product;
-INSERT INTO juiceta_product  VALUES (juiceta_product_seq.nextval,'즙',500,100,'즙즙','product-6.jpg','즙즙즙')
-update juiceta_product set price=9000 WHERE product_no=5
 
+-- 조회된 결과 행 번호를 부여하기 위해 ROW_NUMBER() OVER(정렬) 함수를 이용
+SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count FROM juiceta_product
+
+-- Inline View ( FROM 절의 SUBQUERY ) 를 이용하면 된다
+
+SELECT rnum,product_no,product_name,price,product_count
+FROM (
+	SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count 
+	FROM juiceta_product 
+)ORDER BY rnum DESC
+
+-- 상품 등록 SQL
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'파프리카즙',10000,100,'맛있는 파프리카즙','product-1.jpg','과일즙')
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'딸기즙',11000,100,'맛있는 딸기즙','product-2.jpg','과일즙')
+INSERT INTO juiceta_product VALUES (juiceta_product_seq.nextval,'당근즙',7000,100,'맛있는 당근즙','product-7.jpg','과일즙')
+
+-- 상품 수정 SQL
 UPDATE juiceta_product 
 SET product_no=6,product_name='브로콜asdasd즙',
 price=5000,product_count=20,product_detail='맛있는 브ads로콜리즙',
 image='product-6.jpg',category='과일즙'
 WHERE product_no=21
+
+-- 상품 삭제 SQL
+DELETE FROM juiceta_product WHERE product_no=50;
+
+-- 상품명으로 상품 검색 
+-- LIKE 연산자 : 데이터의 일부만 포함되어도 정보가 검색되도록 한다 
+-- WHERE 컬럼명 LIKE '%키워드%'
+-- %: 0개 이상의 문자를 의미
+SELECT product_no,product_name,price,product_count,product_detail,image,category
+FROM juiceta_product
+WHERE product_name LIKE '%차%'
+
+SELECT rnum,product_no,product_name,price,product_count
+		FROM (
+		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
+		FROM juiceta_product
+		) WHERE product_name LIKE '%차%' ORDER BY rnum DESC
+
 
 -- 공지사항
 CREATE TABLE juiceta_board(
@@ -139,8 +171,12 @@ CREATE TABLE juiceta_board(
 CREATE SEQUENCE juiceta_board_seq;
 SELECT * FROM juiceta_board;
 
-
-
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM (
+		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count,
+		product_detail,image,category
+		FROM juiceta_product
+		) ORDER BY rnum DESC
 
 
 
