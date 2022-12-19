@@ -32,6 +32,6 @@ public interface ProductMapper {
 
 	List<ProductVO> findProductByProductNameKeyword(String keyword);
 
-
+	int getTotalCountProduct();
 
 }

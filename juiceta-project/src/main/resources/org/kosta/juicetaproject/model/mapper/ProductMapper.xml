@@ -50,11 +50,11 @@
 		DELETE FROM juiceta_product WHERE product_no=#{value}
 	</delete>
 	<select id="productAllListByRnum" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count
-		FROM (
-		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
 		FROM juiceta_product
-		) ORDER BY rnum DESC
+		)
 	</select>
 	<select id="findProductListByKeyword" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		SELECT rnum,product_no,product_name,price,product_count
@@ -69,7 +69,6 @@
 	<select id="findProductByProductNameKeyword" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		<include refid="selectProduct"></include> WHERE product_name LIKE '%'||#{value}||'%'
 	</select>
-	
 </mapper>
 
 

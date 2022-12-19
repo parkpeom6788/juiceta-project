@@ -41,18 +41,26 @@ public class ProductController {
 		model.addAttribute("productNo", productNo);
 		return "/guest/Detail";
 	}
-
+	
+	
+	// 상품관리 전체 리스트 조회
 	@RequestMapping("productAdmin")
-	public String productAdmin(Model model,String productKeyword) {
-		List<ProductVO> list=null;
-		if(productKeyword == null) {
-			list=productService.productAllListByRnum();
-		}else {
-			list=productService.findProductListByKeyword(productKeyword);
-		}
-		model.addAttribute("productList", list);
+	public String productAdmin(Model model,String productNo) {
+		model.addAttribute("productList", productService.productAllListByRnum(productNo));
 		return "product/product-list";
 	}
+	
+	
+	
+	// 상품관리 검색
+	@RequestMapping("productSelect")
+	public String findProductListByKeyword(String productKeyword, Model model) {
+		model.addAttribute("productList", productService.findProductListByKeyword(productKeyword));
+		return "product/product-list";
+	}
+	
+	
+	
 	
 	@RequestMapping("registerProductForm")
 	public String registerProductForm() {

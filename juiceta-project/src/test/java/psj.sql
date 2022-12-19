@@ -181,10 +181,22 @@ SELECT * FROM juiceta_board;
 
 
 
+SELECT rnum,product_no,product_name,price,product_count
+FROM (
+SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
+FROM juiceta_product
+) WHERE product_name LIKE '%양배추%' 
+AND rnum BETWEEN 1 AND 11
+ORDER BY rnum DESC
 
+SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+FROM(
+SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+FROM juiceta_product
+)
+WHERE rnum BETWEEN 1 AND 11 ORDER BY rnum DESC
 
-
-
+SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product
 
 
 
