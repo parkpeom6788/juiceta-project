@@ -30,7 +30,7 @@ class Testlsh {
 	
 	@Test
 	public void boardUpdate() {
-		BoardVO vo = new BoardVO(1, "수정2", "수정2", null, 0);
+		BoardVO vo = new BoardVO(1, "수정2", "수정2", null, 0, 0);
 		boardMapper.boardUpdate(vo);
 		List<BoardVO> list = boardMapper.findBoardAllList();
 		for(BoardVO bvo : list)
@@ -40,7 +40,7 @@ class Testlsh {
 	public void boardWrite() {
 		String boardTitle = "test";
 		String boardContent = "text"; 
-		BoardVO vo= new BoardVO(0,boardTitle,boardContent,null,0);
+		BoardVO vo= new BoardVO(0,boardTitle,boardContent,null,0, 0);
 		boardMapper.registerBoard(vo);
 		List<BoardVO> list = boardMapper.findBoardAllList();
 		for(BoardVO bvo : list)

@@ -11,3 +11,11 @@ CREATE TABLE juiceta_board(
 insert into juiceta_board values(juiceta_board_seq.nextval,'첫번째 테스트','첫번째 테스트 중입니다',sysdate,0)
 insert into juiceta_board values(juiceta_board_seq.nextval,'두번째 테스트','두번째 테스트 중입니다',sysdate,0)
 insert into juiceta_board values(juiceta_board_seq.nextval,'세번째 테스트','세번째 테스트 중입니다',sysdate,0)
+
+SELECT row_number() over(ORDER BY board_no DESC) as rnum, board_no, board_title, hits, TO_CHAR(board_time, 'YYYY.MM.DD') as board_time
+FROM juiceta_board
+
+SELECT row_number() over(ORDER BY board_no asc) as rnum, board_no, board_title, hits, TO_CHAR(board_time, 'YYYY.MM.DD') as board_time
+FROM juiceta_board order by board_no desc
+
+select row_number() over(ORDER BY board_no asc) as rnum, board_no, board_title, board_content, board_time, hits from juiceta_board where board_no = 55 
