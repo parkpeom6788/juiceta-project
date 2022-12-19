@@ -13,6 +13,17 @@
 		FROM juiceta_product
 		) ORDER BY rnum DESC
 	</select>
+	<select id="getTotalProductCount" resultType="int">
+		SELECT COUNT(*) FROM juiceta_product
+	</select>
+	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO" parameterType="org.kosta.juicetaproject.model.vo.ShopPagination">
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			FROM juiceta_product
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
+	</select>
 	<insert id="registerProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
 		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 
 		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image},#{category})
@@ -20,10 +31,14 @@
 	<select id="findProductByProductNo" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		<include refid="selectProduct"></include> WHERE product_no=#{value}
 	</select>
-	
-	<select id="productDetail" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		<include refid="selectProduct"></include>
-			WHERE product_no=#{value}
+	<select id="findProductAllListByCategory" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			FROM juiceta_product
+			WHERE category=#{CATEGORY}
+		)
+		WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber}
 	</select>
 	<update id="updateProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
 		UPDATE juiceta_product SET product_no=#{productNo},product_name=#{productName},
@@ -48,6 +63,13 @@
 		FROM juiceta_product
 		) WHERE product_name LIKE '%' || #{value} || '%' ORDER BY rnum DESC
 	</select>
+	<select id="getTotalProductCountbyCategory" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM juiceta_product WHERE category=#{value}
+	</select>
+	<select id="findProductByProductNameKeyword" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+		<include refid="selectProduct"></include> WHERE product_name LIKE '%'||#{value}||'%'
+	</select>
+	
 </mapper>
 
 

@@ -2,6 +2,7 @@ package org.kosta.juicetaproject.controller;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.service.MemberService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -32,7 +33,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping("guest/loginForm")
+	@RequestMapping("loginForm")
 	public String loginForm() {
 		return "member/login-form";
 	}
@@ -93,7 +94,7 @@ public class MemberController {
 		return "redirect:/guest/registerResult";
 	}
 
-	@RequestMapping("guest/registerResult")
+	@GetMapping("guest/registerResult")
 	public String registerResultView() {
 		return "member/login-form";
 	}
@@ -108,15 +109,44 @@ public class MemberController {
 		return "member/deleteForm";
 	}
 	
-	@RequestMapping("deleteMemberAction")
-	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
-		memberService.deleteMemberAction(memberVO, password);
+	@RequestMapping("passwordcheckAjax")
+	@ResponseBody
+	public String passwordcheckAjax(@AuthenticationPrincipal MemberVO memberVO, String password) {
+		return memberService.passwordcheck(memberVO, password);
+	}
+	
+	@PostMapping("deleteMemberAction")
+	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO) {
+		memberService.deleteMemberAction(memberVO);
 		return "redirect:/deleteMemberResult";
 	}
 	
-	@RequestMapping("deleteMemberResult")
+	@GetMapping("deleteMemberResult")
 	public String deleteMemberResult() {
 		return "member/delete-result";
+	}
+	
+	@RequestMapping("guest/findMemberIdAndPasswordForm")
+	public String findMemberIdForm() {
+		return "member/find-id-and-password-form";
+	}
+	
+	@RequestMapping("guest/findMemberIdAjax")
+	@ResponseBody
+	public String findMemberId(MemberVO memberVO) {
+		return memberService.findMemberId(memberVO);
+	}
+	
+	@RequestMapping("guest/findMemberPasswordAjax")
+	@ResponseBody
+	public String findMemberPassword(MemberVO memberVO) {
+		return memberService.findMemberPassword(memberVO);
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@RequestMapping("memberAdmin")
+	public String memberAdmin() {
+		return "member/member-admin";
 	}
 
 }

@@ -1,5 +1,7 @@
 package org.kosta.juicetaproject.controller;
 
+import java.util.Map;
+
 import org.kosta.juicetaproject.service.ProductService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -16,7 +18,7 @@ public class HomeController {
 	private final ProductService productService;
 	
 	@RequestMapping(value = {"/home","/"})
-	public String home(Authentication authentication,Model model){//Authentication : Spring Security의 인증객체 
+	public String home(Authentication authentication,String pageNo,Model model){//Authentication : Spring Security의 인증객체 
 		//Spring Security Authentication 인증객체는 아래처럼 SecurityContext 에 저장되어 있다 
 		//log.info("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());	
 		//Principal(사전적 의미:본인 ) 객체는 인증된 회원 정보 객체를 말한다
@@ -27,7 +29,10 @@ public class HomeController {
 			log.info("Home: 인증받지 않은 사용자");
 		model.addAttribute("message", "SpringBoot Security Thymeleaf");
 		
-		model.addAttribute("productAllList", productService.findProductAllList());
+		Map<String, Object> paging = productService.findProductAllList(pageNo);
+		
+		model.addAttribute("productAllList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "index";
 	}
 	/*	

@@ -1,12 +1,11 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
+import java.util.Random;
 
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.vo.Authority;
 import org.kosta.juicetaproject.model.vo.MemberVO;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -78,9 +77,46 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO, String password) {
-        if (!passwordEncoder.matches(password, memberVO.getPassword()))//! 비밀번호가 일치하지 않으면  
-            throw new BadCredentialsException("비밀번호가 일치하지 않습니다");
+	public String passwordcheck(MemberVO memberVO , String password) {
+		return (passwordEncoder.matches(password, memberVO.getPassword())) ? "ok" : "fail";
+	}
+	
+	@Override
+	public void deleteMemberAction(MemberVO memberVO) {
         memberMapper.deleteMember(memberVO.getId());
 	}
+
+	@Override
+	public String findMemberId(MemberVO memberVO) {
+		return memberMapper.findMemberId(memberVO);
+	}
+
+	@Override
+	public String findMemberPassword(MemberVO memberVO) {
+		// 회원정보에 해당하는 회원 존재유무 확인
+		int result = memberMapper.findMemberPassword(memberVO);
+		if(result<1) {	// 회원존재 X
+			return null;
+		}else {	// 회원존재 O
+			MemberVO tempMemberVO = findMemberById(memberVO.getId());
+			String tempPassword = new Random().nextInt(5000)+1000+"";	// 임시 비밀번호 발급
+			tempMemberVO.setPassword(tempPassword);
+			updateMember(tempMemberVO);	// MemberServiceImpl 의 updateMember()
+			return tempPassword;
+		}
+	}
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+

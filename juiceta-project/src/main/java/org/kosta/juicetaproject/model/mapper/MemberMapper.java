@@ -29,4 +29,8 @@ public interface MemberMapper {
 
 	void deleteMember(String id);
 
+	String findMemberId(MemberVO memberVO);
+
+	int findMemberPassword(MemberVO memberVO);
+
 }

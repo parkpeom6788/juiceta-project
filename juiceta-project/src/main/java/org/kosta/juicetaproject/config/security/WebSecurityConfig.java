@@ -45,7 +45,7 @@ public class WebSecurityConfig  {
 		.anyRequest().authenticated();
 		
 		// 인증(authentication): 로그인을 위한 설정
-		http.formLogin().loginPage("/home") // 로그인 폼이 있는 url
+		http.formLogin().loginPage("/loginForm") // 로그인 폼이 있는 url
 				.loginProcessingUrl("/login")// login form 의 action 경로 ==> templates/fragments/left.html의 로그인 폼에서 확인 
 				.failureUrl("/login_fail") // 로그인 실패시 메세지 보여줄 url ==> MemberController에서 메서드 정의 
 				.defaultSuccessUrl("/home",true) // 로그인 성공 후 이동할 url, 두번째 인자값 true는 로그인 성공 후 결과페이지 경로를 고정하기 위해서
@@ -62,7 +62,7 @@ public class WebSecurityConfig  {
 		//이 때 CustomAuthenticationEntryPoint 객체가 실행되도록 설정
 		// ajax 요청일 경우 http status 403 Forbidden code 로 응답하게 하고 
 		//ajax 요청이 아닌 경우 로그인 폼이 있는 home 으로 redirect 하도록 처리한다 => CustomAuthenticationEntryPoint 에서 구현 내용을 확인 
-		http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint("/home"));
+		http.exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint("/loginForm"));
 		
 		//서비스 접근 권한이 없을 때 accessDeniedView 로 이동된다 
 		// HomeController의 accessDeniedView 메서드가 정의되어 있음 
