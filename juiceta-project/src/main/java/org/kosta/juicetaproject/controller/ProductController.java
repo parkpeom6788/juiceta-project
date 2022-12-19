@@ -41,15 +41,6 @@ public class ProductController {
 		model.addAttribute("productNo", productNo);
 		return "/guest/Detail";
 	}
-	
-	@RequestMapping("productAdmin")
-	public String productAdmin(String pageNo, Model model) {
-		Map<String, Object> paging = productService.findProductAllList(pageNo);
-		
-		model.addAttribute("productAllList", paging.get("LIST"));
-		model.addAttribute("pagination", paging.get("PAGINATION"));
-		return "product/product-list";
-	}
 
 	@RequestMapping("productAdmin")
 	public String productAdmin(Model model,String productKeyword) {
