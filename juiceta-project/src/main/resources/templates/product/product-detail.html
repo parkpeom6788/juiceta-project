@@ -8,8 +8,7 @@
 <head>
 	<title>board</title>
 </head>
-	<div layout:fragment="content" class="container">
-			<span th:text="${questionAllList}"></span>
+	<div layout:fragment="content" class="container">>
 	<h2>Q&A</h2>
 		<table class="table table-boardered">
 			<thead>
@@ -23,11 +22,30 @@
 			<tbody>
 				<tr th:each="question:${questionAllList}">
 					<td th:text="${question.memberVO.id}" class = "col-sm-2"></td>
-					<td th:text="${question.questionTitle}" class = "col-sm-3"></td>
+					<td class= "col-sm-3"><a th:text="${question.questionTitle}" th:href="@{/guest/question-detail?questionNo=}+${question.questionNo}"></a></td>
 					<td th:text="${question.questionTime}" class = "col-sm-2"></td>
 					<td th:text="${question.checkAnswer}" class = "col-sm-2"></td>
 				</tr>
 			</tbody>
 		</table>
+		<div align="right">
+			<a  th:href="@{/guest/question-write?productNo=}+${productNo}">글 쓰기</a>
+		<!-- <form id="writeBtnForm" method="get" action="" th:action="@{/guest/question-write}">
+			<input type="hidden" th:value="${productNo}" name="productNo">
+			<button type="submit" id="writeBtn">글 작성 하기</button>
+			<button onclick="location.href='question-write'">글 작성</button>
+		</form> -->
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#writeBtn").click(function() {
+					let result = confirm("작성 하시겠습니까?")
+					if(result!=true){
+						return;
+					}
+					$("#writeBtnForm").submit();
+				});			
+			});
+		</script>
 	</div>
 </html>

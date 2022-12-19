@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>문의사항 게시판</title>
+</head>
+	<div layout:fragment="content" class="container">
+		<div align="center">
+		<table class="table table-boardered">
+			<thead>
+			<tr>
+				<th>Q&A글번호</th>
+				<th>Q&A글제목</th>
+				<th>작성자아이디</th>
+				<th>작성일</th>
+			</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${questionVO.questionNo}" class = "col-sm-2"></td>
+					<td class= "col-sm-3"><a th:text="${questionVO.questionTitle}"></a></td>
+					<td th:text="${questionVO.memberVO.id}" class = "col-sm-2"></td>
+					<td th:text="${questionVO.questionTime}" class = "col-sm-2"></td>
+				</tr>
+			</tbody>
+		</table>
+			<textarea cols="150" rows="10" th:text="${questionVO.questionContent}" readonly="readonly"></textarea><br>
+			관리자 답변
+			<th: block th:if="${answerVO == null }">
+				<form action="" th:action="@{/guest/registerAnswer}" id="writeForm" method="post">
+					<p><textarea cols="50" rows="10" name="answerContent"></textarea></p>
+					<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
+					<button type="reset">취소(관리자)</button>
+					<button type="submit" id="registerBtn">등록(관리자)</button>
+				</form>
+			</th: block>
+			
+			<th: block th:if="${answerVO != null }">
+		   		<textarea cols="50" rows="10" th:text="${answerVO.answerContent}" readonly="readonly"></textarea><br> 
+			</th: block>
+		</div>
+	</div>
+</html>
+
+
