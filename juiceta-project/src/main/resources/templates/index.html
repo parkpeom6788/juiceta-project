@@ -101,7 +101,7 @@
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
 	    							<span th:data-product="${product.productNo}"></span>
-	    							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
+	    							<a class="buy-now d-flex justify-content-center align-items-center mx-1 btn addcart">
 	    								<span><i class="ion-ios-cart"></i></span>
 	    							</a>
 	    							<a class="heart d-flex justify-content-center align-items-center btn addwishlist">
@@ -125,6 +125,23 @@
     									alert("이미 찜목록에 추가된 상품입니다");
     								else
     									alert("찜 목록에 추가하였습니다");
+    							}
+    						});
+    					});
+    					
+    					$(".addcart").click(function() {
+    						let productNo = $(this).prev().data("product");
+    						$.ajax({
+    							type:"get",
+    							url:"addCartAjax",
+    							data:"productNo="+productNo+"&productCount=1",
+    							success:function(result){
+    								if(result=="fail")
+    									alert("이미 장바구니목록에 추가된 상품입니다");
+    								else{
+    									alert("장바구니 목록에 추가하였습니다");
+    									$("#totalCartCount").text(Number($("#totalCartCount").text())+1);
+    								}
     							}
     						});
     					});

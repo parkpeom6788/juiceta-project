@@ -70,6 +70,7 @@ CREATE TABLE juiceta_order(
 	CONSTRAINT fk_order_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE
 )
 SELECT * FROM juiceta_order;
+CREATE SEQUENCE juiceta_order_seq;
 
 -- 주문상세
 CREATE TABLE juiceta_order_detail(

@@ -20,6 +20,19 @@ public class CartAndWishlistController {
 		String result = cartAndWishlistService.addWishlist(memberVO,productNo);	// fail (이미 존재함), ok (찜목록에 추가함)
 		return result;
 	}
+	
+	@RequestMapping("addCartAjax")
+	@ResponseBody
+	public String addCart(@AuthenticationPrincipal MemberVO memberVO, int productNo, int productCount) {
+		String result = cartAndWishlistService.addCart(memberVO,productNo,productCount);
+		return result;
+	}
+	
+	@RequestMapping("getTotalCartByIdAjax")
+	@ResponseBody
+	public int getTotalCartById(@AuthenticationPrincipal MemberVO memberVO) {
+		return cartAndWishlistService.getTotalCartById(memberVO.getId());
+	}
 
 }
 

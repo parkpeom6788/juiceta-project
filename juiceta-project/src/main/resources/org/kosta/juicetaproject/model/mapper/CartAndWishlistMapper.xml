@@ -8,4 +8,13 @@
 	<insert id="addWishlist" parameterType="map">
 		INSERT INTO juiceta_wishlist VALUES(#{ID},#{PRODUCT_NO})
 	</insert>
+	<select id="findCartByIdAndProductNo" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM juiceta_cart WHERE id=#{ID} AND product_no=#{PRODUCT_NO}
+	</select>
+	<insert id="addCart" parameterType="map">
+		INSERT INTO juiceta_cart(id,product_no,product_count) VALUES(#{ID},#{PRODUCT_NO},#{PRODUCT_COUNT})
+	</insert>
+	<select id="getTotalCartById" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM juiceta_cart WHERE id=#{value}
+	</select>
 </mapper>

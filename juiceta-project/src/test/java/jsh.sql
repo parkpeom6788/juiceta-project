@@ -60,8 +60,27 @@ ORDER BY c.id DESC;
 SELECT * FROM juiceta_product
 WHERE product_name LIKE '%양%';
 
+-- 장바구니담기
+SELECT * FROM juiceta_cart;
+SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3' AND product_no=332;
+INSERT INTO juiceta_cart(id,product_no,product_count) VALUES('jtest3',332,1);
+COMMIT
 
+-- 회원아이디로 장바구니 상품 총갯수 조회
+SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3';
 
+-- 상품상세설명에서 바로 구매하기
+	-- 주문하기
+	INSERT INTO juiceta_order(order_no,order_time,receiver_name,receiver_phone,receiver_address,id)
+	VALUES(juiceta_order_seq.nextval,SYSDATE,'송중기','000000000','오리','jtest3');
+	COMMIT
+	
+	SELECT * FROM juiceta_order;
+	
+	-- 주문상세
+	INSERT INTO juiceta_order_detail(order_no,product_no,order_count) VALUES(1,332,2);
+	SELECT * FROM juiceta_order_detail;
+	
 
 
 

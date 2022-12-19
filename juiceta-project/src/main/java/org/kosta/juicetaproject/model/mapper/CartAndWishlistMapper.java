@@ -11,4 +11,10 @@ public interface CartAndWishlistMapper {
 
 	void addWishlist(Map<String, Object> map);
 
+	int findCartByIdAndProductNo(Map<String, Object> map);
+
+	void addCart(Map<String, Object> map);
+
+	int getTotalCartById(String id);
+
 }
