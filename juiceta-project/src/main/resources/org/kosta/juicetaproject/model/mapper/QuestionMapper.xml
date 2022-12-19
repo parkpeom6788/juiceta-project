@@ -2,9 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper
 	namespace="org.kosta.juicetaproject.model.mapper.QuestionMapper">
-	<sql id="selectQuest"></sql>
+
+	<resultMap type="org.kosta.juicetaproject.model.vo.QuestionVO" id="questionResultMap">
+		<result column="id" property="memberVO.id"/>
+		<result column="product_no" property="productVO.productNo"/>
+	</resultMap>
 	
-	<select id="findQuestionAllListByProductNo" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.QuestionVO">
-		SELECT * FROM juiceta_question WHERE product_no = #{value} 
+	<select id="findQuestionAllListByProductNo" parameterType="int" resultMap="questionResultMap"> 
+		 SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
+		 ,id,product_no
+		 FROM juiceta_question
+		 WHERE product_no=#{value}
+	</select>
+	
+	<select id="questionDetail" parameterType="int" resultMap="questionResultMap">
+		SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
+		 ,id,product_no
+		 FROM juiceta_question
+		 WHERE question_no=#{value}
+	</select>
+	
+	<insert id="registerQuestion" parameterType="org.kosta.juicetaproject.model.vo.QuestionVO">
+		INSERT INTO juiceta_question(QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME,PRODUCT_NO,ID)
+		 VALUES(juiceta_question_seq.nextval,#{questionTitle},#{questionContent},sysdate,#{productNo},#{id})
+	</insert>
+
+	<insert id="registerAnswer" parameterType="org.kosta.juicetaproject.model.vo.AnswerVO">
+		INSERT INTO juiceta_answer(QUESTION_NO,ANSWER_CONTENT,ANSWER_TIME)
+		VALUES(#{questionNo},#{answerContent},sysdate)
+	</insert>
+	
+	<select id="findAnswerByQuestionNo"  parameterType="int" resultType="org.kosta.juicetaproject.model.vo.AnswerVO">
+		SELECT QUESTION_NO , ANSWER_CONTENT , ANSWER_TIME
+		FROM juiceta_answer WHERE QUESTION_NO = #{questionNo}
 	</select>
 </mapper>

@@ -21,15 +21,28 @@ public class QuestionServiceImpl implements QuestionService {
 		return questionmapper.findQuestionAllListByProductNo(productNo);
 	}
 	
-	//questionDetail(in questionNo:int): QuestionVO
-	// 삭제 
+	// questionDetail(in questionNo:int): QuestionVO
+	// 글 상세
 	public QuestionVO questionDetail(int questionNo) {
-		return null;
+		QuestionVO questionVO= questionmapper.questionDetail(questionNo);
+		return questionVO;
+	}
+	// 게시물 작성 
+	@Override
+	public void registerQuestion(String questionTitle,String questionContent,int productNo,String id) {
+			questionmapper.registerQuestion(questionTitle,questionContent,productNo,id);
+	}
+	// 답변 등록
+	@Override
+	public void registerAnswer(AnswerVO answerVO) {
+		questionmapper.registerAnswer(answerVO);
 	}
 	
-	// registerQuestion(in questionVO:QuestionVO)
-	// 등록
-	public void registerQuestion() {
+	// findAnswerByQuestionNo(in questionNo:int): AnswerVO
+	// 답변 여부 -> 
+	public AnswerVO findAnswerByQuestionNo(int questionNo) {
+		AnswerVO answerVO = (AnswerVO) questionmapper.findAnswerByQuestionNo(questionNo);
+		return answerVO;
 	}
 	
 	// updateQuestion(in questionVO:QuestionVO)
@@ -40,17 +53,5 @@ public class QuestionServiceImpl implements QuestionService {
 	// deleteReview(in id:String, in questionNo:int)
 	// 삭제
 	public void deleteReview(String id, int questionNo) {
-	}
-	
-	// registerAnswer(in answerVO:AnswerVO)
-	// 답변 등록
-	public AnswerVO registerAnswer() {
-		return null;
-	}
-	
-	// findAnswerByQuestionNo(in questionNo:int): AnswerVO
-	// 답변 여부 
-	public AnswerVO findAnswerByQuestionNo(int questionNo) {
-		return null;
 	}
 }

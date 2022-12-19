@@ -8,10 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public interface QuestionService {
 	public List<QuestionVO> findQuestionAllListByProductNo(int productNo);
+	// 상세 게시물
 	public QuestionVO questionDetail(int questionNo);
-	public void registerQuestion();
+	// 등록
+	public void registerQuestion(String questionTitle,String questionContent,int productNo,String id);
+	// 수정
 	public void updateQuestion(QuestionVO questionVO);
+	// 삭제
 	public void deleteReview(String id, int questionNo);
-	public AnswerVO registerAnswer();
+	// 답변등록
+	public void registerAnswer(AnswerVO answerVO);
+	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
 }
