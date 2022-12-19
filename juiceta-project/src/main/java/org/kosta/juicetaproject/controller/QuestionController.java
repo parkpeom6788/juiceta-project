@@ -1,13 +1,15 @@
 package org.kosta.juicetaproject.controller;
 
 import org.kosta.juicetaproject.model.vo.AnswerVO;
+import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
+import org.kosta.juicetaproject.service.ProductService;
 import org.kosta.juicetaproject.service.QuestionService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestionController {
 	private final QuestionService questionService; 
+	private final ProductService productService;
 		
 	// 상세페이지로 이동
 		@RequestMapping("guest/question-detail")
@@ -33,16 +36,17 @@ public class QuestionController {
 			 return "qnaboard/board-write-form";
 		 }
 		 // 글쓰기 작업
-		 @PostMapping("guest/registerQuestion")
-		 public String registerQuestion(String questionTitle,String questionContent,int productNo) {
-			 String id = "jtest";
-			 questionService.registerQuestion(questionTitle,questionContent,productNo,id);
-			 return "redirect:registerQuestionresultok";
+		 @PostMapping("registerQuestion")
+		 public String registerQuestion(@AuthenticationPrincipal MemberVO memberVO, String questionTitle,String questionContent,int productNo) {
+			 questionService.registerQuestion(questionTitle,questionContent,productNo,memberVO.getId());
+			 return "redirect:registerQuestionresultok?productNo="+productNo;
 		 }
 		 // 글쓰기 결과
-		 @RequestMapping("guest/registerQuestionresultok")
-		 public String registerQuestionresultok() {
-			 return "/";
+		 @RequestMapping("registerQuestionresultok")
+		 public String registerQuestionresultok(int productNo, Model model) {
+			 model.addAttribute("productVO", productService.findProductByProductNo(productNo));
+			 model.addAttribute("questionAllList", questionService.findQuestionAllListByProductNo(productNo));
+			 return "product/product-detail";
 		 }
 		 // 관리자 답변
 		 @PostMapping("guest/registerAnswer")
