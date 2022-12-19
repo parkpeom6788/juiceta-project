@@ -22,7 +22,7 @@ public interface ProductMapper {
 
 	int deleteProduct(int productNo);
 
-	List<ProductVO> productAllListByRnum();
+	List<ProductVO> productAllListByRnum ();
 
 	List<ProductVO> findProductListByKeyword(String keyword);
 
@@ -31,7 +31,5 @@ public interface ProductMapper {
 	int getTotalProductCountbyCategory(String category);
 
 	List<ProductVO> findProductByProductNameKeyword(String keyword);
-
-	int getTotalCountProduct();
 
 }

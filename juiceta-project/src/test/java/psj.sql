@@ -86,6 +86,7 @@ CREATE TABLE juiceta_order_detail(
 )
 SELECT * FROM juiceta_order_detail;
 
+
 -- 장바구니
 CREATE TABLE juiceta_cart(
 	id VARCHAR2(100),
@@ -198,7 +199,8 @@ WHERE rnum BETWEEN 1 AND 11 ORDER BY rnum DESC
 
 SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product
 
-
+SELECT product_no,product_name,price,product_count,product_detail,image,category
+		FROM juiceta_product ORDER BY product_no DESC
 
 
 
