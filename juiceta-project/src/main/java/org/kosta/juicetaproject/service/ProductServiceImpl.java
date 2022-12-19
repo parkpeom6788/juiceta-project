@@ -26,7 +26,7 @@ public class ProductServiceImpl implements ProductService {
 			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
 		
 		Map<String, Object> paging = new HashMap<>();
-		paging.put("LIST", productMapper.findProductAllList(shopPagination));
+		paging.put("LIST", productMapper.findShopProductAllList(shopPagination));
 		paging.put("PAGINATION", shopPagination);
 		
 		return paging;

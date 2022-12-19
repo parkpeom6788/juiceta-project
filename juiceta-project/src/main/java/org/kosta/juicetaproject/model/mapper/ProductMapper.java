@@ -12,7 +12,7 @@ public interface ProductMapper {
 
 	int getTotalProductCount();
 
-	List<ProductVO> findProductAllList(ShopPagination shopPagination);
+	List<ProductVO> findShopProductAllList(ShopPagination shopPagination);
 	
 	ProductVO findProductByProductNo(int productNo);
 

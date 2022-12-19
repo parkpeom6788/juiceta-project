@@ -45,7 +45,7 @@ class Testjsh {
 		else
 			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
 
-		List<ProductVO> list = productMapper.findProductAllList(shopPagination);
+		List<ProductVO> list = productMapper.findShopProductAllList(shopPagination);
 		for(ProductVO vo : list)
 			System.out.println(vo);
 	}
