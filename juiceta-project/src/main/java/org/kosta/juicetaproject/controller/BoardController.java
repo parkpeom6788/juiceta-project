@@ -14,13 +14,12 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-public class boardController {
+public class BoardController {
 	private final BoardService boardService;
 
 	@RequestMapping("guest/board")
-	public String board(Model model, String boardNo){
-		System.out.println(boardNo);
-		Map<String, Object> paging = boardService.findboardAllList(boardNo);
+	public String board(Model model, String pageNo){
+		Map<String, Object> paging = boardService.findboardAllList(pageNo);
 		model.addAttribute("boardAllList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "board/board-list";

@@ -81,6 +81,10 @@ SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3';
 	INSERT INTO juiceta_order_detail(order_no,product_no,order_count) VALUES(1,332,2);
 	SELECT * FROM juiceta_order_detail;
 	
+	SELECT * FROM juiceta_board;
+	
+	INSERT INTO juiceta_board(board_no,board_title,board_content,board_time,hits)
+	SELECT juiceta_board_seq.nextval,board_title,board_content,board_time,hits FROM juiceta_board;
 
 
 

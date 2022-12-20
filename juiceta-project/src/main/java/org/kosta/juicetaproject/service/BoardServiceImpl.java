@@ -1,7 +1,6 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.BoardMapper;
@@ -16,13 +15,13 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService{
 	private final BoardMapper boardMapper;
 	@Override
-	public Map<String, Object> findboardAllList(String pagNo) {
+	public Map<String, Object> findboardAllList(String pageNo) {
 		int totalBoardCount = boardMapper.getTotalBoardCount();
 		BoardPagination boardPagination = null;
-		if(pagNo==null)
+		if(pageNo==null)
 			boardPagination = new BoardPagination(totalBoardCount);
 		else
-			boardPagination = new BoardPagination(Integer.parseInt(pagNo), totalBoardCount);
+			boardPagination = new BoardPagination(Integer.parseInt(pageNo), totalBoardCount);
 		
 		Map<String, Object> paging = new HashMap<>();
 		paging.put("LIST", boardMapper.findBoardAllList(boardPagination));
