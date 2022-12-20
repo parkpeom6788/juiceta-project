@@ -65,51 +65,51 @@ public class ProductController {
 	
 	
 	
-	
+	// 상품등록 폼 제공
 	@RequestMapping("registerProductForm")
 	public String registerProductForm() {
 		return "product/register-form";
 	}
-
+	// 상품등록
 	@PostMapping("registerProduct")
 	public String registerProduct(ProductVO productVO) {
 		productService.registerProduct(productVO);
 		return "redirect:registerProductResult?";
 	}
-	
+	// 상품등록 후 결과
 	@RequestMapping("registerProductResult")
 	public String registerProductResult() {
 		return "product/register-result";
 	}
-
+	// 상품수정 폼 제공
 	@RequestMapping("updateProductForm")
 	public String updateProductForm(Model model, int productNo) {
 		model.addAttribute("productVO",productService.findProductByProductNo(productNo));
 		return "product/update-form";
 	}
-
+	// 상품수정
 	@PostMapping("update")
 	public String updateProduct(ProductVO productVO) {
 		productService.updateProduct(productVO);
 		return "redirect:updateProductResult";
 	}
 	
-	@PostMapping("updateProduct")
-	public String updateProduct() {
-		return "redirect:update";
-	}
-
+	/*
+	 * @PostMapping("updateProduct") public String updateProduct() { return
+	 * "redirect:update"; }
+	 */
+	// 상품수정 후 결과
 	@RequestMapping("updateProductResult")
 	public String updateResult() {
 		return "/product/update-result";
 	}
-	
+	// 상품삭제
 	@PostMapping("deleteProduct")
 	public String deleteProduct(int productNo) {
 		productService.deleteProduct(productNo);
 		return "redirect:deleteResult";
 	}
-	
+	// 상품삭제 후 결과 
 	@RequestMapping("deleteResult")
 	public String deleteResult() {
 		return "product/delete-result";
