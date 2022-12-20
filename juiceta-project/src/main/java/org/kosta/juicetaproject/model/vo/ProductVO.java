@@ -17,5 +17,4 @@ public class ProductVO {
 	private String productDetail;
 	private String image;
 	private String category;
-	private int rnum;
 }
