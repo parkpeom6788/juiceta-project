@@ -1,14 +1,11 @@
 package org.kosta.juicetaproject;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
-import org.kosta.juicetaproject.model.vo.CartVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,7 +96,7 @@ class Testpp {
 	@Test
 	public void findCartAllListById() {
 		String id = "jtest3";
-		ArrayList<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
+		List<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
 		for(int i = 0; i < list.size(); i++) {
 			System.out.println(list.get(i));
 		}
