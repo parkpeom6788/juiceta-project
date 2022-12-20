@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.WishListVO;
 
 @Mapper
 public interface CartAndWishlistMapper {
@@ -20,6 +21,10 @@ public interface CartAndWishlistMapper {
 	int getTotalCartById(String id);
 
 	List<ProductVO> findCartAllListById(String id);
+
+	List<ProductVO> findWishlistAllListById(String id);
+
+	void removeWishlist(int productNo);
 	
 	
 }
