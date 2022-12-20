@@ -10,20 +10,26 @@
 </head>
 
 	<div layout:fragment="content" class="container">
-		<h1>상품등록</h1>
-		<form action="" th:action="@{/registerProduct}" method="post">
-			<select required="required" name="category">
-				<option value="">카테고리</option>
-				<option value="juice">과일즙</option>
-				<option value="tea">과일차</option>
-			</select><br>
-			<input type="text" name="productName" placeholder="상품명" required="required"><br>
-			<input type="text" name="price" placeholder="가격" required="required"><br>
-			<input type="text" name="productCount" placeholder="수량(BOX)" required="required"><br>
-			<input type="text" name="image" placeholder="사진업로드" required="required"><br>
-			<textarea rows="5" cols="23" name="productDetail" placeholder="상세설명글" required="required"></textarea>
-			<button type="reset" id="registerCancleBtn" class="btn btn-outline-success">취소</button>&nbsp;&nbsp;<button type="submit" id="registerOkBtn" class="btn btn-outline-success">등록</button>
-		</form>
+		<div class="row">
+			 <div class="col-md-4 offset-md-4">
+			 	<h1>상품등록</h1>
+				<form action="" th:action="@{/registerProduct}" method="post">
+					<select required="required" name="category">
+						<option value="">카테고리</option>
+						<option value="juice">과일즙</option>
+						<option value="tea">과일차</option>
+					</select><br><br>
+					<input type="text" name="productName" placeholder="상품명" required="required" size="42"><br><br>
+					<input type="text" name="price" placeholder="가격" required="required" size="42"><br><br>
+					<input type="text" name="productCount" placeholder="수량(BOX)" required="required" size="42"><br><br>
+					<input type="text" name="image" placeholder="사진업로드" required="required" size="42"><br><br>
+					<textarea rows="5" cols="46" name="productDetail" placeholder="상세설명글" required="required"></textarea><br><br>
+					<button type="submit" id="registerOkBtn" class="btn btn-outline-success btn-block">등록</button>
+					<button type="reset" id="registerCancleBtn" class="btn btn-outline-danger btn-block">취소</button>
+				</form>
+			 </div>
+		</div>
+	
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$("#registerCancleBtn").click(function() {
