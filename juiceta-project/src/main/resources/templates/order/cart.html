@@ -23,15 +23,16 @@
 					        <th>Total</th>
 					      </tr>
 					    </thead>
-					    <tbody>
-					      <tr class="text-center">
+					    <tbody th:each="productVO:${productAllList}">
+					   <!--  for 문 리스트 출력 -->  
+					     <tr class="text-center">
 					        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 					        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
 					        <td class="product-name">
-					        	<h3>상품명</h3>
-					        	<p>상품상세설명</p>
+					        	<h3>상품명 : </h3><td th:text="${productVO.productName}"></h3>
+					        	<p>상품상세설명<td th:text="${productVO.productDetail}"></p>
 					        </td>					        
-					        <td class="price">상품가격</td>					        
+					        <td class="price" th:text="${productVO.price}">상품가격</td>					        
 					        <td class="quantity">
 					        	<div class="input-group mb-3">
 									<span class="input-group-btn mr-2">
@@ -47,7 +48,7 @@
 			           				</span>
 			        			</div>
 				          	</td>					   
-					        <td class="total">(상품가격*수량)합계</td>
+					        <td class="total">(상품가격*수량)합계  productVO.price * /td>
 					      </tr>
 					    </tbody>
 					  </table>
@@ -67,11 +68,9 @@
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
   			</div>
   		</div>
-    	
     	<script type="text/javascript">
 			$(document).ready(function(){
 				let quantitiy=0;
-
 			   	$(".quantity-right-plus").click(function(e){	        
 			        // Stop acting like a button
 			        e.preventDefault();
@@ -81,7 +80,6 @@
 			 		$("#quantity").val(quantity + 1);
 					 // Increment  
 			    	});
-
 			     	$(".quantity-left-minus").click(function(e){
 			        	// Stop acting like a button
 			        	e.preventDefault();
@@ -93,10 +91,7 @@
 			            	$("#quantity").val(quantity - 1);
 			            }
 			    	});
-			     	
 				});
     	</script>
-    		
 	</div>
-
 </html>

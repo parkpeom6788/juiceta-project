@@ -3,11 +3,13 @@ package org.kosta.juicetaproject;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
 import org.kosta.juicetaproject.model.vo.CartVO;
+import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,7 +47,6 @@ class Testpp {
 			System.out.println(list.get(i));
 		}
 	}
-
 	// 게시물 상세 조회
 	@Test
 	public void questionDetail() {
@@ -53,7 +54,6 @@ class Testpp {
 		QuestionVO questionVO= questionMapper.questionDetail(productNo);
 		System.out.println(questionVO);
 	}
-	
 	// 문의사항 등록
 	@Test
 	public void registerQuestion() {
@@ -66,7 +66,7 @@ class Testpp {
 		
 	// 답변 수정
 	@Test
-	public void updateQuestion() {
+	public void updateQuestion3() {
 		int productNo = 1;
 		QuestionVO questionVO= questionMapper.questionDetail(productNo);
 		System.out.println(questionVO);
@@ -99,12 +99,16 @@ class Testpp {
 	@Test
 	public void findCartAllListById() {
 		String id = "jtest3";
-		ArrayList<CartVO> list = cartAndWishlistMapper.findCartAllListById(id);
-		for(int i=0; i<list.size(); i++) {
-			System.out.println(list.get(i).toString());
+		ArrayList<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 	}
-	// 
+	// 답변이 달렸으면 답변여부 업데이트
+	// UPDATE juiceta_question SET CHECK_ANSWER = 1 WHERE question_no = 109; 
+	@Test
+	public void updateQuestion() {
+		int questionNo = 109;
+		questionMapper.updateQuestion(questionNo);
+	}
 }
-
-

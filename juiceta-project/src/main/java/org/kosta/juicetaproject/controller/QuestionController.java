@@ -30,7 +30,7 @@ public class QuestionController {
 		 }
 		
 		// 글쓰기 폼으로 
-		 @RequestMapping("guest/question-write")
+		 @RequestMapping("question-write")
 		 public String questionWrite(int productNo, Model model) {
 			 System.out.println("asdsad");
 			 model.addAttribute("productNo", productNo);
@@ -41,6 +41,7 @@ public class QuestionController {
 		 @PostMapping("registerQuestion")
 		 public String registerQuestion(@AuthenticationPrincipal MemberVO memberVO, String questionTitle,String questionContent,int productNo) {
 			 questionService.registerQuestion(questionTitle,questionContent,productNo,memberVO.getId());
+			 
 			 return "redirect:registerQuestionresultok?productNo="+productNo;
 		 }
 		
@@ -56,6 +57,7 @@ public class QuestionController {
 		 @PostMapping("registerAnswer")
 		 public String registerAnswer(Model model , String answerContent, int questionNo) {
 			 questionService.registerAnswer(new AnswerVO(questionNo,answerContent));
+			 questionService.updateQuestion(questionNo);
 			 model.addAttribute("answerContent", answerContent);
 			 return "redirect:registerAnswerResult?questionNo="+questionNo;
 		 }

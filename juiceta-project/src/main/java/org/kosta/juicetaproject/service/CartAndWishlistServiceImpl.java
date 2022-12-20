@@ -1,10 +1,12 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -13,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	private final CartAndWishlistMapper cartAndWishlistMapper;
-
+	
 	@Override
 	public String addWishlist(MemberVO memberVO, int productNo) {
 		Map<String, Object> map = new HashMap<>();
@@ -29,7 +31,6 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 		}
 		return result;
 	}
-
 	@Override
 	public String addCart(MemberVO memberVO, int productNo, int productCount) {
 		Map<String, Object> map = new HashMap<>();
@@ -46,14 +47,15 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 		}
 		return result;
 	}
-
+	// 카트에 담긴 총 가격의 액수  
 	@Override
 	public int getTotalCartById(String id) {
 		return cartAndWishlistMapper.getTotalCartById(id);
 	}
-	
-	
-	
+	@Override
+	public List<ProductVO> findCartAllListById(String id) {
+		return cartAndWishlistMapper.findCartAllListById(id);
+	}
 }
 
 
