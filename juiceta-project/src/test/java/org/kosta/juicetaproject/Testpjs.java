@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,16 +43,31 @@ class Testpjs {
 		int result=productMapper.deleteProduct(productNo);
 		System.out.println(result);
 	}
-	@Test
-	void productAllListByRnum() {
-		List<ProductVO> list=productMapper.productAllListByRnum();
-		System.out.println(list);
-	}
+
+	/*
+	 * @Test void productAllListByRnum() { List<ProductVO>
+	 * list=productMapper.productAllListByRnum(); System.out.println(list); }
+	 */
 	@Test
 	void findProductListByKeyword() {
 		String keyword="파";
 		List<ProductVO> list=productMapper.findProductListByKeyword(keyword);
 		System.out.println(list);
+	}
+	@Test
+	void productAllListByRnum() {
+		int totalProductCount = productMapper.getTotalProductCount();
+		String pageNo = "";
+		Pagination pagination = null;
+		
+		if(pageNo=="")
+			pagination = new Pagination(totalProductCount);
+		else
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+
+		List<ProductVO> list = productMapper.findAllProduct(pagination);
+		for(ProductVO vo : list)
+			System.out.println(vo);
 	}
 }
 

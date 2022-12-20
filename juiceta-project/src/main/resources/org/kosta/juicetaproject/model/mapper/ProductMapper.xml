@@ -70,8 +70,12 @@
 		<include refid="selectProduct"></include> WHERE product_name LIKE '%'||#{value}||'%'
 	</select>
 	<select id="findAllProduct" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT product_no,product_name,price,product_count,product_detail,image,category
-		FROM juiceta_product ORDER BY product_no DESC
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			FROM juiceta_product
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 	</select>
 </mapper>
 
