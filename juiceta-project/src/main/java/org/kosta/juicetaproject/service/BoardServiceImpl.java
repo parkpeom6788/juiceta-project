@@ -52,6 +52,11 @@ public class BoardServiceImpl implements BoardService{
 		return boardMapper.boardDetail(No);
 	}
 
+	@Override
+	public void boardHitsCount(int no) {
+		boardMapper.boardHitsCount(no);
+	}
+
 	
 
 }

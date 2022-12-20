@@ -1,10 +1,17 @@
 package org.kosta.juicetaproject.controller;
 
 
+import java.util.ArrayList;
 import java.util.Map;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.kosta.juicetaproject.model.vo.BoardVO;
+import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.service.BoardService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +26,7 @@ public class BoardController {
 
 	@RequestMapping("guest/board")
 	public String board(Model model, String pageNo){
+		
 		Map<String, Object> paging = boardService.findboardAllList(pageNo);
 		model.addAttribute("boardAllList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
@@ -28,10 +36,29 @@ public class BoardController {
 	public String boardResult() {
 		return "board/board-detail";
 	}
+	
 	@RequestMapping("guest/boardDetail")
-	public String boardDetail(Model model, int No){
-		model.addAttribute("boardDetail",boardService.boardDetail(No));
-		return "board/board-detail";
+	public String boardDetail(Model model, int No, @AuthenticationPrincipal MemberVO memberVO,HttpServletRequest request){
+		if(memberVO==null) {
+			model.addAttribute("boardDetail",boardService.boardDetail(No));
+			return "board/board-detail";			
+		}else {
+			@SuppressWarnings("unchecked")
+			ArrayList<Integer> boardlist = (ArrayList<Integer>) request.getSession(false).getAttribute("board");
+			if(boardlist.contains(No)==false) {                      
+				boardService.boardHitsCount(No);	
+				model.addAttribute("boardDetail",boardService.boardDetail(No));
+				boardlist.add(No);
+				return "board/board-detail";	
+			}else {
+				model.addAttribute("boardDetail",boardService.boardDetail(No));
+				return "board/board-detail";	
+				
+			}
+			
+			
+			
+		}
 	}
 	
 	@RequestMapping("guest/boardUpdateForm")
@@ -70,4 +97,5 @@ public class BoardController {
 	public String deleteBoardResult() {
 		return "board/delete-board-reuslt";
 	}
+	
 }

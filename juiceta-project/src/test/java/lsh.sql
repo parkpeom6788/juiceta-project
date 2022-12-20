@@ -36,3 +36,5 @@ SELECT rnum,board_no,board_title,board_content,board_time, hits
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 		
 		select count(*) from juiceta_board
+		
+		select * from juiceta_customer

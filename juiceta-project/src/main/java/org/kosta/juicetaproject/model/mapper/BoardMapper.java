@@ -21,5 +21,7 @@ public interface BoardMapper {
 
 	int getTotalBoardCount();
 
+	void boardHitsCount(int no);
+
 
 }

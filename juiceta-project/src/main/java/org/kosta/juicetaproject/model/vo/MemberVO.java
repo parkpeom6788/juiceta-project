@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.model.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +18,6 @@ public class MemberVO implements Serializable{
 	private String address;
 	private String phone;
 	private String enabled;
+	private ArrayList<Integer> list;
 	
 }

@@ -1,6 +1,9 @@
 package org.kosta.juicetaproject.controller;
 
+import java.util.ArrayList;
 import java.util.Map;
+
+import javax.servlet.http.HttpSession;
 
 import org.kosta.juicetaproject.service.ProductService;
 import org.springframework.security.core.Authentication;
@@ -18,11 +21,14 @@ public class HomeController {
 	private final ProductService productService;
 	
 	@RequestMapping(value = {"/home","/"})
-	public String home(Authentication authentication,String pageNo,Model model){//Authentication : Spring Security의 인증객체 
+	public String home(Authentication authentication,String pageNo,Model model,HttpSession session){//Authentication : Spring Security의 인증객체 
 		//Spring Security Authentication 인증객체는 아래처럼 SecurityContext 에 저장되어 있다 
 		//log.info("home "+SecurityContextHolder.getContext().getAuthentication().getPrincipal());	
 		//Principal(사전적 의미:본인 ) 객체는 인증된 회원 정보 객체를 말한다
 		//org.kosta.myproject.config.security.MemberAuthenticationProvider 에서 할당 
+		if(model!=null) {
+			session.setAttribute("board",new ArrayList<>());
+		}
 		if(authentication!=null)
 		  log.info("Home: 인증받은 사용자 {} ",authentication.getPrincipal());
 		else
