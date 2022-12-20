@@ -67,6 +67,23 @@
 				});//click
 			});//ready
 		</script>
+		    	<!--/* Pagination 부분 */-->
+ 		<div class="row mt-5">
+       		<div class="col text-center">
+         		<div class="block-27">
+		           <ul>
+		             <li th:if="${pagination.previousPageGroup}"><a href="#" th:href="@{/productAdmin(pageNo=${pagination.startPageOfPageGroup-1})}">&lt;</a></li>
+		             <th:block th:each="pageNo : ${#numbers.sequence(pagination.startPageOfPageGroup,pagination.endPageOfPageGroup)}">
+			             <li th:if="${pageNo==pagination.nowPage}" class="active"><a href="#" th:href="@{/productAdmin(pageNo=${pageNo})}" th:text="${pageNo}">pageNo</a></li>
+			             <li th:unless="${pageNo==pagination.nowPage}"><a href="#" th:href="@{/productAdmin(pageNo=${pageNo})}" th:text="${pageNo}">pageNo</a></li>
+		             </th:block>
+		             <li th:if="${pagination.nextPageGroup}"><a href="#" th:href="@{/productAdmin(pageNo=${pagination.endPageOfPageGroup+1})}">&gt;</a></li>
+		           </ul>
+         		</div>
+       		</div>
+   		</div>
+   		<!--/* Pagination 부분 */-->
+		
 	</div>
 </html>
 

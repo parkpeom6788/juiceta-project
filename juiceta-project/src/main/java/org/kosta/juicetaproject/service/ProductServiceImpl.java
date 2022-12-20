@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.stereotype.Service;
@@ -78,15 +79,46 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> productAllListByRnum(String pageNo) {
-		return productMapper.productAllListByRnum();
+	public Map<String, Object> productAllListByRnum(String pageNo) {
+		int totalCount = productMapper.getTotalProductCount();
+		Pagination pagination = null;
+		if(pageNo==null)
+			pagination=new Pagination(totalCount);
+		else {
+			pagination=new Pagination(Integer.parseInt(pageNo), totalCount);
+		}
+		Map<String, Object> paging = new HashMap<>();
+		paging.put("LIST", productMapper.findAllProduct(pagination));
+		paging.put("PAGINATION", pagination);
+		return paging;
 	}
 
 	@Override
-	public List<ProductVO> findProductListByKeyword(String keyword) {
-		return productMapper.findProductListByKeyword(keyword);
+	public Map<String, Object> findProductListByKeyword(String keyword,String pageNo) {
+		int totalProductCount =productMapper.getTotalProductCount();
+		Pagination pagination = null;
+		
+		if(pageNo=="")
+			pagination = new Pagination(totalProductCount);
+		else {
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+		}
+		Map<String, Object> map = new HashMap<>();
+		map.put("PAGINATION", pagination);
+		map.put("KEYWORD",keyword);
+		
+		List<ProductVO> list = productMapper.findProductListByKeyword(map);
+		Map<String, Object> paging =new HashMap<>();
+		paging.put("LIST", list);
+		paging.put("PAGINATION", pagination);
+		return paging;
 	}
-	
+
+	@Override
+	public List<ProductVO> findAllProduct(Pagination pagination) {
+		return productMapper.findAllProduct(pagination);
+	}
+
 }
 
 

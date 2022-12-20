@@ -45,8 +45,10 @@ public class ProductController {
 	
 	// 상품관리 전체 리스트 조회
 	@RequestMapping("productAdmin")
-	public String productAdmin(Model model,String productNo) {
-		model.addAttribute("productList", productService.productAllListByRnum(productNo));
+	public String productAdmin(Model model,String pageNo) {
+		Map<String, Object> paging = productService.productAllListByRnum(pageNo);
+		model.addAttribute("productList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";
 	}
 	
@@ -54,8 +56,10 @@ public class ProductController {
 	
 	// 상품관리 검색
 	@RequestMapping("productSelect")
-	public String findProductListByKeyword(String productKeyword, Model model) {
-		model.addAttribute("productList", productService.findProductListByKeyword(productKeyword));
+	public String findProductListByKeyword(String keyword,String pageNo, Model model) {
+		Map<String, Object> paging=productService.findProductListByKeyword(keyword,pageNo);
+		model.addAttribute("productList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";
 	}
 	

@@ -1,9 +1,14 @@
 package org.kosta.juicetaproject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
+import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.kosta.juicetaproject.model.vo.OrderDetailVO;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +18,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 class Testpjs {
 	private final ProductMapper productMapper;
+	private final OrderMapper orderMapper;
 	@Autowired
-	public Testpjs(ProductMapper productMapper) {
+	public Testpjs(ProductMapper productMapper,OrderMapper orderMapper) {
 		super();
 		this.productMapper = productMapper;
+		this.orderMapper= orderMapper;
 	}
 	@Test
 	void productDetail() {
@@ -50,9 +57,23 @@ class Testpjs {
 	 */
 	@Test
 	void findProductListByKeyword() {
-		String keyword="파";
-		List<ProductVO> list=productMapper.findProductListByKeyword(keyword);
-		System.out.println(list);
+		int totalProductCount =productMapper.getTotalProductCount();
+		String pageNo="";
+		Pagination pagination = null;
+		
+		if(pageNo=="")
+			pagination = new Pagination(totalProductCount);
+		else {
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+		}
+		String keyword = "파";
+		Map<String, Object> map = new HashMap<>();
+		map.put("PAGINATION", pagination);
+		map.put("KEYWORD",keyword);
+		
+		List<ProductVO> list = productMapper.findProductListByKeyword(map);
+		for(ProductVO vo : list)
+			System.out.println(vo);
 	}
 	@Test
 	void productAllListByRnum() {
@@ -68,6 +89,13 @@ class Testpjs {
 		List<ProductVO> list = productMapper.findAllProduct(pagination);
 		for(ProductVO vo : list)
 			System.out.println(vo);
+	}
+	@Test
+	void findOrderById() {
+		MemberVO memberVO=new MemberVO();
+		memberVO.setId("jtest3");
+		OrderDetailVO OrderDetailVO=orderMapper.findOrderById(memberVO.getId());
+		System.out.println(OrderDetailVO);
 	}
 }
 

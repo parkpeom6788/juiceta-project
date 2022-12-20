@@ -74,7 +74,7 @@ CREATE TABLE juiceta_order(
 	CONSTRAINT fk_order_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE
 )
 SELECT * FROM juiceta_order;
-
+SELECT TO_CHAR(SYSDATE,'YYYY-MM-DD HH:MI:SS') FROM juiceta_order
 -- 주문상세
 CREATE TABLE juiceta_order_detail(
 	order_no NUMBER,
@@ -120,6 +120,7 @@ CREATE TABLE juiceta_product(
 )
 CREATE SEQUENCE juiceta_product_seq;
 
+SELECT * FROM juiceta_product
 -- 조회된 결과 행 번호를 부여하기 위해 ROW_NUMBER() OVER(정렬) 함수를 이용
 SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count FROM juiceta_product
 
@@ -201,9 +202,13 @@ SELECT product_no,product_name,price,product_count,product_detail,image,category
 
 SELECT product_no,product_name,price,product_count,product_detail,image,category
 		FROM juiceta_product ORDER BY product_no DESC
+---------------------------------
 
-
-
+SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH:MI:SS'),d.order_count,p.price
+FROM juiceta_order_detail d
+INNER JOIN juiceta_product p ON p.product_no=d.product_no
+INNER JOIN juiceta_order o ON d.order_no=o.order_no
+WHERE d.order_no=1
 
 
 
