@@ -42,7 +42,7 @@ class Testlsh {
 		String boardContent = "text"; 
 		BoardVO vo= new BoardVO(0,boardTitle,boardContent,null,0, 0);
 		boardMapper.registerBoard(vo);
-		List<BoardVO> list = boardMapper.findBoardAllList();
+		List<BoardVO> list = (List<BoardVO>) boardMapper.findBoardAllList(null);
 		for(BoardVO bvo : list)
 			System.out.println(bvo);
 	}
@@ -52,5 +52,9 @@ class Testlsh {
 		List<BoardVO> list = boardMapper.findBoardAllList();
 		for(BoardVO bvo : list)
 			System.out.println(bvo);
+	}
+	
+	@Test void countListBoard() {
+		int countListBoard = boardMapper.getTotalBoardCount();
 	}
 }

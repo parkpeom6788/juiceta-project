@@ -10,7 +10,7 @@
 <div layout:fragment="content" class="container">
 <h2>공지 사항</h2>
 	<div style="border-top:solid; padding: 20px;" class="row">
-		<div  class="col-2" th:text="'글 번호 : '+${boardDetail.rnum}" align="center">글 번호</div>
+		<div  class="col-2" th:text="'글 번호 : '+${boardDetail.boardNo}" align="center">글 번호</div>
 		<div class="col-5" th:text=" '글 제목 : '+ ${boardDetail.boardTitle}" align="center">글 제목</div>
 		<div class="col-3" th:text="'작성 일 : '+ ${boardDetail.boardTime}" align="center">작성 일</div>
 		<div class="col-2" th:text="'조회 수 : '+ ${boardDetail.hits}">조회 수</div>
@@ -22,12 +22,9 @@
 		<input type="hidden" th:value="${boardDetail.boardNo}" name="boardNo">
 		<button class="btn btn-outline-success" type="submit" id="deleteBtn">삭제하기</button>
 	</form> 
-	
-</div>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#deleteBtn").click(function() {
-		alert("하이");
 		let message = confirm("정말로 삭제하시겠습니까?");
 		if(message==false){
 			return false;
@@ -36,6 +33,8 @@ $(document).ready(function() {
 })
 	
 </script>
+	
+</div>
 
 
 </html>

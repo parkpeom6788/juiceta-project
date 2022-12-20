@@ -1,6 +1,8 @@
 package org.kosta.juicetaproject.controller;
 
 
+import java.util.Map;
+
 import org.kosta.juicetaproject.model.vo.BoardVO;
 import org.kosta.juicetaproject.service.BoardService;
 import org.springframework.stereotype.Controller;
@@ -16,8 +18,11 @@ public class boardController {
 	private final BoardService boardService;
 	
 	@RequestMapping("guest/board")
-	public String board(Model model){
-		model.addAttribute("boardAllList",boardService.findProductAllList());
+	public String board(Model model, String boardNo){
+		System.out.println(boardNo);
+		Map<String, Object> paging = boardService.findboardAllList(boardNo);
+		model.addAttribute("boardAllList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "board/board-list";
 	}
 	@RequestMapping("guest/boardResult")

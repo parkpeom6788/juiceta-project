@@ -21,7 +21,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="board:${boardAllList}">
-					<td th:text="${board.rnum}" class = "col-sm-2"></td>
+					<td th:text="${board.boardNo}" class = "col-sm-2" name="boardNo"></td>
 					<td id="${board.boardNo}" class="col-sm-5"><a th:href="@{boardDetail?No=}+${board.boardNo}" th:text="${board.boardTitle}"></a></td>
 					<td th:text="${board.boardTime}" class = "col-sm-3"></td>
 					<td th:text="${board.hits}" class = "col-sm-2"></td>
@@ -29,5 +29,20 @@
 			</tbody>
 		</table>
 		<button onclick="location.href='boardWriteForm'" class="btn btn-outline-success">글 작성</button>
+		<div class="row mt-5">
+          <div class="col text-center">
+            <div class="block-27">
+              <ul>
+                <li><a href="#">&lt;</a></li>
+                <li class="active"><span>1</span></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&gt;</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
 	</div>
 </html>

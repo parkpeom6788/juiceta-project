@@ -18,4 +18,21 @@ FROM juiceta_board
 SELECT row_number() over(ORDER BY board_no asc) as rnum, board_no, board_title, hits, TO_CHAR(board_time, 'YYYY.MM.DD') as board_time
 FROM juiceta_board order by board_no desc
 
-select row_number() over(ORDER BY board_no asc) as rnum, board_no, board_title, board_content, board_time, hits from juiceta_board where board_no = 55 
+select row_number() over(ORDER BY board_no asc) as rnum, board_no, board_title, board_content, board_time, hits from juiceta_board where board_no = 55
+
+
+SELECT rnum,board_no,board_title,board_content,board_time, hits
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum,board_no,board_title,board_content,board_time, hits
+			FROM juiceta_board
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
+		
+SELECT rnum,board_no,board_title,board_content,board_time, hits
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum,board_no,board_title,board_content,board_time, hits
+			FROM juiceta_board
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
+		
+		select count(*) from juiceta_board
