@@ -19,7 +19,14 @@
 			<span style="display: inline-block; width: 100px; height: 30px">PHONE</span><span style="display: inline-block; width: 100px; height: 30px" sec:authentication="principal.phone">연락처</span><br>
 			<span style="float: right"><a href="#" th:href="@{/updateForm}">회원정보수정</a></span>	
 		  </div>
-		</div>	
+		</div><br><br>
+		<div class="col-md-4 offset-md-4">
+		  <h2>주문내역</h2>
+		  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span><span style="display: inline-block; width: 100px; height: 30px" >주문번호</span><br>
+		  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span><span style="display: inline-block; width: 100px; height: 30px" >주문날짜</span><br>
+		  <span style="display: inline-block; width: 100px; height: 30px">총계</span><span style="display: inline-block; width: 100px; height: 30px" >총계</span><br><br>
+		  <span style="float: right"><a href="#" th:href="@{/orderDetail}">주문보기</a></span>
+		</div>
   	</div>
-
+	
 </html>

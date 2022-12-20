@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.ShopPagination;
 
@@ -22,7 +23,7 @@ public interface ProductMapper {
 
 	int deleteProduct(int productNo);
 
-	List<ProductVO> productAllListByRnum();
+	List<ProductVO> productAllListByRnum ();
 
 	List<ProductVO> findProductListByKeyword(String keyword);
 
@@ -32,6 +33,6 @@ public interface ProductMapper {
 
 	List<ProductVO> findProductByProductNameKeyword(String keyword);
 
-
+	List<ProductVO> findAllProduct(Pagination pagination);
 
 }

@@ -17,12 +17,12 @@ public interface ProductService {
 	
 	int deleteProduct(int productNo);
 	
-	List<ProductVO> productAllListByRnum();
+	List<ProductVO> productAllListByRnum(String pageNo);
 	
-	List<ProductVO> findProductListByKeyword(String keyword);
-
 	Map<String, Object> findProductAllListByCategory(String category, String pageNo);
 
 	List<ProductVO> findProductByProductNameKeyword(String searchKeyword);
 
+	List<ProductVO> findProductListByKeyword(String productKeyword);
+	
 }

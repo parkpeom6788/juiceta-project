@@ -78,7 +78,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> productAllListByRnum() {
+	public List<ProductVO> productAllListByRnum(String pageNo) {
 		return productMapper.productAllListByRnum();
 	}
 
@@ -86,9 +86,7 @@ public class ProductServiceImpl implements ProductService {
 	public List<ProductVO> findProductListByKeyword(String keyword) {
 		return productMapper.findProductListByKeyword(keyword);
 	}
-
-
-
+	
 }
 
 
