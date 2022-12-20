@@ -23,9 +23,9 @@ public interface ProductMapper {
 
 	int deleteProduct(int productNo);
 
-	List<ProductVO> productAllListByRnum ();
+	Map<String, Object> productAllListByRnum ();
 
-	List<ProductVO> findProductListByKeyword(String keyword);
+	List<ProductVO> findProductListByKeyword(Map<String, Object> map);
 
 	List<ProductVO> findProductAllListByCategory(Map<String, Object> map);
 

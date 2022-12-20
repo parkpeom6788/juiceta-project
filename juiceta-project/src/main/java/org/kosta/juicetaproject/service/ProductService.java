@@ -3,6 +3,7 @@ package org.kosta.juicetaproject.service;
 import java.util.List;
 import java.util.Map;
 
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 
 public interface ProductService {
@@ -17,12 +18,13 @@ public interface ProductService {
 	
 	int deleteProduct(int productNo);
 	
-	List<ProductVO> productAllListByRnum(String pageNo);
+	Map<String,Object> productAllListByRnum(String pageNo);
 	
 	Map<String, Object> findProductAllListByCategory(String category, String pageNo);
 
 	List<ProductVO> findProductByProductNameKeyword(String searchKeyword);
 
-	List<ProductVO> findProductListByKeyword(String productKeyword);
+	Map<String, Object> findProductListByKeyword(String keyword,String pageNo);
 	
+	List<ProductVO> findAllProduct(Pagination pagination);
 }

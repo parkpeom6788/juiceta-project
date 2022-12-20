@@ -56,12 +56,13 @@
 		FROM juiceta_product
 		)
 	</select>
-	<select id="findProductListByKeyword" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
+	<select id="findProductListByKeyword" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
 		SELECT rnum,product_no,product_name,price,product_count
 		FROM (
 		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
-		FROM juiceta_product
-		) WHERE product_name LIKE '%' || #{value} || '%' ORDER BY rnum DESC
+		FROM juiceta_product WHERE product_name LIKE '%' || #{KEYWORD} || '%' ORDER BY rnum DESC
+		) 
+		WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber}
 	</select>
 	<select id="getTotalProductCountbyCategory" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM juiceta_product WHERE category=#{value}

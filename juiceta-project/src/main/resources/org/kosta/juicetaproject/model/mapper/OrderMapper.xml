@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.juicetaproject.model.mapper.OrderMapper">
+	<resultMap type="org.kosta.juicetaproject.model.vo.OrderDetailVO" id="orderDetailResultMap">
+		<result column="order_no" property="orderVO.orderNo"/>
+		<result column="order_time" property="orderVO.orderTime"/>
+		<result column="price" property="productVO.price"/>
+	</resultMap>
+	
 	<insert id="placeAnOrder" parameterType="org.kosta.juicetaproject.model.vo.OrderVO">
 		INSERT INTO juiceta_order(order_no,order_time,receiver_name,receiver_phone,receiver_address,id)
 		VALUES(juiceta_order_seq.nextval,SYSDATE,#{receiverName},#{receiverPhone},#{receiverAddress},#{memberVO.id})
@@ -8,7 +14,35 @@
 			SELECT juiceta_order_seq.currval FROM dual
 		</selectKey>
 	</insert>
+	
 	<insert id="placeAnOrderDetail" parameterType="map">
 		INSERT INTO juiceta_order_detail(order_no,product_no,order_count) VALUES(#{ORDER_NO},#{PRODUCT_NO},#{PRODUCT_COUNT})
 	</insert>
+	
+	<select id="findOrderById" parameterType="string" resultMap="orderDetailResultMap">
+		SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH:MI:SS'),d.order_count,p.price
+		FROM juiceta_order_detail d
+		INNER JOIN juiceta_product p ON p.product_no=d.product_no
+		INNER JOIN juiceta_order o ON d.order_no=o.order_no
+		WHERE id=#{value}
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
