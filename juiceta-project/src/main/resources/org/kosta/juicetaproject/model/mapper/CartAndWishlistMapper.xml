@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper">
-	<select id="findWishlistByIdAndProductNo" parameterType="map" resultType="int">
-		SELECT COUNT(*) FROM juiceta_wishlist WHERE id=#{ID} AND product_no=#{PRODUCT_NO}
-	</select>
+<mapper namespace="org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper">
+	
 	<insert id="addWishlist" parameterType="map">
 		INSERT INTO juiceta_wishlist VALUES(#{ID},#{PRODUCT_NO})
 	</insert>
+	
+	<select id="findCartAllListById" resultType="org.kosta.juicetaproject.model.vo.CartVO" parameterType="string">
+		SELECT id,product_no,product_count FROM juiceta_cart WHERE id=#{ID}
+	</select>
+	
 </mapper>

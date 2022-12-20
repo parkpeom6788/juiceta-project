@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class boardController {
 	private final BoardService boardService;
-	
+
 	@RequestMapping("guest/board")
 	public String board(Model model){
 		model.addAttribute("boardAllList",boardService.findProductAllList());
@@ -37,9 +37,7 @@ public class boardController {
 	}
 	@PostMapping("guest/boardUpdate")
 	public String updateBoard(BoardVO boardVO){
-		
 		boardService.updateBoard(boardVO);
-		
 		return "redirect:updateBoardResult";
 	}
 	@RequestMapping("guest/updateBoardResult")

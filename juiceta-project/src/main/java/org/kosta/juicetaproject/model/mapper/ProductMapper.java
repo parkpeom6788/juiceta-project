@@ -11,11 +11,11 @@ import org.kosta.juicetaproject.model.vo.ShopPagination;
 public interface ProductMapper {
 
 	int getTotalProductCount();
-
+	
 	List<ProductVO> findShopProductAllList(ShopPagination shopPagination);
 	
 	ProductVO findProductByProductNo(int productNo);
-
+	
 	int updateProduct(ProductVO productVO);
 
 	int registerProduct(ProductVO productVO);

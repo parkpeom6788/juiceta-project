@@ -124,7 +124,6 @@ public class ProductController {
 		model.addAttribute("productList", productService.findProductByProductNameKeyword(searchKeyword));
 		return "product/product-search-keyword";
 	}
-
 }
 
 

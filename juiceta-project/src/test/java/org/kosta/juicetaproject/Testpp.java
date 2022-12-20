@@ -1,27 +1,28 @@
 package org.kosta.juicetaproject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
-import org.kosta.juicetaproject.model.vo.MemberVO;
-import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.CartVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class Testpp {
-	
 	private final QuestionMapper questionMapper;
+	private final CartAndWishlistMapper cartAndWishlistMapper;
 	
 	@Autowired
-	public Testpp(QuestionMapper questionMapper) {
+	public Testpp(QuestionMapper questionMapper , CartAndWishlistMapper cartAndWishlistMapper) {
 		super();
 		this.questionMapper = questionMapper;
+		this.cartAndWishlistMapper = cartAndWishlistMapper;
 	}
-
 	// 문의사항 등록
 //	@Test
 //	public void registerQuestion() {
@@ -44,7 +45,7 @@ class Testpp {
 			System.out.println(list.get(i));
 		}
 	}
-	
+
 	// 게시물 상세 조회
 	@Test
 	public void questionDetail() {
@@ -54,14 +55,14 @@ class Testpp {
 	}
 	
 	// 문의사항 등록
-		@Test
-		public void registerQuestion() {
-			//INSERT INTO juiceta_question(QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER ,
-			//PRODUCT_NO,id) VALUES(2,'제목입니다2','문의사항 입니다2','2022-12-18',0,64,'pjs');
-			String id = "jtest";
-			QuestionVO questionVO = new QuestionVO("제목입니다","문의사항입니다2",64,id);
-			questionMapper.registerQuestion(questionVO);
-		}
+	@Test
+	public void registerQuestion() {
+		//INSERT INTO juiceta_question(QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER ,
+		//PRODUCT_NO,id) VALUES(2,'제목입니다2','문의사항 입니다2','2022-12-18',0,64,'pjs');
+		String id = "jtest";
+		QuestionVO questionVO = new QuestionVO("제목입니다","문의사항입니다2",64,id);
+		questionMapper.registerQuestion(questionVO);
+	}
 		
 	// 답변 수정
 	@Test
@@ -83,7 +84,6 @@ class Testpp {
 	@Test
 	public void registerAnswer() {
 		QuestionVO questionVO = new QuestionVO(1,"","","",0,1,"");
-		
 	}
 	
 	// 답변 여부
@@ -93,6 +93,18 @@ class Testpp {
 		AnswerVO answerVO = questionMapper.findAnswerByQuestionNo(productNo);
 		System.out.println(answerVO);
 	}
+	
+	// 장바구니 상세 목록 출력 리스트형식으로 
+	// findCartAllListById(in id:String): List
+	@Test
+	public void findCartAllListById() {
+		String id = "jtest3";
+		ArrayList<CartVO> list = cartAndWishlistMapper.findCartAllListById(id);
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i).toString());
+		}
+	}
+	// 
 }
 
 

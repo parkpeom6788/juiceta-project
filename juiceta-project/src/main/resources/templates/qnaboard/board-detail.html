@@ -20,28 +20,54 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td th:text="${questionVO.questionNo}" class = "col-sm-2"></td>
-					<td class= "col-sm-3"><a th:text="${questionVO.questionTitle}"></a></td>
-					<td th:text="${questionVO.memberVO.id}" class = "col-sm-2"></td>
-					<td th:text="${questionVO.questionTime}" class = "col-sm-2"></td>
+						<td th:text="${questionVO.questionNo}" class = "col-sm-2"></td>
+						<td class= "col-sm-3"><a th:text="${questionVO.questionTitle}"></a></td>
+						<td th:text="${questionVO.memberVO.id}" class = "col-sm-2"></td>
+						<td th:text="${questionVO.questionTime}" class = "col-sm-2"></td>
+				</tr>
+				<tr>
+						<td th:text="${questionVO.questionContent}" readonly="readonly"></td>
 				</tr>
 			</tbody>
 		</table>
-			<textarea cols="150" rows="10" th:text="${questionVO.questionContent}" readonly="readonly"></textarea><br>
-			관리자 답변
-			<th: block th:if="${answerVO == null }">
-				<form action="" th:action="@{/guest/registerAnswer}" id="writeForm" method="post">
-					<p><textarea cols="50" rows="10" name="answerContent"></textarea></p>
-					<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
-					<button type="reset">취소(관리자)</button>
-					<button type="submit" id="registerBtn">등록(관리자)</button>
-				</form>
-			</th: block>
-			
-			<th: block th:if="${answerVO != null }">
-		   		<textarea cols="50" rows="10" th:text="${answerVO.answerContent}" readonly="readonly"></textarea><br> 
-			</th: block>
+		 <div align="center">
+		<table class="table table-boardered">
+			<thead>
+			<tr>
+				<th>답변 글번호</th>
+				<th>답변 내용</th>
+				<th>답변 시간</th>
+			</tr>
+			</thead>
+			<tbody>
+				<th:block th:if="${answerVO != null}">
+					<tr>
+							<td th:text="${answerVO.questionNo}" class = "col-sm-2"></td>
+							<td th:text="${answerVO.answerContent}"></td>
+							<td th:text="${answerVO.answerTime}" class = "col-sm-2"></td>
+					</tr>
+				</th:block>
+			</tbody>
+				<th:block th:if="${answerVO == null}">
+						<form action="" th:action="@{/registerAnswer}" id="writeForm" method="post">
+							<p><textarea cols="50" rows="10" name="answerContent"></textarea></p>
+							<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
+								<button type="reset">취소(관리자)</button>
+								<button type="submit" id="registerBtn">등록(관리자)</button>
+						</form>
+				</th:block>
+		</table>
 		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$("#registerBtn").click(function(){
+					let result = confirm("등록하시겠습니까?");
+					if(result == true) {
+						$("#registerBtn")
+					}
+				})
+			})		
+		</script>		
 	</div>
 </html>
 

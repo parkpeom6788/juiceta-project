@@ -14,7 +14,6 @@ public class BoardServiceImpl implements BoardService{
 	private final BoardMapper boardMapper;
 	@Override
 	public List<BoardVO> findProductAllList() {
-		
 		return boardMapper.findBoardAllList();
 	}
 

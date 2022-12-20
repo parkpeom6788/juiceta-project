@@ -10,9 +10,9 @@
 	
 	<select id="findQuestionAllListByProductNo" parameterType="int" resultMap="questionResultMap"> 
 		 SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
-		 ,id,product_no
+		 ,ID,PRODUCT_NO
 		 FROM juiceta_question
-		 WHERE product_no=#{value}
+		 WHERE product_no=#{value} ORDER BY QUESTION_NO DESC
 	</select>
 	
 	<select id="questionDetail" parameterType="int" resultMap="questionResultMap">

@@ -44,7 +44,6 @@ public class QuestionServiceImpl implements QuestionService {
 		AnswerVO answerVO = (AnswerVO) questionmapper.findAnswerByQuestionNo(questionNo);
 		return answerVO;
 	}
-	
 	// updateQuestion(in questionVO:QuestionVO)
 	// 수정
 	public void updateQuestion(QuestionVO questionVO) {

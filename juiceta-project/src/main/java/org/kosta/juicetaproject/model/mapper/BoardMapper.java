@@ -18,5 +18,4 @@ public interface BoardMapper {
 
 	void deleteBoard(int no);
 
-
 }

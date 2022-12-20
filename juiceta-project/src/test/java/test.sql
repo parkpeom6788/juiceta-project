@@ -32,3 +32,27 @@ SELECT * FROM juiceta_authorities;
 INSERT INTO juiceta_question(question_no,question_title,question_content,question_time,id,product_no) 
 VALUES (juiceta_question_seq.nextval,'제목입니다4','문의내용 입니다4',sysdate,'pjs',64)
 
+SELECT * FROM juiceta_answer;
+
+SELECT QUESTION_NO , ANSWER_CONTENT , ANSWER_TIME
+FROM juiceta_answer;
+
+DELETE FROM juiceta_answer;
+
+SELECT * FROM juiceta_cart;
+
+-- 장바구니
+CREATE TABLE juiceta_cart(
+	id VARCHAR2(100),
+	product_no NUMBER,
+	product_count NUMBER NOT NULL,
+	CONSTRAINT fk_cart_id FOREIGN KEY(id) REFERENCES juiceta_customer(id) ON DELETE CASCADE,
+	CONSTRAINT fk_cart_product_no FOREIGN KEY(product_no) REFERENCES juiceta_product(product_no) ON DELETE CASCADE,
+	CONSTRAINT pk_cart PRIMARY KEY(id,product_no)
+)
+SELECT * FROM juiceta_cart;
+commit
+
+
+
+
