@@ -33,6 +33,12 @@ public class OrderServiceImpl implements OrderService {
 		return orderVO.getOrderNo();
 	}
 
+	@Override
+	public OrderVO findOrderByOrderNo(int orderNo) {
+		Map<String, String> map = orderMapper.findOrderByOrderNo(orderNo);
+		return 	OrderVO.builder().orderNo(orderNo).receiverName(map.get("RECEIVER_NAME")).receiverPhone(map.get("RECEIVER_PHONE")).receiverAddress(map.get("RECEIVER_ADDRESS")).build();
+	}
+
 }
 
 

@@ -11,4 +11,7 @@
 	<insert id="placeAnOrderDetail" parameterType="map">
 		INSERT INTO juiceta_order_detail(order_no,product_no,order_count) VALUES(#{ORDER_NO},#{PRODUCT_NO},#{PRODUCT_COUNT})
 	</insert>
+	<select id="findOrderByOrderNo" parameterType="int" resultType="map">
+		SELECT receiver_name,receiver_phone,receiver_address FROM juiceta_order WHERE order_no=#{value}
+	</select>
 </mapper>

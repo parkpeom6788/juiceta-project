@@ -7,6 +7,9 @@
 	<select id="findCartAllListById" resultType="org.kosta.juicetaproject.model.vo.CartVO" parameterType="string">
 		SELECT id,product_no,product_count FROM juiceta_cart WHERE id=#{ID}
 	</select>
+	<select id="findWishlistByIdAndProductNo" parameterType="map" resultType="int">
+		SELECT COUNT(*) FROM juiceta_wishlist WHERE id=#{ID} AND product_no=#{PRODUCT_NO}
+	</select>
 	<select id="findCartByIdAndProductNo" parameterType="map" resultType="int">
 		SELECT COUNT(*) FROM juiceta_cart WHERE id=#{ID} AND product_no=#{PRODUCT_NO}
 	</select>

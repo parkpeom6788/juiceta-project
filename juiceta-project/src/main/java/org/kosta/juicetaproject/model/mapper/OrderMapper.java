@@ -12,4 +12,7 @@ public interface OrderMapper {
 
 	void placeAnOrderDetail(Map<String, Integer> map);
 
+	Map<String, String> findOrderByOrderNo(int productNo);
+
+
 }

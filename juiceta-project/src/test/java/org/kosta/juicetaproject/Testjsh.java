@@ -166,6 +166,13 @@ class Testjsh {
 		map.put("ORDER_NO", orderNo);
 		orderMapper.placeAnOrderDetail(map);
 	}
+	
+	@Test
+	void findOrderByOrderNo() {
+		int productNo = 3;
+		Map<String, String> map = orderMapper.findOrderByOrderNo(productNo);
+		System.out.println(map.get("RECEIVER_NAME"));
+	}
 
 }
 

@@ -7,6 +7,8 @@
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
 	<title>product-detail</title>
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>	
 </head>
 
 	<div layout:fragment="content" class="container">
@@ -77,14 +79,21 @@
 		            }
 		    	 });
 			     
+			  // ajax post csrf token 을 위한 설정 
+				let token = $("meta[name='_csrf']").attr("content"); 
+				let header = $("meta[name='_csrf_header']").attr("content");
+				
 				let urlSearch = new URLSearchParams(location.search);
 				let productNo = urlSearch.get("productNo");
 				
 				$("#addWishlist").click(function() {
 					$.ajax({
-						type:"get",
+						type:"post",
 						url:"/addWishlistAjax",
 						data:"productNo="+productNo,
+						beforeSend : function(xhr){  
+		                    xhr.setRequestHeader(header,token);
+		                },
 						success:function(result){
 							if(result=="fail")
 								alert("이미 찜목록에 추가된 상품입니다");
@@ -97,9 +106,12 @@
 				$("#addCart").click(function() {
 					let productCount = $("#quantity").val();
 					$.ajax({
-						type:"get",
+						type:"post",
 						url:"/addCartAjax",
 						data:"productNo="+productNo+"&productCount="+productCount,
+						beforeSend : function(xhr){  
+		                    xhr.setRequestHeader(header,token);
+		                },
 						success:function(result){
 							if(result=="fail")
 								alert("이미 장바구니목록에 추가된 상품입니다");
