@@ -97,3 +97,6 @@ UPDATE juiceta_product SET category='tea' WHERE category='Tea';
 COMMIT
 
 
+
+
+
