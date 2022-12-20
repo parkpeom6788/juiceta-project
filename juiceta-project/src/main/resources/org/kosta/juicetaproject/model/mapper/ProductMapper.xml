@@ -78,6 +78,10 @@
 		)
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 	</select>
+	<insert id="registerContent" parameterType="org.kosta.juicetaproject.model.vo.Content">
+		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 
+		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image.storeFilename},#{category})
+	</insert>
 </mapper>
 
 

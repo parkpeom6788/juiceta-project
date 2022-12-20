@@ -14,7 +14,8 @@ public class FileStore {
 	// 루트 경로 불러오기
 	private final String rootPath = System.getProperty("user.dir");
 	// 프로젝트 루트 경로에 있는 images 디렉토리
-	private final String fileDir = rootPath + "/images/";
+	private final String fileDir = rootPath +File.separator+"images"+File.separator;
+
 	
 	public String getFullPath(String filename) {
 		return fileDir + filename;
