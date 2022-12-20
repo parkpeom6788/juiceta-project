@@ -10,5 +10,8 @@ public class OrderController {
 	public String checkoutForm() {
 		return "order/checkout";
 	}
-
+	@RequestMapping("orderDetail")
+	public String orderDetail() {
+		return "order/order-detail";
+	}
 }

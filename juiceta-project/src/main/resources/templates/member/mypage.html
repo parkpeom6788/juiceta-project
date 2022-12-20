@@ -11,7 +11,7 @@
 
 	<div layout:fragment="content" class="container">
 		<div class="row">
-		  <div class="col-md-5 offset-md-5">
+		  <div class="col-md-4 offset-md-4">
 		  	<h2>회원정보</h2>
 			<span style="display: inline-block; width: 100px; height: 30px">ID</span><span style="display: inline-block; width: 100px; height: 30px" sec:authentication="principal.id">아이디</span><br>
 			<span style="display: inline-block; width: 100px; height: 30px">NAME</span><span style="display: inline-block; width: 100px; height: 30px" sec:authentication="principal.name">이름</span><br>
@@ -20,12 +20,12 @@
 			<span style="float: right"><a href="#" th:href="@{/updateForm}">회원정보수정</a></span>	
 		  </div>
 		</div><br><br>
-		<div class="col-md-5 offset-md-5">
-		  주문내역 <span >주문내역</span><br><br>
-		  주문번호 <span >주문번호</span><br>
-		  주문날짜 <span >주문날짜</span><br>
-		 총계 <span >총계</span><br><br>
-		  <a href="">주문보기</a>
+		<div class="col-md-4 offset-md-4">
+		  <h2>주문내역</h2>
+		  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span><span style="display: inline-block; width: 100px; height: 30px" >주문번호</span><br>
+		  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span><span style="display: inline-block; width: 100px; height: 30px" >주문날짜</span><br>
+		  <span style="display: inline-block; width: 100px; height: 30px">총계</span><span style="display: inline-block; width: 100px; height: 30px" >총계</span><br><br>
+		  <span style="float: right"><a href="#" th:href="@{/orderDetail}">주문보기</a></span>
 		</div>
   	</div>
 	
