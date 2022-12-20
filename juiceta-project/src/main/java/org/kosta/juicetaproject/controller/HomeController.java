@@ -30,7 +30,6 @@ public class HomeController {
 		model.addAttribute("message", "SpringBoot Security Thymeleaf");
 		
 		Map<String, Object> paging = productService.findProductAllList(pageNo);
-		
 		model.addAttribute("productAllList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "index";

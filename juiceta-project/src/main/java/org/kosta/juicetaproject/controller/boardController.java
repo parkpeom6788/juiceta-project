@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class boardController {
 	private final BoardService boardService;
-	
+
 	@RequestMapping("guest/board")
 	public String board(Model model, String boardNo){
 		System.out.println(boardNo);
@@ -42,9 +42,7 @@ public class boardController {
 	}
 	@PostMapping("guest/boardUpdate")
 	public String updateBoard(BoardVO boardVO){
-		
 		boardService.updateBoard(boardVO);
-		
 		return "redirect:updateBoardResult";
 	}
 	@RequestMapping("guest/updateBoardResult")

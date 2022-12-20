@@ -29,6 +29,9 @@ public class BoardServiceImpl implements BoardService{
 		paging.put("PAGINATION",boardPagination);
 		return paging;
 	}
+//	public List<BoardVO> findProductAllList() {
+//		return boardMapper.findBoardAllList();
+//	}
 
 	@Override
 	public void registerBoard(BoardVO boardVO) {

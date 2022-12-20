@@ -22,7 +22,7 @@ public class ShopPagination {
 	}
 	
 	public int getStartRowNumber() {
-		return (this.nowPage-1)*this.postCountPerPage+1;
+		return (this.nowPage-1)*this.postCountPerPage+1; 
 	}
 
 	public int getEndRowNumber() {	
