@@ -128,8 +128,7 @@ CREATE TABLE juiceta_board(
 CREATE SEQUENCE juiceta_board_seq;
 SELECT * FROM juiceta_board;
 
-
-
+SELECT * FROM JUICETA_CUSTOMER;
 
 
 

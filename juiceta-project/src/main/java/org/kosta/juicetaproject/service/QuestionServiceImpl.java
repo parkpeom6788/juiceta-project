@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
-	
+
 	private final QuestionMapper questionmapper;
 	
 	// 리스트 출력 
@@ -45,10 +45,10 @@ public class QuestionServiceImpl implements QuestionService {
 		return answerVO;
 	}
 	// updateQuestion(in questionVO:QuestionVO)
-	// 수정
-	public void updateQuestion(QuestionVO questionVO) {
+	// 수정 -> 답변여부를 0에서1로 바꿈
+	public void updateQuestion(int questionNo) {
+		questionmapper.updateQuestion(questionNo);
 	}
-	
 	// deleteReview(in id:String, in questionNo:int)
 	// 삭제
 	public void deleteReview(String id, int questionNo) {

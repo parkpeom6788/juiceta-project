@@ -7,9 +7,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 public class CartVO {
 	private MemberVO memberVO;
 	private ProductVO productVO;

@@ -122,6 +122,3 @@ SELECT * FROM juiceta_cart;
 
 
 
-
-
-

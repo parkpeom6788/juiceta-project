@@ -13,11 +13,11 @@ public interface QuestionService {
 	// 등록
 	public void registerQuestion(String questionTitle,String questionContent,int productNo,String id);
 	// 수정
-	public void updateQuestion(QuestionVO questionVO);
+	// 답변 0->1
+	public void updateQuestion(int questionNo);
 	// 삭제
 	public void deleteReview(String id, int questionNo);
-	// 답변등록
+	// 답변등록 
 	public void registerAnswer(AnswerVO answerVO);
-	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
 }

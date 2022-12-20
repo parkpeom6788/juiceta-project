@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.CartVO;
+import org.kosta.juicetaproject.model.vo.ProductVO;
 
 @Mapper
 public interface CartAndWishlistMapper {
@@ -13,14 +14,11 @@ public interface CartAndWishlistMapper {
 	
 	void addWishlist(Map<String, Object> map);
 
-	// 리스트 목록 추가
-	ArrayList<CartVO> findCartAllListById(String id);
-
 	int findCartByIdAndProductNo(Map<String, Object> map);
 
 	void addCart(Map<String, Object> map);
 
 	int getTotalCartById(String id);
 
-
+	ArrayList<ProductVO> findCartAllListById(String id);
 }

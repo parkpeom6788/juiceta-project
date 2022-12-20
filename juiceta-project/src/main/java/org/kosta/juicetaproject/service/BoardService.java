@@ -12,7 +12,4 @@ public interface BoardService {
 	void updateBoard(BoardVO boardVO);
 	void deleteBoard(int boardNo);
 	BoardVO boardDetail(int No);
-	
-	
-
 }
