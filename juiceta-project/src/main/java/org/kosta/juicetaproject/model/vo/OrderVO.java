@@ -1,5 +1,10 @@
 package org.kosta.juicetaproject.model.vo;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class OrderVO {
 	private int orderNo;
 	private String orderTime;

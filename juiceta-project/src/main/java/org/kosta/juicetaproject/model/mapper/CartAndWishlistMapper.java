@@ -15,4 +15,12 @@ public interface CartAndWishlistMapper {
 
 	// 리스트 목록 추가
 	ArrayList<CartVO> findCartAllListById(String id);
+
+	int findCartByIdAndProductNo(Map<String, Object> map);
+
+	void addCart(Map<String, Object> map);
+
+	int getTotalCartById(String id);
+
+
 }

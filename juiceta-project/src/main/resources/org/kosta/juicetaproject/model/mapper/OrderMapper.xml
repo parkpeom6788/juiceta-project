@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.kosta.juicetaproject.model.mapper.OrderMapper">
+	<insert id="placeAnOrder" parameterType="org.kosta.juicetaproject.model.vo.OrderVO">
+		INSERT INTO juiceta_order(order_no,order_time,receiver_name,receiver_phone,receiver_address,id)
+		VALUES(juiceta_order_seq.nextval,SYSDATE,#{receiverName},#{receiverPhone},#{receiverAddress},#{memberVO.id})
+		<selectKey keyColumn="order_no" keyProperty="orderNo" order="AFTER" resultType="int">
+			SELECT juiceta_order_seq.currval FROM dual
+		</selectKey>
+	</insert>
+	<insert id="placeAnOrderDetail" parameterType="map">
+		INSERT INTO juiceta_order_detail(order_no,product_no,order_count) VALUES(#{ORDER_NO},#{PRODUCT_NO},#{PRODUCT_COUNT})
+	</insert>
+</mapper>

@@ -29,6 +29,28 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 		}
 		return result;
 	}
+
+	@Override
+	public String addCart(MemberVO memberVO, int productNo, int productCount) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID", memberVO.getId());
+		map.put("PRODUCT_NO", productNo);
+		map.put("PRODUCT_COUNT", productCount);
+		String result = "";
+		int check = cartAndWishlistMapper.findCartByIdAndProductNo(map);	// 장바구니목록에 상품 존재 유무 확인
+		if(check>0) {
+			result = "fail";
+		}else {
+			cartAndWishlistMapper.addCart(map);
+			result = "ok";
+		}
+		return result;
+	}
+
+	@Override
+	public int getTotalCartById(String id) {
+		return cartAndWishlistMapper.getTotalCartById(id);
+	}
 	
 	
 	

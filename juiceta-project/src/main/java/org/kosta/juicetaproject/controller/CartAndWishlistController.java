@@ -27,6 +27,19 @@ public class CartAndWishlistController {
 	public String findCartAllListById(@AuthenticationPrincipal MemberVO memberVO) {		
 		return "/order/cart.html";
 	}
+	
+	@RequestMapping("addCartAjax")
+	@ResponseBody
+	public String addCart(@AuthenticationPrincipal MemberVO memberVO, int productNo, int productCount) {
+		String result = cartAndWishlistService.addCart(memberVO,productNo,productCount);
+		return result;
+	}
+	
+	@RequestMapping("getTotalCartByIdAjax")
+	@ResponseBody
+	public int getTotalCartById(@AuthenticationPrincipal MemberVO memberVO) {
+		return cartAndWishlistService.getTotalCartById(memberVO.getId());
+	}
 
 	@RequestMapping("addCart")
 	public String addCart() {

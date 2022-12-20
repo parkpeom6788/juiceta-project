@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
+import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.kosta.juicetaproject.model.vo.OrderVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +22,15 @@ class Testjsh {
 	private final ProductMapper productMapper;
 	private final MemberMapper memberMapper;
 	private final CartAndWishlistMapper cartAndWishlistMapper;
+	private final OrderMapper orderMapper;
 
 	@Autowired
-	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper, CartAndWishlistMapper cartAndWishlistMapper) {
+	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper, CartAndWishlistMapper cartAndWishlistMapper, OrderMapper orderMapper) {
 		super();
 		this.productMapper = productMapper;
 		this.memberMapper = memberMapper;
 		this.cartAndWishlistMapper = cartAndWishlistMapper;
+		this.orderMapper = orderMapper;
 	}
 
 	@Test
@@ -107,6 +111,60 @@ class Testjsh {
 		List<ProductVO> list = productMapper.findProductByProductNameKeyword(keyword);
 		for(ProductVO vo : list)
 			System.out.println(vo);
+	}
+	
+	@Test
+	void findCartByIdAndProductNo() {
+		String id = "jtest3";
+		int productNo = 332;
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID", id);
+		map.put("PRODUCT_NO", productNo);
+		int result = cartAndWishlistMapper.findCartByIdAndProductNo(map);
+		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	void addCart() {
+		String id = "jtest3";
+		int productNo = 64;
+		int productCount = 1;
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID", id);
+		map.put("PRODUCT_NO", productNo);
+		map.put("PRODUCT_COUNT", productCount);
+		cartAndWishlistMapper.addCart(map);
+		int result = cartAndWishlistMapper.findCartByIdAndProductNo(map);
+		Assertions.assertEquals(1, result);
+	}
+	
+	@Test
+	void getTotalCartById() {
+		String id = "jtest3";
+		int totalCount = cartAndWishlistMapper.getTotalCartById(id);
+		System.out.println(totalCount);
+	}
+	
+	@Test
+	void placeAnOrder() {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId("jtest3");
+		
+		// 주문하기
+		OrderVO orderVO = OrderVO.builder().receiverName("강하늘").receiverPhone("000000000").receiverAddress("오리").memberVO(memberVO).build();
+		System.out.println("주문 DB저장 전 : "+orderVO);
+		orderMapper.placeAnOrder(orderVO);
+		System.out.println("주문 DB저장 후 : "+orderVO);
+		
+		// 주문상세
+		int productNo = 332;
+		int productCount = 2;
+		int orderNo = orderVO.getOrderNo();
+		Map<String, Integer> map = new HashMap<>();
+		map.put("PRODUCT_NO", productNo);
+		map.put("PRODUCT_COUNT", productCount);
+		map.put("ORDER_NO", orderNo);
+		orderMapper.placeAnOrderDetail(map);
 	}
 
 }
