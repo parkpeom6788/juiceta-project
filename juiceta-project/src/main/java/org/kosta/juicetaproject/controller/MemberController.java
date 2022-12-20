@@ -2,7 +2,6 @@ package org.kosta.juicetaproject.controller;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.service.MemberService;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -141,12 +140,6 @@ public class MemberController {
 	@ResponseBody
 	public String findMemberPassword(MemberVO memberVO) {
 		return memberService.findMemberPassword(memberVO);
-	}
-	
-	@Secured("ROLE_ADMIN")
-	@RequestMapping("memberAdmin")
-	public String memberAdmin() {
-		return "member/member-admin";
 	}
 
 }
