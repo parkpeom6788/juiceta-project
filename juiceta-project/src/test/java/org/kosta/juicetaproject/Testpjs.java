@@ -34,13 +34,13 @@ class Testpjs {
 	@Test
 	void updateProduct() {
 		int productNo=6;
-		ProductVO productVO=new ProductVO(productNo, "브로콜리즙", 14000, 30, "맛있는 브로콜리즙", "product-6.jpg", "과일즙",0);
+		ProductVO productVO=new ProductVO(productNo, "브로콜리즙", 14000, 30, "맛있는 브로콜리즙", "product-6.jpg", "과일즙");
 		int result=productMapper.updateProduct(productVO);
 		System.out.println(result);
 	}
 	@Test
 	void registerProduct() {
-		ProductVO productVO=new ProductVO(11, "test2", 5, 5, "test2", "product-11.jpg", "test3",0);
+		ProductVO productVO=new ProductVO(11, "test2", 5, 5, "test2", "product-11.jpg", "test3");
 		int result=productMapper.registerProduct(productVO);
 		System.out.println(result);
 	}

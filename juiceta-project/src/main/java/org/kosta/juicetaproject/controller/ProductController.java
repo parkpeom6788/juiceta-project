@@ -128,7 +128,7 @@ public class ProductController {
 		Map<String, Object> paging = productService.findProductAllListByCategory(category, pageNo);
 		model.addAttribute("productAllList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
-		return "product/shop-"+(category.equals("Juice")?"juice":"tea");
+		return "product/shop-"+(category.equals("juice")?"juice":"tea");
 	}
 	
 	@RequestMapping("/guest/findProductByProductNameKeyword")

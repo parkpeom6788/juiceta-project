@@ -15,5 +15,4 @@ public class BoardVO {
 	private String boardContent;
 	private String boardTime;
 	private int hits;
-	private int rnum;
 }

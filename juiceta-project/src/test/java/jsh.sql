@@ -86,6 +86,16 @@ SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3';
 	INSERT INTO juiceta_board(board_no,board_title,board_content,board_time,hits)
 	SELECT juiceta_board_seq.nextval,board_title,board_content,board_time,hits FROM juiceta_board;
 
+	-- 주문 결과 조회
+	SELECT * FROM juiceta_order;
+	
+	SELECT order_no,receiver_name,receiver_phone,receiver_address FROM juiceta_order WHERE order_no=3;
+
+SELECT category FROM juiceta_product;
+UPDATE juiceta_product SET category='juice' WHERE category='Juice' OR category='과일즙';
+UPDATE juiceta_product SET category='tea' WHERE category='Tea';
+COMMIT
+
 
 
 

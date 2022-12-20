@@ -39,7 +39,8 @@ public class OrderController {
 	}
 	
 	@RequestMapping("placeAnOrderResult")
-	public String placeAnOrderResult(int orderNo) {
+	public String placeAnOrderResult(int orderNo, Model model) {
+		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
 	}
 

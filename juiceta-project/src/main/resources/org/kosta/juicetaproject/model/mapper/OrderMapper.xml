@@ -26,23 +26,10 @@
 		INNER JOIN juiceta_order o ON d.order_no=o.order_no
 		WHERE id=#{value}
 	</select>
+
+	<select id="findOrderByOrderNo" parameterType="int" resultType="map">
+		SELECT receiver_name,receiver_phone,receiver_address FROM juiceta_order WHERE order_no=#{value}
+	</select>
+	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

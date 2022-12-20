@@ -15,4 +15,6 @@ public interface OrderMapper {
 
 	OrderDetailVO findOrderById(String id);
 
+	Map<String, String> findOrderByOrderNo(int productNo);
+
 }
