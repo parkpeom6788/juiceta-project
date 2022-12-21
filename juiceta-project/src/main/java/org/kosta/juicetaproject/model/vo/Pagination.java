@@ -2,7 +2,7 @@ package org.kosta.juicetaproject.model.vo;
 
 public class Pagination{
 	private int nowPage=1; // 현재페이지
-	private int postCountPerPage=6; // 페이지당 게시물 수 
+	private int postCountPerPage=4; // 페이지당 게시물 수 
 	private int pageCountPerPageGroup=5;// 페이지 그룹당 페이지 수 
 	private int totalPostCount; // 총 게시물 수 
 	

@@ -22,10 +22,12 @@
 		</div><br><br>
 		<div class="col-md-4 offset-md-4">
 		  <h2>주문내역</h2>
-		  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span><span style="display: inline-block; width: 100px; height: 30px" >주문번호</span><br>
-		  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span><span style="display: inline-block; width: 100px; height: 30px" >주문날짜</span><br>
-		  <span style="display: inline-block; width: 100px; height: 30px">총계</span><span style="display: inline-block; width: 100px; height: 30px" >총계</span><br><br>
-		  <span style="float: right"><a href="#" th:href="@{/orderDetail}">주문보기</a></span>
+		  <th:block th:each="order:${orderList}">
+			  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${order.ORDER_NO}">주문번호</span><br>
+			  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${order.ORDER_TIME}">주문날짜</span><br>
+			  <span style="display: inline-block; width: 100px; height: 30px">총계</span>&nbsp;&nbsp;&#8361;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${order.TOTAL_PRICE}">총계</span><br>
+			  <span style="float: right"><a href="#" th:href="@{/orderDetail}">주문보기</a></span><br><br>
+		  </th:block>
 		</div>
   	</div>
 	

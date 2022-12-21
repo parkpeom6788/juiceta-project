@@ -31,5 +31,43 @@
 		SELECT receiver_name,receiver_phone,receiver_address FROM juiceta_order WHERE order_no=#{value}
 	</select>
 	
+	<select id="findOrderListById" parameterType="string" resultType="map">
+		SELECT order_no, order_time, SUM(total_price) AS total_price
+		FROM(
+			SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+			FROM juiceta_order_detail d
+			INNER JOIN juiceta_product p ON d.product_no=p.product_no
+			INNER JOIN juiceta_order o ON d.order_no=o.order_no
+			INNER JOIN juiceta_customer c ON c.id=o.id
+			WHERE c.id=#{value}
+		)
+		GROUP BY order_no,order_time
+		ORDER BY order_no DESC
+	</select>
+	
+	<select id="getTotalOrderById" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM juiceta_order WHERE id=#{value}
+	</select>
+	
+	<select id="findOrderListByIdPagination" parameterType="org.kosta.juicetaproject.model.vo.Pagination" resultType="map">
+		SELECT order_no, order_time, total_price
+		FROM(
+			SELECT ROW_NUMBER() OVER(ORDER BY order_no DESC) AS rnum,order_no, order_time, total_price
+			FROM(
+				SELECT order_no, order_time, SUM(total_price) AS total_price
+				FROM(
+					SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+					FROM juiceta_order_detail d
+					INNER JOIN juiceta_product p ON d.product_no=p.product_no
+					INNER JOIN juiceta_order o ON d.order_no=o.order_no
+					INNER JOIN juiceta_customer c ON c.id=o.id
+					WHERE c.id='jtest3'
+				)
+				GROUP BY order_no,order_time
+				ORDER BY order_no DESC
+			)
+		)
+		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
+	</select>
 </mapper>
 
