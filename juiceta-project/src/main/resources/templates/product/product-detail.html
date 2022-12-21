@@ -105,6 +105,10 @@
 				
 				$("#addCart").click(function() {
 					let productCount = $("#quantity").val();
+					if(productCount==0){
+						alert("수량을 선택해주세요");
+						return;
+					}
 					$.ajax({
 						type:"post",
 						url:"/addCartAjax",
