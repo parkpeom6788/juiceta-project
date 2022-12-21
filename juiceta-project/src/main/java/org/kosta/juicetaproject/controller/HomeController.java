@@ -27,7 +27,8 @@ public class HomeController {
 		//Principal(사전적 의미:본인 ) 객체는 인증된 회원 정보 객체를 말한다
 		//org.kosta.myproject.config.security.MemberAuthenticationProvider 에서 할당 
 		if(model!=null) {
-			session.setAttribute("board",new ArrayList<>());
+			if(session.getAttribute("board")==null)
+				session.setAttribute("board",new ArrayList<>());
 		}
 		if(authentication!=null)
 		  log.info("Home: 인증받은 사용자 {} ",authentication.getPrincipal());

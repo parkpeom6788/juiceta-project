@@ -32,7 +32,7 @@
 		SELECT COUNT(*) FROM juiceta_cart WHERE id=#{value}
 	</select>
 	<select id="findWishlistAllListById" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		select p.product_no, product_name, p.price, p.product_detail, p.image, p.category from juiceta_product p inner join juiceta_wishlist w on p.product_no = w.product_no where w.id =#{value}
+		select p.product_no, product_name, p.price, p.product_detail, p.image, p.category from juiceta_product p inner join juiceta_wishlist w on p.product_no = w.product_no where w.id =#{value} order by 
 	</select>
 	<delete id="removeWishlist" parameterType="int">
 		delete from juiceta_wishlist where product_no = #{value}
