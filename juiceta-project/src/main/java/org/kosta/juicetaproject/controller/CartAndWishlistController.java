@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.WishListVO;
 import org.kosta.juicetaproject.service.CartAndWishlistService;
 import org.kosta.juicetaproject.service.MemberService;
 import org.kosta.juicetaproject.service.ProductService;
@@ -23,7 +24,7 @@ public class CartAndWishlistController {
 	private final MemberService memberService;
 	private final ProductService productService;
 	
-	// 장바구니 담기 
+	// 찜목록 담기 
 	@PostMapping("addWishlistAjax")
 	@ResponseBody
 	public String addWishlist(@AuthenticationPrincipal MemberVO memberVO, int productNo) {
@@ -63,11 +64,26 @@ public class CartAndWishlistController {
 	
 	@RequestMapping("findWishlistAllListById")
 	public String findWishlistAllListById() {
+		
 		return "";
 	}
 
-	@RequestMapping("removeWishlist")
-	public String removeWishlist() {
-		return "";
+	@PostMapping("removeWishlist")
+	public String removeWishlist(int productNo) {
+		cartAndWishlistService.removeWishlist(productNo);
+		return "redirect:removeWishlistResult";
 	}
+	@RequestMapping("removeWishlistResult")
+	public String removeWishlistResult() {
+		return "/order/wishlistRemoveResult";
+	}
+	
+	@RequestMapping("wishlist")
+	public String Wishlist(@AuthenticationPrincipal MemberVO memberVO , Model model) {
+		List<ProductVO> wishlist = cartAndWishlistService.findWishlistById(memberVO.getId());
+		//System.out.println(wishlist);
+		model.addAttribute("wishlistAllList",wishlist);
+		return "/order/wishlist";
+	}
+	
 }

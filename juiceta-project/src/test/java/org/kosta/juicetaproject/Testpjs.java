@@ -51,10 +51,6 @@ class Testpjs {
 		System.out.println(result);
 	}
 
-	/*
-	 * @Test void productAllListByRnum() { List<ProductVO>
-	 * list=productMapper.productAllListByRnum(); System.out.println(list); }
-	 */
 	@Test
 	void findProductListByKeyword() {
 		int totalProductCount =productMapper.getTotalProductCount();
@@ -66,7 +62,7 @@ class Testpjs {
 		else {
 			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
 		}
-		String keyword = "파";
+		String keyword = "파"; 
 		Map<String, Object> map = new HashMap<>();
 		map.put("PAGINATION", pagination);
 		map.put("KEYWORD",keyword);
@@ -77,18 +73,21 @@ class Testpjs {
 	}
 	@Test
 	void productAllListByRnum() {
-		int totalProductCount = productMapper.getTotalProductCount();
-		String pageNo = "";
-		Pagination pagination = null;
+		int totalProductCount = productMapper.getTotalProductCount(); // 총상품수를 구하는 메서드
+		String pageNo = ""; //페이지번호 변수
+		Pagination pagination = null; //페이지네이션사용을위해 선언
 		
-		if(pageNo=="")
-			pagination = new Pagination(totalProductCount);
-		else
+		if(pageNo=="") //만약 페이지번호가 없을 때 
+			pagination = new Pagination(totalProductCount); //페이지네이션 변수에 총상품수를 매개변수로 담아준다
+		else // 페이지번호가 있을 때
 			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+			// 페이지네이션 변수에 페이지번호와 총상품수를 매개변수에 넣어준다
 
-		List<ProductVO> list = productMapper.findAllProduct(pagination);
-		for(ProductVO vo : list)
-			System.out.println(vo);
+		List<ProductVO> list = productMapper.findAllProduct(pagination); 
+		//ProductVO 타입만 들어올 수 있는 리스트에 페이지네이션을  
+		// 전체상품리스트를 구하는 메서드에 매개변수로 넣어준다
+		for(ProductVO vo : list) // list.size만큼 반복문을 돌려줘서 
+			System.out.println(vo);// vo 값들을 출력한다
 	}
 	@Test
 	void findOrderById() {

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.WishListVO;
 
 @Mapper
 public interface CartAndWishlistMapper {
@@ -24,5 +25,10 @@ public interface CartAndWishlistMapper {
 	int countCartById(String id); // 카운트 개수 
 
 	void deleteCartById(String id, int productNo); // 삭제 
+	
+	List<ProductVO> findWishlistAllListById(String id);
+
+	void removeWishlist(int productNo);
+	
 	
 }

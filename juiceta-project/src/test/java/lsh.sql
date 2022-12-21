@@ -38,3 +38,14 @@ SELECT rnum,board_no,board_title,board_content,board_time, hits
 		select count(*) from juiceta_board
 		
 		select * from juiceta_customer
+		
+		
+select * from juiceta_wishlist
+select id, product_no from juiceta_wishlist where id = 'zzzzz'
+
+SELECT P.PRODUCT_NO,P.PRODUCT_NAME , P.PRODUCT_NAME , P.PRICE , P.PRODUCT_COUNT , P.PRODUCT_DETAIL , P.IMAGE , P.CATEGORY
+		FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
+		WHERE C.ID='zzzzz'
+		
+select p.product_no, product_name, p.product_detail, p.image, p.category from juiceta_product p inner join juiceta_wishlist w on p.product_no = w.product_no
+where w.id ='zzzzz';
