@@ -28,7 +28,9 @@
 				</tr>
 			</tbody>
 		</table>
-		<button onclick="location.href='boardWriteForm'" class="btn btn-outline-success">글 작성</button>
+		<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+		<button style="float: right;" onclick="location.href='boardWriteForm'" class="btn btn-outline-success">글 작성</button>
+		</th:block>
 		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">

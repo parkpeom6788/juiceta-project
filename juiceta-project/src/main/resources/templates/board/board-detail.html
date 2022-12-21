@@ -15,13 +15,14 @@
 		<div class="col-3" th:text="'작성 일 : '+ ${boardDetail.boardTime}" align="center">작성 일</div>
 		<div class="col-2" th:text="'조회 수 : '+ ${boardDetail.hits}">조회 수</div>
 	</div>
-	
 	<div class="row" th:text="${boardDetail.boardContent}" style="border-bottom : solid; border-top:ridge; padding: 20px"></div>
-	<a th:href="@{boardUpdateForm?No=}+${boardDetail.boardNo}" class="btn btn-outline-success">수정하기</a>
+	<th:block sec:authorize="hasRole('ROLE_ADMIN')">
+	<a style="float: right;" th:href="@{boardUpdateForm?No=}+${boardDetail.boardNo}" class="btn btn-outline-success">수정하기</a>
 	<form action="" method="post" th:action="@{/guest/boardDelete}">
 		<input type="hidden" th:value="${boardDetail.boardNo}" name="boardNo">
-		<button class="btn btn-outline-success" type="submit" id="deleteBtn">삭제하기</button>
+		<button style="float: right;" class="btn btn-outline-success" type="submit" id="deleteBtn">삭제하기</button>
 	</form> 
+	</th:block>
 <script type="text/javascript">
 $(document).ready(function() {
 	$("#deleteBtn").click(function() {
