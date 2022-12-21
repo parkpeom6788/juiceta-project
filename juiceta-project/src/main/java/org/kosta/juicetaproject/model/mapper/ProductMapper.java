@@ -35,4 +35,6 @@ public interface ProductMapper {
 
 	List<ProductVO> findAllProduct(Pagination pagination);
 
+	int findCountProductByKeyword(String keyword);
+
 }

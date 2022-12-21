@@ -96,6 +96,12 @@ class Testpjs {
 		OrderDetailVO OrderDetailVO=orderMapper.findOrderById(memberVO.getId());
 		System.out.println(OrderDetailVO);
 	}
+	@Test
+	void findCountProductByKeyword() {
+		String keyword="양배추";
+		int result=productMapper.findCountProductByKeyword(keyword);
+		System.out.println(result);
+	}
 }
 
 
