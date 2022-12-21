@@ -82,7 +82,10 @@ public class MemberController {
 	}
 	
 	@GetMapping("updateResult")	
-	public String updateResult(){
+	public String updateResult(@AuthenticationPrincipal MemberVO memberVO, String pageNo, Model model){
+		Map<String, Object> paging = orderService.findOrderListByIdPagination(pageNo, memberVO.getId());
+		model.addAttribute("orderList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "member/mypage";
 	}
 	

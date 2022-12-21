@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
-import org.kosta.juicetaproject.model.vo.WishListVO;
 
 public interface CartAndWishlistService {
 

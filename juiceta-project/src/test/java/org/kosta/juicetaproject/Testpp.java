@@ -77,12 +77,6 @@ class Testpp {
 		System.out.println(questionVO);
 	}
 	
-	// 답변 등록 - 테스트 완료 
-	@Test
-	public void registerAnswer() {
-		QuestionVO questionVO = new QuestionVO(1,"","","",0,1,"");
-	}
-	
 	// 답변 여부
 	@Test
 	public void findAnswerByQuestionNo() {

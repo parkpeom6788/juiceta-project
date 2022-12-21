@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.ProductVO;
-import org.kosta.juicetaproject.model.vo.WishListVO;
 
 @Mapper
 public interface CartAndWishlistMapper {
