@@ -56,8 +56,11 @@ public class ProductController {
 	
 	// 상품관리 검색
 	@RequestMapping("productSelect")
-	public String findProductListByKeyword(String keyword,String pageNo, Model model) {
-		Map<String, Object> paging=productService.findProductListByKeyword(keyword,pageNo);
+	public String findProductListByKeyword(String productKeyword, String pageNo,Model model) {
+		if(pageNo==null) {
+			pageNo="1";
+		}
+		Map<String, Object> paging=productService.findProductListByKeyword(productKeyword,pageNo);
 		model.addAttribute("productList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";

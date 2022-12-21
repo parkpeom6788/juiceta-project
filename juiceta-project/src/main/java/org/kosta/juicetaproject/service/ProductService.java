@@ -27,4 +27,6 @@ public interface ProductService {
 	Map<String, Object> findProductListByKeyword(String keyword,String pageNo);
 	
 	List<ProductVO> findAllProduct(Pagination pagination);
+	
+	int findCountProductByKeyword(String keyword);
 }

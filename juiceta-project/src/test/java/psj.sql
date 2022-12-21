@@ -210,5 +210,12 @@ INNER JOIN juiceta_product p ON p.product_no=d.product_no
 INNER JOIN juiceta_order o ON d.order_no=o.order_no
 WHERE d.order_no=1
 
+-- keyword 검색시 정보 갯수 구하는 SQL
+SELECT COUNT(*) FROM juiceta_product WHERE product_name LIKE '%고추%';
+
+
+
+
+
 
 

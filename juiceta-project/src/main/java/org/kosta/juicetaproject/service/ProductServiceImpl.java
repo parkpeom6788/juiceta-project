@@ -94,8 +94,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public Map<String, Object> findProductListByKeyword(String keyword,String pageNo) {
-		int totalProductCount =productMapper.getTotalProductCount();
+	public Map<String, Object> findProductListByKeyword(String productKeyword,String pageNo) {
+		
+		int totalProductCount =productMapper.findCountProductByKeyword(productKeyword);//
 		Pagination pagination = null;
 		
 		if(pageNo=="")
@@ -105,7 +106,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		Map<String, Object> map = new HashMap<>();
 		map.put("PAGINATION", pagination);
-		map.put("KEYWORD",keyword);
+		map.put("KEYWORD",productKeyword);
 		
 		List<ProductVO> list = productMapper.findProductListByKeyword(map);
 		Map<String, Object> paging =new HashMap<>();
@@ -117,6 +118,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> findAllProduct(Pagination pagination) {
 		return productMapper.findAllProduct(pagination);
+	}
+
+	@Override
+	public int findCountProductByKeyword(String keyword) {
+		return productMapper.findCountProductByKeyword(keyword);
 	}
 
 }

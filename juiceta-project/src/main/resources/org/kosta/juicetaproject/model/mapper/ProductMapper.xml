@@ -90,7 +90,9 @@
 		)
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 	</select>
-
+	<select id="findCountProductByKeyword" resultType="int">
+		SELECT COUNT(*) FROM juiceta_product WHERE product_name LIKE '%'||#{value}||'%'
+	</select>
 </mapper>
 
 
