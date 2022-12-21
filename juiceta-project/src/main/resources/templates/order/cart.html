@@ -12,7 +12,10 @@
 		<div class="row">
   			<div class="col-md-12 ftco-animate">
   				<div class="cart-list">
-  					<div style="font-size: 50px">장바구니 페이지</div>
+  					<h1>My Cart</h1>
+				   	<form action="#" th:action="@{/removeCart}" method="post">
+   						<input id="productNo" type="hidden" name="productNo">
+   					</form>
 	   				<table class="table">
 					    <thead class="thead-primary">
 					      <tr class="text-center">
@@ -22,30 +25,25 @@
 					        <th>Price</th>
 					        <th>Quantity</th>
 					        <th>Total</th>
-					        <th>수량</th>
 					      </tr>
 					    </thead>
 					    <tbody th:each="productVO:${productAllList}">
-					   <!--  for 문 리스트 출력 -->  
-					     <tr class="text-center">
-					     	<td><form action="#" th:action="@{/removeCart}" id="deleteQuestion" method="post">
-					        	<input type="hidden" th:value="${productVO.productNo}" name="productNo">
-					        	<button type="button" class="deleteBtn">삭제</button>
-					     	</form></td>
+   					      <tr class="text-center">
+					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${productVO.productNo}"></span></a></td>
 					        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
-					        <td class="product-name" td th:text="${productVO.productName}">
-					        	</h3><td th:text="${productVO.price}"></h3>
-					        	<p>상품상세설명<td th:text="${productVO.productDetail}"></p>
-					        </td>					        
-					        <td class="price" th:text="${productVO.price}">상품가격</td>					        
-					        <td class="quantity">
+					        <td class="product-name">
+					        	<h3 th:text="${productVO.productName}">상품명</h3>
+					        	<p th:text="${productVO.productDetail}">상품상세설명</p>
+					        </td>	
+					        <td class="price" th:text="${productVO.price}">상품가격</td>		
+    					    <td class="quantity">
 					        	<div class="input-group mb-3">
 									<span class="input-group-btn mr-2">
 			              				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
 			                 				<i class="ion-ios-remove"></i>
 			              				</button>
 			          				</span>
-			           				<input type="text"  name="quantity" class="form-control input-number quantity" value="1" min="1" max="100">
+			           				<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
 			           				<span class="input-group-btn ml-2">
 			              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 			                   				<i class="ion-ios-add"></i>
@@ -53,20 +51,21 @@
 			           				</span>
 			        			</div>
 				          	</td>					   
-					        <td class="total">
+					        <td class="total" th:text="${count}">(상품가격*수량)합계</td>
 					      </tr>
 					    </tbody>
 					  </table>
-			  	</div>
+		  		</div>
   			</div>
   		</div>
   		<div class="row justify-content-end">
   			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
   				<div class="cart-total mb-3">
-  					<h3>Total Count : <td th:text="${count}"></td>개</h3>
+  					<h3>Cart Totals</h3>
   					<hr>
   					<p class="d-flex total-price">
   						<span>Total</span>
+  						<span>총합계</span>
   					</p>
   				</div>
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -74,16 +73,18 @@
   		</div>
   		
     	<script type="text/javascript">
-    		$(document).on("click","button[id='deleteBtn']",function() {
-	            let message=confirm("상품을 삭제하시겠습니까?");
-	            if(message==false) {
-	             	  return false    	
-	            }
-				if(message!=true){
-					return;
-				}
-				$("#deleteQuestion").submit();
-			})
+	    	$(document).ready(function() {
+				$(".deleteBtn").click(function() {
+					$("#productNo").val($(this).children().children().data("product"));
+					
+					let result = confirm("삭제 하시겠습니까?");
+					if(result!=true){
+						return;
+					}
+					
+					$(this).parent().parent().prev().parent().prev().submit();
+				});
+			});
     	</script>
     	
     	<script type="text/javascript">
@@ -93,23 +94,25 @@
 			        // Stop acting like a button
 			        e.preventDefault();
 			        // Get the field name
-			        quantity = parseInt($('.quantity').val());			 
+			        quantity = parseInt($(this).parent().prev().val());			 
 			        // If is not undefined
-			 		$(".quantity").val(quantity + 1);
+			 		$(this).parent().prev().val(quantity + 1);
 					 // Increment  
 			    	});
-			     	$(".quantity-left-minus").click(function(e){
-			        	// Stop acting like a button
-			        	e.preventDefault();
-			        	// Get the field name
-			        	quantity = parseInt($(".quantity").val());			        
-			       		 // If is not undefined
-			            // Increment
-			            if(quantity>0){
-			            	$(".quantity").val(quantity - 1);
-			            }
-			    	});
-				});
+			   	
+		     	$(".quantity-left-minus").click(function(e){
+		        	// Stop acting like a button
+		        	e.preventDefault();
+		        	// Get the field name
+		        	quantity = parseInt($(this).parent().next().val());			        
+		       		 // If is not undefined
+		            // Increment
+		            if(quantity>0){
+		            	$(this).parent().next().val(quantity - 1);
+		            }
+		    	});
+			});
     	</script>
+    	
 	</div>
 </html>
