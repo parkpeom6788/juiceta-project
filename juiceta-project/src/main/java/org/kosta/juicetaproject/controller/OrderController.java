@@ -43,7 +43,6 @@ public class OrderController {
 		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
 	}
-
 }
 
 
