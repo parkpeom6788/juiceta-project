@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.kosta.juicetaproject.model.vo.Content;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.ShopPagination;
@@ -35,7 +34,5 @@ public interface ProductMapper {
 	List<ProductVO> findProductByProductNameKeyword(String keyword);
 
 	List<ProductVO> findAllProduct(Pagination pagination);
-
-	void registerContent(Content content);
 
 }
