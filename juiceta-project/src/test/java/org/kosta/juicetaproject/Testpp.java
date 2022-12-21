@@ -119,8 +119,7 @@ class Testpp {
 	// 장바구니 삭제
 	@Test
 	public void deleteCartById() {
-		String id = "jtest3";
-		int productNo = 330;
-		cartAndWishlistMapper.deleteCartById(id,productNo);
+		int productNo = 64;
+		cartAndWishlistMapper.deleteCartById(productNo);
 	}
 }

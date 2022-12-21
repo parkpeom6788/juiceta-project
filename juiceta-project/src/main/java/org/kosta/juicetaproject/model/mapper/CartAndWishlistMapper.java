@@ -20,15 +20,14 @@ public interface CartAndWishlistMapper {
 
 	int getTotalCartById(String id);
 
-	List<ProductVO> findCartAllListById(String id);
+	List<ProductVO> findCartAllListById(String id); // 장바구니에 장바구니에 담긴 목록 출력 
 
-	int countCartById(String id); // 카운트 개수 
+	int countCartById(String id); // 장바구니에 담긴 상품 카운트 개수 
 
-	void deleteCartById(String id, int productNo); // 삭제 
+	void deleteCartById(int productNo); // 아이디에 담긴 장바구니 상품 삭제 클릭시  
 	
-	List<ProductVO> findWishlistAllListById(String id);
+	List<ProductVO> findWishlistAllListById(String id); // 장바구니 리스트 조회 
 
-	void removeWishlist(int productNo);
-	
+	void removeWishlist(int productNo); 
 	
 }
