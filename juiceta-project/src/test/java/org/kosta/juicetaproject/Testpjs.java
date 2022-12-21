@@ -9,6 +9,7 @@ import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.OrderDetailVO;
+import org.kosta.juicetaproject.model.vo.OrderVO;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -101,6 +102,14 @@ class Testpjs {
 		String keyword="양배추";
 		int result=productMapper.findCountProductByKeyword(keyword);
 		System.out.println(result);
+	}
+	@Test
+	void findOrderDetailListById() {
+		String id="java189";
+		List<OrderVO> list=orderMapper.findOrderDetailListById(id);
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list);
+		}
 	}
 }
 

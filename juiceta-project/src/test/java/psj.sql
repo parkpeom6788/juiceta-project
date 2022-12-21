@@ -200,13 +200,17 @@ WHERE rnum BETWEEN 1 AND 11 ORDER BY rnum DESC
 SELECT COUNT(*) FROM juiceta_product WHERE product_name LIKE '%고추%';
 
 -- 특정 아이디에대해 주문번호,주문날짜,제품번호,제품가격,주문수량,총액을 구하는 SQL
-SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,
-d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
-FROM juiceta_order_detail d
-INNER JOIN juiceta_product p ON d.product_no=p.product_no
-INNER JOIN juiceta_order o ON d.order_no=o.order_no
-INNER JOIN juiceta_customer c ON c.id=o.id
-WHERE c.id='jtest3'
+SELECT order_no, order_time, SUM(total_price) AS total_price
+FROM(
+	SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+	FROM juiceta_order_detail d
+	INNER JOIN juiceta_product p ON d.product_no=p.product_no
+	INNER JOIN juiceta_order o ON d.order_no=o.order_no
+	INNER JOIN juiceta_customer c ON c.id=o.id
+	WHERE c.id='jtest3'
+)
+GROUP BY order_no,order_time
+ORDER BY order_no DESC
 
 -- 특정 아이디에대해 주문번호,주문날짜,배송주소,상품명,주문수량,상품가격을 구하는 SQL
 SELECT o.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,
@@ -215,6 +219,20 @@ FROM juiceta_order_detail d
 INNER JOIN juiceta_product p ON d.product_no=p.product_no
 INNER JOIN juiceta_order o ON d.order_no=o.order_no
 INNER JOIN juiceta_customer c ON c.id=o.id
-WHERE c.id='jtest3'
+WHERE c.id='java189'
+
+-- 특정 아이디에 대해 주문전호 주문날짜 배송주소를 출력하는 SQL
+SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiver_address
+FROM juiceta_order 
+WHERE id='java189';
+
+
+
+
+
+
+
+
+
 
 
