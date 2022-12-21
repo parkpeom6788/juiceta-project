@@ -19,5 +19,7 @@ public interface CartAndWishlistService {
 	List<ProductVO> findWishlistById(String id);
 
 	void removeWishlist(int productNo);
+
+	void deleteCartById(int productNo); // 카트에 담긴 물품 삭제
 	
 }

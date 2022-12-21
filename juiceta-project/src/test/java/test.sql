@@ -67,3 +67,5 @@ FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
 WHERE C.ID='jtest3';
 
 SELECT * FROM JUICETA_CUSTOMER;
+
+DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';

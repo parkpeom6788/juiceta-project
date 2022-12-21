@@ -122,3 +122,22 @@ SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3'; // 24
 DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';
 
 SELECT * FROM juiceta_cart;
+
+SELECT * FROM juiceta_cart;
+commit
+
+SELECT * FROM juiceta_question;
+
+UPDATE juiceta_question SET CHECK_ANSWER = 1 WHERE question_no = 109; 
+
+SELECT PRODUCT_NO,PRODUCT_COUNT FROM juiceta_cart WHERE id='jtest3'; 
+
+SELECT * FROM JUICETA_CUSTOMER;
+
+SELECT P.PRODUCT_NO,P.PRODUCT_NAME , P.PRODUCT_NAME , P.PRICE , P.PRODUCT_COUNT , P.PRODUCT_DETAIL , P.IMAGE , P.CATEGORY
+FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
+WHERE C.ID='jtest3';
+
+SELECT * FROM JUICETA_CUSTOMER;
+
+DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';

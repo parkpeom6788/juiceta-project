@@ -35,7 +35,6 @@ public class CartAndWishlistController {
 	// 카트에 담긴 상품 리스트 출력 시키기 
 	@RequestMapping("/findCartAllListById") 
 	public String findCartAllListById(@AuthenticationPrincipal MemberVO memberVO , Model model) {		
-		
 		// 세션을 이용하여 아이디를 가져옴 
 		List<ProductVO> productList= cartAndWishlistService.findCartAllListById(memberVO.getId());
 		int count = cartAndWishlistService.getTotalCartById(memberVO.getId());
@@ -44,27 +43,22 @@ public class CartAndWishlistController {
 		return "/order/cart";
 	}
 
+	// 카트에 추가하는 Ajax 
 	@PostMapping("addCartAjax")
 	@ResponseBody
 	public String addCart(@AuthenticationPrincipal MemberVO memberVO, int productNo, int productCount) {
 		String result = cartAndWishlistService.addCart(memberVO,productNo,productCount);
 		return result;
 	}
-	
+
 	@RequestMapping("getTotalCartByIdAjax")
 	@ResponseBody
 	public int getTotalCartById(@AuthenticationPrincipal MemberVO memberVO) {
 		return cartAndWishlistService.getTotalCartById(memberVO.getId());
 	}
 	
-	@RequestMapping("removeCart")
-	public String removeCart() {
-		return "";
-	}
-	
 	@RequestMapping("findWishlistAllListById")
 	public String findWishlistAllListById() {
-		
 		return "";
 	}
 
@@ -86,4 +80,15 @@ public class CartAndWishlistController {
 		return "/order/wishlist";
 	}
 	
+	// 카트에 담긴 물품 삭제
+	@PostMapping("removeCart")
+	public String removeCart(int productNo) {
+		cartAndWishlistService.deleteCartById(productNo);
+		return "redirect:removeCartResult";
+	}
+	
+	@RequestMapping("removeCartResult")
+	public String removeCartResult() {
+		return "/order/cartRemoveResult";
+	}
 }

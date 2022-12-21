@@ -47,22 +47,32 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 		}
 		return result;
 	}
+	
 	// 카트에 담긴 총 가격의 액수  
 	@Override
 	public int getTotalCartById(String id) {
 		return cartAndWishlistMapper.getTotalCartById(id);
 	}
+	
 	@Override
 	public List<ProductVO> findCartAllListById(String id) {
 		return cartAndWishlistMapper.findCartAllListById(id);
 	}
+	
 	@Override
 	public List<ProductVO> findWishlistById(String id) {
 		return cartAndWishlistMapper.findWishlistAllListById(id);
 	}
+	
 	@Override
 	public void removeWishlist(int productNo) {
 		 cartAndWishlistMapper.removeWishlist(productNo);
+	}
+
+	// 카트 삭제
+	@Override
+	public void deleteCartById(int productNo) {
+		cartAndWishlistMapper.deleteCartById(productNo);
 	}
 }
 
