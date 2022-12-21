@@ -1,5 +1,6 @@
 package org.kosta.juicetaproject.model.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,6 +25,6 @@ public interface OrderMapper {
 
 	List<Map<String, Object>> findOrderListByIdPagination(Map<String, Object> map);
 
-	List<OrderVO> findOrderDetailListById(String id);
+	ArrayList<OrderVO> findOrderDetailListById(String id); // 
 
 }

@@ -221,11 +221,12 @@ INNER JOIN juiceta_order o ON d.order_no=o.order_no
 INNER JOIN juiceta_customer c ON c.id=o.id
 WHERE c.id='java189'
 
--- 특정 아이디에 대해 주문전호 주문날짜 배송주소를 출력하는 SQL
+-- 특정 아이디에 대해 주문번호 주문날짜 배송주소를 출력하는 SQL
 SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiver_address
 FROM juiceta_order 
 WHERE id='java189';
 
+commit
 
 
 
