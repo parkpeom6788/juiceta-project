@@ -204,12 +204,16 @@ class Testjsh {
 			pagination = new Pagination(totalOrder);
 		else
 			pagination = new Pagination(Integer.parseInt(pageNo), totalOrder);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID", id);
+		map.put("PAGINATION", pagination);
 
-		List<Map<String, Object>> list = orderMapper.findOrderListByIdPagination(pagination);
-		for(Map<String, Object> map : list) {
-			System.out.println(map.get("ORDER_NO"));
-			System.out.println(map.get("ORDER_TIME"));
-			System.out.println(map.get("TOTAL_PRICE"));
+		List<Map<String, Object>> list = orderMapper.findOrderListByIdPagination(map);
+		for(Map<String, Object> m : list) {
+			System.out.println(m.get("ORDER_NO"));
+			System.out.println(m.get("ORDER_TIME"));
+			System.out.println(m.get("TOTAL_PRICE"));
 		}
 	}
 

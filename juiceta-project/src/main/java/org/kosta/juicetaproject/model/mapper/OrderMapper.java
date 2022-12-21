@@ -6,7 +6,6 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.OrderDetailVO;
 import org.kosta.juicetaproject.model.vo.OrderVO;
-import org.kosta.juicetaproject.model.vo.Pagination;
 
 @Mapper
 public interface OrderMapper {
@@ -23,6 +22,6 @@ public interface OrderMapper {
 
 	int getTotalOrderById(String id);
 
-	List<Map<String, Object>> findOrderListByIdPagination(Pagination pagination);
+	List<Map<String, Object>> findOrderListByIdPagination(Map<String, Object> map);
 
 }
