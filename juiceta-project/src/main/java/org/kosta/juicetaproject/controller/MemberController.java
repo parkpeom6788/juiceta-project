@@ -1,7 +1,10 @@
 package org.kosta.juicetaproject.controller;
 
+import java.util.Map;
+
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.service.MemberService;
+import org.kosta.juicetaproject.service.OrderService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService memberService;
+	private final OrderService orderService;
 	
 	//비인증 상태에서도 접근 가능하도록 /guest/ 이하로 url 등록 
 	//org.kosta.myproject.config.security.WebSecurityConfig 설정되어 있음 
@@ -99,7 +103,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("mypage")
-	public String mypage() {
+	public String mypage(@AuthenticationPrincipal MemberVO memberVO, String pageNo, Model model) {
+		Map<String, Object> paging = orderService.findOrderListByIdPagination(pageNo, memberVO.getId());
+		model.addAttribute("orderList", paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "member/mypage";
 	}
 	

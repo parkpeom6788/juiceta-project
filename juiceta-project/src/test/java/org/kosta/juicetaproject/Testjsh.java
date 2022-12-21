@@ -12,6 +12,7 @@ import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.OrderVO;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -172,6 +173,48 @@ class Testjsh {
 		int productNo = 3;
 		Map<String, String> map = orderMapper.findOrderByOrderNo(productNo);
 		System.out.println(map.get("RECEIVER_NAME"));
+	}
+	
+	@Test
+	void findOrderListById() {
+		String id = "jtest3";
+		List<Map<String, Object>> list = orderMapper.findOrderListById(id);
+		for(Map<String, Object> map : list) {
+			System.out.println(map.get("ORDER_NO"));
+			System.out.println(map.get("ORDER_TIME"));
+			System.out.println(map.get("TOTAL_PRICE"));
+		}
+	}
+	
+	@Test
+	void getTotalOrderById() {
+		String id = "jtest3";
+		int result = orderMapper.getTotalOrderById(id);
+		System.out.println(result);
+	}
+	
+	@Test
+	void findOrderListByIdPagination() {
+		String id= "jtest3";
+		int totalOrder = orderMapper.getTotalOrderById(id);
+		String pageNo = "";
+		Pagination pagination = null;
+		
+		if(pageNo=="")
+			pagination = new Pagination(totalOrder);
+		else
+			pagination = new Pagination(Integer.parseInt(pageNo), totalOrder);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("ID", id);
+		map.put("PAGINATION", pagination);
+
+		List<Map<String, Object>> list = orderMapper.findOrderListByIdPagination(map);
+		for(Map<String, Object> m : list) {
+			System.out.println(m.get("ORDER_NO"));
+			System.out.println(m.get("ORDER_TIME"));
+			System.out.println(m.get("TOTAL_PRICE"));
+		}
 	}
 
 }

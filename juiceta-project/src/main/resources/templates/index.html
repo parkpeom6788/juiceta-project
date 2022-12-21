@@ -91,18 +91,23 @@
     		<div class="row">
     			<div class="col-md-6 col-lg-3 ftco-animate" th:each="product:${productAllList}">
     				<div class="product">
-    					<a href="#" th:href="@{/guest/DetailView(productNo=${product.productNo})}" class="img-prod"><img class="img-fluid" src="images/product-2.jpg" th:src="@{/images/}+${product.image}" alt="Colorlib Template">
+    					<a href="#" th:href="@{/guest/DetailView(productNo=${product.productNo})}" class="img-prod"><img class="img-fluid" src="" th:src="@{/images/}+${product.image}" alt="Colorlib Template">
+    						<span class="status" th:if="${product.productCount<1}">품절</span>
     						<div class="overlay"></div>
     					</a>
     					<div class="text py-3 pb-4 px-3 text-center">
-    						<h3 th:text="${product.productName}">상품명</h3>
-    						<div class="d-flex">
-    							<div class="pricing">
-		    						<p class="price"><span>&#8361; </span><span th:text="${product.price}">상품가격</span></p>
-		    					</div>
-	    					</div>
+	 						<h3><a href="#" th:text="${product.productName}">상품명</a></h3>
+	 						<div class="d-flex">
+	 							<div class="pricing">
+	   								<p class="price">
+	   									<span class="mr-2 price-dc" th:if="${product.productCount<1}" th:text="${product.price}">품절상품가격</span>
+	   									<span class="price-sale" th:if="${product.productCount>0}" th:text="${product.price}">상품가격</span>
+	   								</p>
+	   							</div>
+	  						</div>
     						<div class="bottom-area d-flex px-3">
 	    						<div class="m-auto d-flex">
+	    							<span th:data-count="${product.productCount}"></span>
 	    							<span th:data-product="${product.productNo}"></span>
 	    							<a class="buy-now d-flex justify-content-center align-items-center mx-1 btn addcart">
 	    								<span><i class="ion-ios-cart"></i></span>
@@ -123,9 +128,16 @@
     					
     					$(".addwishlist").click(function() {
     						let productNo = $(this).prev().prev().data("product");
+    						let productCount = $(this).prev().prev().prev().data("count");
+    						
+    						if(productCount==0){
+    							alert("품절상품입니다");
+    							return;
+    						}
+    						
     						$.ajax({
     							type:"post",
-    							url:"addWishlistAjax",
+    							url:"/addWishlistAjax",
     							data:"productNo="+productNo,
     							beforeSend : function(xhr){  
     			                    xhr.setRequestHeader(header,token);
@@ -141,9 +153,16 @@
     					
     					$(".addcart").click(function() {
     						let productNo = $(this).prev().data("product");
+    						let productCount = $(this).prev().prev().data("count");
+    						
+    						if(productCount==0){
+    							alert("품절상품입니다");
+    							return;
+    						}
+    						
     						$.ajax({
     							type:"post",
-    							url:"addCartAjax",
+    							url:"/addCartAjax",
     							data:"productNo="+productNo+"&productCount=1",
     							beforeSend : function(xhr){  
     			                    xhr.setRequestHeader(header,token);
@@ -162,6 +181,7 @@
     			</script>
     		</div>
     	</div>
+    	
     	<!--/* Pagination 부분 */-->
  		<div class="row mt-5">
        		<div class="col text-center">

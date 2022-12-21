@@ -96,6 +96,76 @@ UPDATE juiceta_product SET category='juice' WHERE category='Juice' OR category='
 UPDATE juiceta_product SET category='tea' WHERE category='Tea';
 COMMIT
 
+-- 마이페이지 주문내역 ( 주문번호, 주문날짜, 총합계 )
+	-- 아이디로 주문내역 검색
+	SELECT * FROM juiceta_order WHERE id='jtest3';
+	SELECT * FROM juiceta_order_detail WHERE order_no=1;
+	
+	-- 주문번호, 상품번호, 상품가격, 수량
+	SELECT o.order_no,o.order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+	FROM juiceta_order_detail d
+	INNER JOIN juiceta_product p ON d.product_no=p.product_no
+	INNER JOIN juiceta_order o ON d.order_no=o.order_no
+	INNER JOIN juiceta_customer c ON c.id=o.id
+	WHERE c.id='jtest3';
+	
+	SELECT order_no, order_time, SUM(total_price) AS total_price
+	FROM(
+		SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+		FROM juiceta_order_detail d
+		INNER JOIN juiceta_product p ON d.product_no=p.product_no
+		INNER JOIN juiceta_order o ON d.order_no=o.order_no
+		INNER JOIN juiceta_customer c ON c.id=o.id
+		WHERE c.id='jtest3'
+	)
+	GROUP BY order_no,order_time
+	ORDER BY order_no DESC;
+	
+	-- 페이징처리
+	SELECT order_no, order_time, total_price
+	FROM(
+		SELECT ROW_NUMBER() OVER(ORDER BY order_no DESC) AS rnum,order_no, order_time, total_price
+		FROM(
+			SELECT order_no, order_time, SUM(total_price) AS total_price
+			FROM(
+				SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+				FROM juiceta_order_detail d
+				INNER JOIN juiceta_product p ON d.product_no=p.product_no
+				INNER JOIN juiceta_order o ON d.order_no=o.order_no
+				INNER JOIN juiceta_customer c ON c.id=o.id
+				WHERE c.id='jtest3'
+			)
+			GROUP BY order_no,order_time
+			ORDER BY order_no DESC
+		)
+	)
+	WHERE rnum BETWEEN 1 AND 4;
+	
+	-- 총 주문수
+	SELECT * FROM juiceta_order WHERE id='jtest3';
+	SELECT COUNT(*) FROM juiceta_order WHERE id='jtest3';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

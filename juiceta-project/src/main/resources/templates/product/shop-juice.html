@@ -37,19 +37,80 @@
    							</div>
   						</div>
 	  					<div class="bottom-area d-flex px-3">
-	  						<div class="m-auto d-flex">
-	  							<a href="#" class="buy-now d-flex justify-content-center align-items-center mx-1">
-	  								<span><i class="ion-ios-cart"></i></span>
-	  							</a>
-	  							<a href="#" class="heart d-flex justify-content-center align-items-center">
-	  								<span><i class="ion-ios-heart"></i></span>
-	  							</a>
- 							</div>
- 						</div>
- 					</div>
- 				</div>
- 			</div>
- 		</div>
+    						<div class="m-auto d-flex">
+    							<span th:data-count="${product.productCount}"></span>
+    							<span th:data-product="${product.productNo}"></span>
+    							<a class="buy-now d-flex justify-content-center align-items-center mx-1 btn addcart">
+    								<span><i class="ion-ios-cart"></i></span>
+    							</a>
+    							<a class="heart d-flex justify-content-center align-items-center btn addwishlist">
+    								<span><i class="ion-ios-heart"></i></span>
+    							</a>
+   							</div>
+   						</div>
+   					</div>
+   				</div>
+   			</div>
+   			<script type="text/javascript">
+   				$(document).ready(function() {
+   					// ajax post csrf token 을 위한 설정 
+   					let token = $("meta[name='_csrf']").attr("content"); 
+   					let header = $("meta[name='_csrf_header']").attr("content");
+   					
+   					$(".addwishlist").click(function() {
+   						let productNo = $(this).prev().prev().data("product");
+						let productCount = $(this).prev().prev().prev().data("count");
+						
+						if(productCount==0){
+							alert("품절상품입니다");
+							return;
+						}
+						
+   						$.ajax({
+   							type:"post",
+   							url:"/addWishlistAjax",
+   							data:"productNo="+productNo,
+   							beforeSend : function(xhr){  
+   			                    xhr.setRequestHeader(header,token);
+   			                },	
+   							success:function(result){
+   								if(result=="fail")
+   									alert("이미 찜목록에 추가된 상품입니다");
+   								else
+   									alert("찜 목록에 추가하였습니다");
+   							}
+   						});
+   					});
+   					
+   					$(".addcart").click(function() {
+   						let productNo = $(this).prev().data("product");
+						let productCount = $(this).prev().prev().data("count");
+						
+						if(productCount==0){
+							alert("품절상품입니다");
+							return;
+						}
+						
+   						$.ajax({
+   							type:"post",
+   							url:"/addCartAjax",
+   							data:"productNo="+productNo+"&productCount=1",
+   							beforeSend : function(xhr){  
+   			                    xhr.setRequestHeader(header,token);
+   			                },	
+   							success:function(result){
+   								if(result=="fail")
+   									alert("이미 장바구니목록에 추가된 상품입니다");
+   								else{
+   									alert("장바구니 목록에 추가하였습니다");
+   									$("#totalCartCount").text(Number($("#totalCartCount").text())+1);
+   								}
+   							}
+   						});
+   					});
+   				});
+   			</script>
+   		</div>
  		
     	<!--/* Pagination 부분 */-->
  		<div class="row mt-5">
