@@ -5,8 +5,6 @@ import java.util.List;
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.service.CartAndWishlistService;
-import org.kosta.juicetaproject.service.MemberService;
-import org.kosta.juicetaproject.service.ProductService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,8 +18,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CartAndWishlistController {
 	private final CartAndWishlistService cartAndWishlistService;
-	private final MemberService memberService;
-	private final ProductService productService;
 	
 	// 찜목록 담기 
 	@PostMapping("addWishlistAjax")
