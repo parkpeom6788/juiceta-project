@@ -56,6 +56,14 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	public List<ProductVO> findCartAllListById(String id) {
 		return cartAndWishlistMapper.findCartAllListById(id);
 	}
+	@Override
+	public List<ProductVO> findWishlistById(String id) {
+		return cartAndWishlistMapper.findWishlistAllListById(id);
+	}
+	@Override
+	public void removeWishlist(int productNo) {
+		 cartAndWishlistMapper.removeWishlist(productNo);
+	}
 }
 
 
