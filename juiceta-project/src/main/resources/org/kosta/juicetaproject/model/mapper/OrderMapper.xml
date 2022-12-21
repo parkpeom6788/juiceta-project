@@ -70,5 +70,10 @@
 		WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber}
 	</select>
 	
+	<select id="findOrderDetailListById" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.OrderVO">
+		SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiver_address
+		FROM juiceta_order 
+		WHERE id=#{value}
+	</select>
 </mapper>
 

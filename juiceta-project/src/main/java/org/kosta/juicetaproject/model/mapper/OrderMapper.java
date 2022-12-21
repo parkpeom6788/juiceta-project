@@ -24,4 +24,6 @@ public interface OrderMapper {
 
 	List<Map<String, Object>> findOrderListByIdPagination(Map<String, Object> map);
 
+	List<OrderVO> findOrderDetailListById(String id);
+
 }
