@@ -125,7 +125,6 @@ SELECT * FROM juiceta_product
 SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count FROM juiceta_product
 
 -- Inline View ( FROM 절의 SUBQUERY ) 를 이용하면 된다
-
 SELECT rnum,product_no,product_name,price,product_count
 FROM (
 	SELECT row_number() over(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count 
@@ -154,7 +153,7 @@ DELETE FROM juiceta_product WHERE product_no=50;
 SELECT product_no,product_name,price,product_count,product_detail,image,category
 FROM juiceta_product
 WHERE product_name LIKE '%차%'
-
+-- rnum 오름차순으로 키워드에 맞는 정보출력 SQL
 SELECT rnum,product_no,product_name,price,product_count
 		FROM (
 		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
@@ -172,17 +171,14 @@ CREATE TABLE juiceta_board(
 )
 CREATE SEQUENCE juiceta_board_seq;
 SELECT * FROM juiceta_board;
-
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
-		FROM (
-		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count,
-		product_detail,image,category
-		FROM juiceta_product
-		) ORDER BY rnum DESC
-
-
-
-
+-- 제품번호 오른차순 rnum번호 내림차순으로 정보구하는 SQL
+SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+FROM (
+SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count,
+product_detail,image,category
+FROM juiceta_product
+) ORDER BY rnum DESC
+-- 키워드입력시 출력되는 정보들을 rnum 내림차순으로 출력하는 sql
 SELECT rnum,product_no,product_name,price,product_count
 FROM (
 SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
@@ -191,6 +187,7 @@ FROM juiceta_product
 AND rnum BETWEEN 1 AND 11
 ORDER BY rnum DESC
 
+-- 페이지네이션을 적용한 전체정보 출력 SQL
 SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
 FROM(
 SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
@@ -198,24 +195,26 @@ FROM juiceta_product
 )
 WHERE rnum BETWEEN 1 AND 11 ORDER BY rnum DESC
 
-SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product
-
-SELECT product_no,product_name,price,product_count,product_detail,image,category
-		FROM juiceta_product ORDER BY product_no DESC
 ---------------------------------
-
-SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH:MI:SS'),d.order_count,p.price
-FROM juiceta_order_detail d
-INNER JOIN juiceta_product p ON p.product_no=d.product_no
-INNER JOIN juiceta_order o ON d.order_no=o.order_no
-WHERE d.order_no=1
-
 -- keyword 검색시 정보 갯수 구하는 SQL
 SELECT COUNT(*) FROM juiceta_product WHERE product_name LIKE '%고추%';
 
+-- 특정 아이디에대해 주문번호,주문날짜,제품번호,제품가격,주문수량,총액을 구하는 SQL
+SELECT d.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,
+d.product_no, p.price,d.order_count, (p.price*d.order_count) AS total_price
+FROM juiceta_order_detail d
+INNER JOIN juiceta_product p ON d.product_no=p.product_no
+INNER JOIN juiceta_order o ON d.order_no=o.order_no
+INNER JOIN juiceta_customer c ON c.id=o.id
+WHERE c.id='jtest3'
 
-
-
-
+-- 특정 아이디에대해 주문번호,주문날짜,배송주소,상품명,주문수량,상품가격을 구하는 SQL
+SELECT o.order_no,TO_CHAR(o.order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,
+o.receiver_address,p.product_name,d.order_count,p.price
+FROM juiceta_order_detail d
+INNER JOIN juiceta_product p ON d.product_no=p.product_no
+INNER JOIN juiceta_order o ON d.order_no=o.order_no
+INNER JOIN juiceta_customer c ON c.id=o.id
+WHERE c.id='jtest3'
 
 
