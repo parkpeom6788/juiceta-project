@@ -57,10 +57,9 @@
 		)
 	</select>
 	<select id="findProductListByKeyword" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count
-		FROM (
+		SELECT rnum,product_no,product_name,price,product_count FROM (
 		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count 
-		FROM juiceta_product WHERE product_name LIKE '%' || #{KEYWORD} || '%' ORDER BY rnum DESC
+			FROM juiceta_product WHERE product_name LIKE '%' || #{KEYWORD} || '%' ORDER BY rnum DESC
 		) 
 		WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber}
 	</select>

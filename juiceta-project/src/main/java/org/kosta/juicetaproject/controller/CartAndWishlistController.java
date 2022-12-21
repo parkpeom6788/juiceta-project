@@ -37,7 +37,9 @@ public class CartAndWishlistController {
 		
 		// 세션을 이용하여 아이디를 가져옴 
 		List<ProductVO> productList= cartAndWishlistService.findCartAllListById(memberVO.getId());
+		int count = cartAndWishlistService.getTotalCartById(memberVO.getId());
 		model.addAttribute("productAllList", productList);
+		model.addAttribute("count",count);
 		return "/order/cart";
 	}
 

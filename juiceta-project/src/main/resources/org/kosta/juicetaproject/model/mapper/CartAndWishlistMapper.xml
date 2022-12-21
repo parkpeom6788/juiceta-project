@@ -31,9 +31,8 @@
 	<select id="getTotalCartById" parameterType="string" resultType="int">
 		SELECT COUNT(*) FROM juiceta_cart WHERE id=#{value}
 	</select>
-	
+
+	<delete id="deleteCartById" parameterType="string">
+		DELETE FROM juiceta_cart WHERE id=#{id} and product_no=#{productNo};
+	</delete>
 </mapper>
-
-
-
-

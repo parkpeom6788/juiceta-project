@@ -28,8 +28,8 @@
 					     <tr class="text-center">
 					        <td class="product-remove"><a href="#"><span class="ion-ios-close"></span></a></td>
 					        <td class="image-prod"><div class="img" style="background-image:url(images/product-3.jpg);"></div></td>
-					        <td class="product-name">
-					        	<h3>상품명 : </h3><td th:text="${productVO.productName}"></h3>
+					        <td class="product-name" td th:text="${productVO.productName}">
+					        	</h3><td th:text="${productVO.price}"></h3>
 					        	<p>상품상세설명<td th:text="${productVO.productDetail}"></p>
 					        </td>					        
 					        <td class="price" th:text="${productVO.price}">상품가격</td>					        
@@ -48,7 +48,7 @@
 			           				</span>
 			        			</div>
 				          	</td>					   
-					        <td class="total">(상품가격*수량)합계  productVO.price * /td>
+					        <td class="total">
 					      </tr>
 					    </tbody>
 					  </table>
@@ -58,11 +58,12 @@
   		<div class="row justify-content-end">
   			<div class="col-lg-4 mt-5 cart-wrap ftco-animate">
   				<div class="cart-total mb-3">
-  					<h3>Cart Totals</h3>
+  					<h3>bb</h3>
   					<hr>
   					<p class="d-flex total-price">
+  						<span>총 개수</span>
+  						<td th:text="${count}"></td>
   						<span>Total</span>
-  						<span>총합계</span>
   					</p>
   				</div>
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>

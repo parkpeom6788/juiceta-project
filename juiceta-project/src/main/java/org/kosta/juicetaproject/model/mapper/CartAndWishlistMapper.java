@@ -20,6 +20,9 @@ public interface CartAndWishlistMapper {
 	int getTotalCartById(String id);
 
 	List<ProductVO> findCartAllListById(String id);
-	
+
+	int countCartById(String id); // 카운트 개수 
+
+	void deleteCartById(String id, int productNo); // 삭제 
 	
 }

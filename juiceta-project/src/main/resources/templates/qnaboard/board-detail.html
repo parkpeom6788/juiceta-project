@@ -3,6 +3,7 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
 	<title>문의사항 게시판</title>
@@ -52,8 +53,8 @@
 						<form action="" th:action="@{/registerAnswer}" id="writeForm" method="post">
 							<p><textarea cols="50" rows="10" name="answerContent"></textarea></p>
 							<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
-								<button type="reset">취소(관리자)</button>
-								<button type="submit" id="registerBtn">등록(관리자)</button>
+								<button type="reset" sec:authorize="hasRole('ROLE_ADMIN')">취소(관리자)</button>
+								<button type="submit" id="registerBtn" sec:authorize="hasRole('ROLE_ADMIN')">등록(관리자)</button>
 						</form>
 				</th:block>
 		</table>

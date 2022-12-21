@@ -91,6 +91,14 @@ class Testpp {
 		System.out.println(answerVO);
 	}
 	
+	// 답변이 달렸으면 답변여부 업데이트
+	// UPDATE juiceta_question SET CHECK_ANSWER = 1 WHERE question_no = 109; 
+	@Test
+	public void updateQuestion() {
+		int questionNo = 109;
+		questionMapper.updateQuestion(questionNo);
+	}
+	
 	// 장바구니 상세 목록 출력 리스트형식으로 
 	// findCartAllListById(in id:String): List
 	@Test
@@ -101,11 +109,18 @@ class Testpp {
 			System.out.println(list.get(i));
 		}
 	}
-	// 답변이 달렸으면 답변여부 업데이트
-	// UPDATE juiceta_question SET CHECK_ANSWER = 1 WHERE question_no = 109; 
+	// SELECT * FROM juiceta_car 총 개수 구하는 메서드
 	@Test
-	public void updateQuestion() {
-		int questionNo = 109;
-		questionMapper.updateQuestion(questionNo);
+	public void countCartById() {
+		String id="jtest3";
+		int count = cartAndWishlistMapper.countCartById(id);
+		System.out.println(count);
+	}
+	// 장바구니 삭제
+	@Test
+	public void deleteCartById() {
+		String id = "jtest3";
+		int productNo = 330;
+		cartAndWishlistMapper.deleteCartById(id,productNo);
 	}
 }

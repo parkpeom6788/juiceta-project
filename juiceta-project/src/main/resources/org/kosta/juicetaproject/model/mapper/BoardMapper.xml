@@ -8,10 +8,10 @@
 select count(*) from juiceta_board
 </select>
 <select id="findBoardAllList" resultType="org.kosta.juicetaproject.model.vo.BoardVO" parameterType="org.kosta.juicetaproject.model.vo.BoardPagination">
-	SELECT rnum,board_no,board_title,board_content,board_time, hits
+		SELECT rnum,board_no,board_title,board_content,board_time, hits
 		FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum,board_no,board_title,board_content,board_time, hits
-			FROM juiceta_board
+		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum,board_no,board_title,board_content,board_time, hits
+		FROM juiceta_board
 		)
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 </select>

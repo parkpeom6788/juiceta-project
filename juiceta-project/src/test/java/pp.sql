@@ -25,6 +25,8 @@ SELECT * FROM juiceta_question;
 
 commit
 
+SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3'; 
+
 CREATE SEQUENCE juiceta_question_seq;
 
 SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER , ID , PRODUCT_NO
@@ -101,9 +103,7 @@ FROM juiceta_answer;
 DELETE FROM juiceta_answer;
 
 SELECT QUESTION_NO , ANSWER_CONTENT , ANSWER_TIME  FROM juiceta_answer;
-
 -----------------------------------------------------------------------------------------------------------
-
 -- 장바구니
 CREATE TABLE juiceta_cart(
 	id VARCHAR2(100),
@@ -113,12 +113,12 @@ CREATE TABLE juiceta_cart(
 	CONSTRAINT fk_cart_product_no FOREIGN KEY(product_no) REFERENCES juiceta_product(product_no) ON DELETE CASCADE,
 	CONSTRAINT pk_cart PRIMARY KEY(id,product_no)
 )
+SELECT * FROM juiceta_car;
+
+SELECT * FROM juiceta_cart WHERE id='jtest3';
+
+SELECT COUNT(*) FROM juiceta_cart WHERE id='jtest3'; // 24
+
+DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';
+
 SELECT * FROM juiceta_cart;
-
-
-
-
-
-
-
-
