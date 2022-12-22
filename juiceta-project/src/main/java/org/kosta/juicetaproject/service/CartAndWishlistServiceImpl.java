@@ -76,8 +76,7 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	}
 	@Override
 	public int totalCountPrice(String id) {
-		int count = cartAndWishlistMapper.totalCountPrice(id);
-		return count;
+		return cartAndWishlistMapper.totalCountPrice(id);
 	}
 }
 

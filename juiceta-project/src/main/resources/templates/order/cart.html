@@ -65,7 +65,7 @@
   					<h3>Cart Totals</h3>
   					<hr>
   					<p class="d-flex total-price">
-  						<span></span>
+  						<span>&#8361; </span><span id="cartTotal" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
@@ -92,6 +92,7 @@
     			let total = 0;
     			
     			$(".quantity-right-plus").click(function(e){
+    				alert($(this).parent().prev().prev().parent().parent().prev().prev().text());
 					// Stop acting like a button
 			        e.preventDefault();
 			        // Get the field name
@@ -103,6 +104,12 @@
 			        price = Number($(this).parent().prev().prev().parent().parent().prev().text());
 			        total = price*(quantity + 1);
 			        $(this).parent().parent().parent().next().text(total);
+			        
+			        let cartTotal = 0;
+				     $(".total").each(function(){
+				    	 cartTotal += Number($(this).text());			    	
+				     });
+				     $("#cartTotal").text(cartTotal);
 			    });
     			
 			     $(".quantity-left-minus").click(function(e){
@@ -118,8 +125,15 @@
 				        
 				        price = Number($(this).parent().parent().parent().prev().text());
 				        total = price*(quantity - 1);
-				        $(this).parent().next().next().parent().parent().next().text(total);			       
+				        $(this).parent().next().next().parent().parent().next().text(total);		
+				        
+				        let cartTotal = 0;			        
+					     $(".total").each(function(){
+					    	cartTotal += Number($(this).text());
+					     });
+					     $("#cartTotal").text(cartTotal);
 		    	 });
+
     		});
     	</script>
    

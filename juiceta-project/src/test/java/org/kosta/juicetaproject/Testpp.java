@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
-import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -97,14 +96,14 @@ class Testpp {
 	
 	// 장바구니 상세 목록 출력 리스트형식으로 
 	// findCartAllListById(in id:String): List
-	@Test
-	public void findCartAllListById() {
-		String id = "jtest3";
-		List<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
-		for(int i = 0; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-	}
+//	@Test
+//	public void findCartAllListById() {
+//		String id = "jtest3";
+//		List<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
+//		for(int i = 0; i < list.size(); i++) {
+//			System.out.println(list.get(i));
+//		}
+//	}
 	// SELECT * FROM juiceta_car 총 개수 구하는 메서드
 	@Test
 	public void countCartById() {

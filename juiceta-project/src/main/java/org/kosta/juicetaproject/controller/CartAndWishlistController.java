@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -31,6 +32,7 @@ public class CartAndWishlistController {
 	@RequestMapping("/findCartAllListById") 
 	public String findCartAllListById(@AuthenticationPrincipal MemberVO memberVO , Model model) {		
 		model.addAttribute("cartAllList", cartAndWishlistService.findCartAllListById(memberVO.getId()));
+		model.addAttribute("cartTotal", cartAndWishlistService.totalCountPrice(memberVO.getId()));
 		return "/order/cart";
 	}
 
