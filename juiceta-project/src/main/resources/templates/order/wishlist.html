@@ -13,6 +13,10 @@
 		<div class="row">
   			<div class="col-md-12 ftco-animate">
   				<div class="cart-list">
+  					<h1>WishList</h1>
+  					<form id="removeWishlistForm" th:action="@{/removeWishlist}" method="post">
+  						<input id="productNo" type="hidden" name="productNo">
+  					</form>
 	   				<table class="table">
 					    <thead class="thead-primary">
 					      <tr class="text-center">
@@ -24,96 +28,68 @@
 					        <th>Cart-ADD</th>
 					      </tr>
 					    </thead>
-					    <tbody th:each="productVO:${wishlistAllList}">
-					    
+					    <tbody th:each="productVO:${wishlistAllList}">				    
 					      <tr class="text-center">
-					      <form th:action="@{/removeWishlist}" method="post">
-					     	<input type="hidden" th:value="${productVO.productNo}" name="productNo">
-					        <td class="product-remove"><button class="btn btn-primary" href="#" th:href="@{/removeWishlist}"><span class="ion-ios-close"></span></button></td>
-					      </form>
+					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${productVO.productNo}"></span></a></td>
 					        <td class="image-prod"><div class="img"><img class="img-fluid" src="" th:src="@{/images/}+${productVO.image}" alt="Colorlib Template"></div></td>				        
 					        <td class="product-name">
 					        	<h3 th:text="${productVO.productName}">상품명</h3>
 					        	<p th:text="${productVO.productDetail}">상품상세설명</p>
 					        </td>					        
 					        <td class="price" th:text="${productVO.price}">상품가격</td>					        
-					        <td class="category" th:text="${productVO.category}"></td>
+					        <td class="category" th:text="${productVO.category}">카테고리</td>
 					        
 					    	<td class="product-remove">
-					        <form th:action="@{/addCartAjax}" method="post"> 
-					        <input type="hidden" th:value="${productVO.productNo}" name="productNo" id="productNo">
-					        <input type="hidden" th:value=1 name="productCount" id="quantity">
-					        <button type="button" class="btn btn-primary addCart" ><span >+</span></button>		        
-					        </form>
-					        </td>	
-					       
+						        <form th:action="@{/addCartAjax}" method="post"> 
+							        <input type="hidden" th:value="${productVO.productNo}" name="productNo">
+							        <input type="hidden" th:value=1 name="productCount">
+							        <button type="button" class="btn btn-outline-success addCart" ><span >+</span></button>		        
+						        </form>
+					        </td>					       
 					      </tr>
 					    </tbody>
-				  </table>
+				  	</table>
 			  	</div>
-  			</div>
-  			<!-- <div class="col-md-4 offset-md-10">
-  				<p>&nbsp;</p>
-				<p><a href="#"class="btn btn-primary py-3 px-4">Add To Cart</a></p>
-	      	</div> -->
-  		
-  		
+  			</div>  		
   		</div>
+  		
   		<script type="text/javascript">
-
-  		$(document).ready(function(){
-				let quantitiy=0;
-			 
-
-			   	$(".quantity-right-plus").click(function(e){	        
-			        // Stop acting like a button
-			        e.preventDefault();
-			        // Get the field name
-			        quantity = parseInt($('#quantity').val());			 
-			        // If is not undefined
-			 		$("#quantity").val(quantity + 1);
-					 // Increment  
-			    	});
-
-			     	$(".quantity-left-minus").click(function(e){
-			        	// Stop acting like a button
-			        	e.preventDefault();
-			        	// Get the field name
-			        	quantity = parseInt($("#quantity").val());			        
-			       		 // If is not undefined
-			            // Increment
-			            if(quantity>0){
-			            	$("#quantity").val(quantity - 1);
-			            }
-			    	});
-			     	
-			     	 // ajax post csrf token 을 위한 설정 
-					let token = $("meta[name='_csrf']").attr("content"); 
-					let header = $("meta[name='_csrf_header']").attr("content");
+	  		$(document).ready(function(){
+		     	 // ajax post csrf token 을 위한 설정 
+				let token = $("meta[name='_csrf']").attr("content"); 
+				let header = $("meta[name='_csrf_header']").attr("content");
+				
+				$(".deleteBtn").click(function() {
+					$("#productNo").val($(this).children().children().data("product"));
 					
-					//let urlSearch = new URLSearchParams(location.search);
-					//let productNo = urlSearch.get("productNo");
+					let result = confirm("삭제 하시겠습니까?");
+					if(result!=true){
+						return;
+					}
 					
-						$(".addCart").click(function() {
-						let productNo = $("#productNo").val();
-						let productCount = $("#quantity").val();
-						$.ajax({
-							type:"post",
-							url:"/addCartAjax",
-							data:"productNo="+productNo+"&productCount="+productCount,
-							beforeSend : function(xhr){  
-			                    xhr.setRequestHeader(header,token);
-			                },
-							success:function(result){
-								if(result=="fail")
-									alert("이미 장바구니목록에 추가된 상품입니다");
-								else{
-									alert("장바구니 목록에 추가하였습니다");
-								}
+					$("#removeWishlistForm").submit();
+				});
+				
+				$(".addCart").click(function() {
+				let productNo = $(this).prev().prev().val();
+				let productCount = $(this).prev().val();
+					$.ajax({
+						type:"post",
+						url:"/addCartAjax",
+						data:"productNo="+productNo+"&productCount="+productCount,
+						beforeSend : function(xhr){  
+		                    xhr.setRequestHeader(header,token);
+		                },
+						success:function(result){
+							if(result=="fail")
+								alert("이미 장바구니목록에 추가된 상품입니다");
+							else{
+								alert("장바구니 목록에 추가하였습니다");
 							}
-						});
+						}
 					});
-  		});
+				});
+	  		});
     	</script>
     	
 	</div>
