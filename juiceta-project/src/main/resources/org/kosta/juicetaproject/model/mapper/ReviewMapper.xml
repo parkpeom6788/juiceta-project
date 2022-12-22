@@ -10,8 +10,15 @@
 	<resultMap type="org.kosta.juicetaproject.model.vo.ReviewVO" id="ReviewResultMap">
 		<result column="id" property="memberVO.id"/>
 	</resultMap>
-	
 	<select id="findReviewListByProductNo" parameterType="int" resultMap="ReviewResultMap">
 		SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_no=#{value}
+	</select>
+	
+	<select id="findProductNameForReviewByProductNo" parameterType="int" resultType="string">
+		SELECT product_name FROM juiceta_product WHERE product_no=#{value}
+	</select>
+	
+	<select id="findOrderTimeForReviewByOrderNo" parameterType="int" resultType="string">
+		SELECT TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time FROM juiceta_order WHERE order_no=#{value}
 	</select>
 </mapper>

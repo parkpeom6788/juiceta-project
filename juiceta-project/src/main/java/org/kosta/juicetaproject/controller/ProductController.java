@@ -84,7 +84,7 @@ public class ProductController {
 	@PostMapping("registerProduct")
 	public String registerProduct(ProductVO productVO) {
 		productService.registerProduct(productVO);
-		return "redirect:registerProductResult?";
+		return "redirect:registerProductResult";
 	}
 	// 상품등록 후 결과
 	@RequestMapping("registerProductResult")

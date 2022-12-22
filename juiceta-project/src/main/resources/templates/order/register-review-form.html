@@ -11,8 +11,11 @@
 	<div layout:fragment="content" class="container">
 		<div align="center">	
 			<h1>Review</h1>
-			<span>상품번호</span>&nbsp;<span>상품번호</span>&nbsp;&nbsp;<span>상품명</span>&nbsp;<span>상품명</span>&nbsp;&nbsp;<span>주문날짜</span>&nbsp;<span>주문날짜</span><br>
-			<form action="#" id="registerReviewForm" method="post">
+			<span>상품번호</span>&nbsp;<span th:text="${param.productNo}" style="color: black">상품번호</span>&nbsp;&nbsp;<span>상품명</span>&nbsp;<span th:text="${orderInfo.PRODUCT_NAME}" style="color: black">상품명</span>&nbsp;&nbsp;<span>주문날짜</span>&nbsp;<span th:text="${orderInfo.ORDER_TIME}" style="color: black">주문날짜</span><br>
+			<form action="#" th:action="@{/registerReview}" id="registerReviewForm" method="post">
+				<input type="hidden" name="productNo" th:value="${param.productNo}">
+				<input type="hidden" name="orderNo" th:value="${param.orderNo}">
+				<input type="hidden" id="star" name="star">
 				<!--/* 별점 */-->
 				<div class="star-rating">
 				  <input type="radio" id="5-stars" name="rating" value=5 />
@@ -37,6 +40,7 @@
 				let star = 0;
 				$(".star").click(function() {
 					star = $(this).prev().val();
+					$("#star").val($(this).prev().val());
 				});
 				
 				$("#registerReviewBtn").click(function() {
