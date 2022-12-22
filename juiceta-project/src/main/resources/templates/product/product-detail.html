@@ -163,6 +163,31 @@
 			    
 			});
 		</script>
+		
+		<!--/* 상품후기 */-->
+		<h2>Review</h2>
+		<table class="table table-boardered">
+			<thead>
+				<tr>
+					<th>회원 아이디</th>
+					<th>리뷰내용</th>
+					<th>별점</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="review:${reviewList}">
+					<td th:text="${review.memberVO.id}" class = "col-sm-2"></td>
+					<td th:text="${review.reviewContent}" class= "col-sm-3"></td>
+					<td class = "col-sm-2">
+						<th:block th:each="num: ${#numbers.sequence(1,review.star)}">
+							&#9733;
+						</th:block>
+					</td>
+					<td th:text="${review.reviewTime}" class = "col-sm-2"></td>
+				</tr>
+			</tbody>
+		</table><br><br><br>
 	
 		<!--/* 문의사항 게시판 */-->
 		<h2>Q&A</h2>

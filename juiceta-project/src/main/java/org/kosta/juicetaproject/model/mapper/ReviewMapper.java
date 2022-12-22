@@ -1,5 +1,7 @@
 package org.kosta.juicetaproject.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.ReviewVO;
 
@@ -7,6 +9,8 @@ import org.kosta.juicetaproject.model.vo.ReviewVO;
 public interface ReviewMapper {
 
 	void registerReview(ReviewVO reviewVO);
+
+	List<ReviewVO> findReviewListByProductNo(int productNo);
 
 
 }

@@ -6,4 +6,12 @@
 		INSERT INTO juiceta_review(review_no,review_content,star,review_time,id,order_no,product_no)
 		VALUES(juiceta_review_seq.nextval,#{reviewContent},#{star},SYSDATE,#{memberVO.id},#{orderDetailVO.orderVO.orderNo},#{orderDetailVO.productVO.productNo})
 	</insert>
+	
+	<resultMap type="org.kosta.juicetaproject.model.vo.ReviewVO" id="ReviewResultMap">
+		<result column="id" property="memberVO.id"/>
+	</resultMap>
+	
+	<select id="findReviewListByProductNo" parameterType="int" resultMap="ReviewResultMap">
+		SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_no=#{value}
+	</select>
 </mapper>

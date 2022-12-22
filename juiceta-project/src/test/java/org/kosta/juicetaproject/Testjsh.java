@@ -238,6 +238,14 @@ class Testjsh {
 		reviewMapper.registerReview(reviewVO);
 		System.out.println("실행");
 	}
+	
+	@Test
+	void findReviewListByProductNo() {
+		int productNo = 332;
+		List<ReviewVO> list = reviewMapper.findReviewListByProductNo(productNo);
+		for(ReviewVO vo : list)
+			System.out.println(vo);
+	}
 
 }
 

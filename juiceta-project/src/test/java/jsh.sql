@@ -159,6 +159,9 @@ VALUES(juiceta_review_seq.nextval,'맛있었어요~',4,SYSDATE,'jtest3',4,332);
 
 COMMIT
 
+-- 상품번호로 리뷰 조회 : 회원아이디, 상세리뷰글, 별점, 작성일
+SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_no=332;
+
 
 
 
