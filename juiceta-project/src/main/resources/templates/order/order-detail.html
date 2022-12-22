@@ -11,9 +11,10 @@
 	<div layout:fragment="content" class="container">
 		<div class="col-md-4 offset-md-4">
 		  <h2>상세주문내역</h2>
-		  <th:block >
-			  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" >주문번호</span><br>
-			  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" >주문날짜</span><br>
+		  <th:block th:each="orderDetail:${orderDetailList}">
+			  <span style="display: inline-block; width: 100px; height: 30px">주문번호</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${orderDetail.orderNo}">주문번호</span><br>
+			  <span style="display: inline-block; width: 100px; height: 30px">주문날짜</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${orderDetail.orderTime}">주문날짜</span><br><br>
+		  	  <span style="display: inline-block; width: 100px; height: 30px">배송주소</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${orderDetail.receiverAddress}">배송주소</span><br><br>
 		  </th:block>
 		</div>
 	</div>

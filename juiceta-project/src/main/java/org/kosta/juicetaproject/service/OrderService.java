@@ -1,5 +1,6 @@
 package org.kosta.juicetaproject.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,5 +16,7 @@ public interface OrderService {
 	List<Map<String, Object>> findOrderListById(String id);
 
 	Map<String, Object> findOrderListByIdPagination(String pageNo, String id);
+	
+	ArrayList<OrderVO> findOrderDetailListById(String id);//
 
 }

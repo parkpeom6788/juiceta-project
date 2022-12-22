@@ -25,6 +25,6 @@ public interface OrderMapper {
 
 	List<Map<String, Object>> findOrderListByIdPagination(Map<String, Object> map);
 
-	ArrayList<OrderVO> findOrderDetailListById(String id); // 
+	ArrayList<OrderVO> findOrderDetailListById(String id); // 진수
 
 }

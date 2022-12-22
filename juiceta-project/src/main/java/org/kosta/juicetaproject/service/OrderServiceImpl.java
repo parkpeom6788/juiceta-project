@@ -1,5 +1,6 @@
 package org.kosta.juicetaproject.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -65,6 +66,11 @@ public class OrderServiceImpl implements OrderService {
 		paging.put("PAGINATION", pagination);
 
 		return paging;
+	}
+
+	@Override
+	public ArrayList<OrderVO> findOrderDetailListById(String id) {
+		return orderMapper.findOrderDetailListById(id);
 	}
 
 }
