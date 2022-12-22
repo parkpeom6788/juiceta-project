@@ -71,6 +71,15 @@ public class OrderServiceImpl implements OrderService {
 		return paging;
 	}
 
+	@Override
+	public OrderVO findOrderInfoByOrderNo(int orderNo) {
+		return orderMapper.findOrderInfoByOrderNo(orderNo);
+	}
+
+	@Override
+	public List<Map<String, Object>> findOrderTotalPriceInfoByOrderNo(int orderNo) {
+		return orderMapper.findOrderTotalPriceInfoByOrderNo(orderNo);
+	}
 
 }
 
