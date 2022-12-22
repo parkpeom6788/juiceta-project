@@ -81,11 +81,6 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.findOrderTotalPriceInfoByOrderNo(orderNo);
 	}
 
-	@Override
-	public int findTotalCountReview(String id, int orderNo, int productNo) {
-		System.out.println(orderMapper.findTotalCountReview(id, orderNo, productNo));
-		return orderMapper.findTotalCountReview(id, orderNo, productNo);
-	}
 
 }
 
