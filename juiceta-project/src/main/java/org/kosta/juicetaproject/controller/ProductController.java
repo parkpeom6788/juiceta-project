@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -88,8 +89,8 @@ public class ProductController {
 	}
 	// 상품등록
 	@PostMapping("registerProduct")
-	public String registerProduct(ProductVO productVO) {
-		productService.registerProduct(productVO);
+	public String registerProduct(ProductVO productVO,MultipartFile file) throws Exception {
+		productService.registerProduct(productVO,file);
 		return "redirect:registerProductResult";
 	}
 	// 상품등록 후 결과

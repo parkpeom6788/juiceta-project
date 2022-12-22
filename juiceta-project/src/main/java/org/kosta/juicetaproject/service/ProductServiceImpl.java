@@ -1,5 +1,6 @@
 package org.kosta.juicetaproject.service;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +9,7 @@ import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -44,8 +46,15 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public int registerProduct(ProductVO productVO) {
-		return productMapper.registerProduct(productVO);
+	public void registerProduct(ProductVO productVO,MultipartFile file) throws Exception {
+        String projectpath = System.getProperty("user.dir")+"/src/main/resources/static/images"; 
+        /* UUID uuid = UUID.randomUUID(); */
+       String filename=file.getOriginalFilename(); 
+       File saveFile = new File(projectpath, filename); 
+       file.transferTo(saveFile);
+       productVO.setImage(filename);
+       productVO.setFilePath("images/"+filename);
+       productMapper.registerProduct(productVO);
 	}
 	
 	@Override

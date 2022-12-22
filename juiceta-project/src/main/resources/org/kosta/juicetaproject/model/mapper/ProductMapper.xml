@@ -3,14 +3,14 @@
 <mapper
 	namespace="org.kosta.juicetaproject.model.mapper.ProductMapper">
 	<sql id="selectProduct">
-		SELECT product_no,product_name,price,product_count,product_detail,image,category FROM juiceta_product
+		SELECT product_no,product_name,price,product_count,product_detail,image,filepath,category FROM juiceta_product
 	</sql>
 	
 	<select id="findProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 		FROM (
 		SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price,product_count,
-		product_detail,image,category
+		product_detail,image,filepath,category
 		FROM juiceta_product
 		) ORDER BY rnum DESC
 	</select>
@@ -20,17 +20,17 @@
 	</select>
 	
 	<select id="findShopProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO" parameterType="org.kosta.juicetaproject.model.vo.Pagination">
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 		FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 			FROM juiceta_product
 		)
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}
 	</select>
 	
 	<insert id="registerProduct" parameterType="org.kosta.juicetaproject.model.vo.ProductVO">
-		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category) 
-		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image},#{category})
+		INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category,filepath) 
+		VALUES(juiceta_product_seq.nextval,#{productName},#{price},#{productCount},#{productDetail},#{image},#{category},#{filePath})
 	</insert>
 	
 	<select id="findProductByProductNo" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
@@ -38,9 +38,9 @@
 	</select>
 	
 	<select id="findProductAllListByCategory" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category,filepath
 		FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 			FROM juiceta_product
 			WHERE category=#{CATEGORY}
 		)
@@ -59,9 +59,9 @@
 	</delete>
 	
 	<select id="productAllListByRnum" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 		FROM(
-		SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 		FROM juiceta_product
 		)
 	</select>
@@ -83,9 +83,9 @@
 	</select>
 	
 	<select id="findAllProduct" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
+		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 		FROM(
-			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
+			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,filepath,category
 			FROM juiceta_product
 		)
 		WHERE rnum BETWEEN #{startRowNumber} AND #{endRowNumber}

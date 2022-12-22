@@ -125,6 +125,9 @@ CREATE TABLE juiceta_product(
 	image VARCHAR2(100) NOT NULL,
 	category VARCHAR2(100) NOT NULL
 )
+ALTER TABLE juiceta_product ADD filepath VARCHAR2(300)
+
+
 CREATE SEQUENCE juiceta_product_seq;
 
 SELECT * FROM juiceta_product

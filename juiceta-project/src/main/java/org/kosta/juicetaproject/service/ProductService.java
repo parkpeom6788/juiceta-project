@@ -5,12 +5,13 @@ import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface ProductService {
 
 	Map<String, Object> findProductAllList(String pageNo);
 	
-	int registerProduct(ProductVO productVO);
+	void registerProduct(ProductVO productVO,MultipartFile file) throws Exception;
 
 	ProductVO findProductByProductNo(int productNo);
 	
