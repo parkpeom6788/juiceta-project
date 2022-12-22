@@ -132,7 +132,7 @@ COMMIT
 				FROM juiceta_order_detail d
 				INNER JOIN juiceta_product p ON d.product_no=p.product_no
 				INNER JOIN juiceta_order o ON d.order_no=o.order_no
-				INNER JOIN juiceta_customer c ON c.id=o.id
+				INNER JOIN juiceta_customer c ON  c.id=o.id
 				WHERE c.id='jtest3'
 			)
 			GROUP BY order_no,order_time

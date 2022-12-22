@@ -27,6 +27,7 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderDetail")
+	//@AuthenticationPrincipal MemberVO memberVO 시큐리티 적용시 세션을 찾아주는 역할
 	public String orderDetail() {
 		return "order/order-detail";
 	}

@@ -1,5 +1,6 @@
 package org.kosta.juicetaproject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -106,9 +107,9 @@ class Testpjs {
 	@Test
 	void findOrderDetailListById() {
 		String id="java189";
-		List<OrderVO> list=orderMapper.findOrderDetailListById(id);
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list);
+		ArrayList<OrderVO> detailList = orderMapper.findOrderDetailListById(id);
+		for(OrderVO ovo:detailList) {
+			System.out.println(ovo);
 		}
 	}
 }
