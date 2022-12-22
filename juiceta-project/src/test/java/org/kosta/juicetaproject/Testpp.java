@@ -22,6 +22,8 @@ class Testpp {
 		this.questionMapper = questionMapper;
 		this.cartAndWishlistMapper = cartAndWishlistMapper;
 	}
+	
+	
 	// 문의사항 등록
 //	@Test
 //	public void registerQuestion() {
@@ -115,5 +117,21 @@ class Testpp {
 	public void deleteCartById() {
 		int productNo = 64;
 		cartAndWishlistMapper.deleteCartById(productNo);
+	}
+	
+	@Test
+	public void findAnswerByQuestionNo2() {
+		int productNo = 1;
+		AnswerVO answerVO = questionMapper.findAnswerByQuestionNo(productNo);
+		System.out.println(answerVO);
+	}
+	
+	// 장바구니 총 가격
+	@Test
+	public void totalCountPrice() {
+		String id="jtest3";
+		// 	int totalCountPrice(String id);
+		int price = cartAndWishlistMapper.totalCountPrice(id);
+		System.out.println(price);
 	}
 }

@@ -28,4 +28,5 @@ public interface QuestionMapper {
 	
 	// 답변여부 0 -> 1 로 수정 
 	void updateQuestion(int questionNo);
+
 }

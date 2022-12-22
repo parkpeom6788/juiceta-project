@@ -11,13 +11,13 @@ public interface CartAndWishlistMapper {
 
 	int findWishlistByIdAndProductNo(Map<String, Object> map);
 	
-	void addWishlist(Map<String, Object> map);
+	void addWishlist(Map<String, Object> map); 
 
-	int findCartByIdAndProductNo(Map<String, Object> map);
+	int findCartByIdAndProductNo(Map<String, Object> map); // 장바구니에 상품 담기 
 
-	void addCart(Map<String, Object> map);
+	void addCart(Map<String, Object> map); // 상품 추가 
 
-	int getTotalCartById(String id);
+	int getTotalCartById(String id); // 상품에 담긴 총 개수 
 
 	List<ProductVO> findCartAllListById(String id); // 장바구니에 장바구니에 담긴 목록 출력 
 
@@ -27,6 +27,8 @@ public interface CartAndWishlistMapper {
 	
 	List<ProductVO> findWishlistAllListById(String id); // 장바구니 리스트 조회 
 
-	void removeWishlist(int productNo); 
+	void removeWishlist(int productNo); // 찜 삭제 
+
+	int totalCountPrice(String id); // 장바구니에 담긴 상품 가격
 	
 }

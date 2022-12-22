@@ -97,6 +97,7 @@
 						$(".addCart").click(function() {
 						let productNo = $("#productNo").val();
 						let productCount = $("#quantity").val();
+						
 						$.ajax({
 							type:"post",
 							url:"/addCartAjax",

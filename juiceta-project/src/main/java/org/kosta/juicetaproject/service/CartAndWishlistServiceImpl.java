@@ -74,6 +74,11 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	public void deleteCartById(int productNo) {
 		cartAndWishlistMapper.deleteCartById(productNo);
 	}
+	@Override
+	public int totalCountPrice(String id) {
+		int count = cartAndWishlistMapper.totalCountPrice(id);
+		return count;
+	}
 }
 
 

@@ -20,5 +20,7 @@ public interface CartAndWishlistService {
 	void removeWishlist(int productNo);
 
 	void deleteCartById(int productNo); // 카트에 담긴 물품 삭제
+
+	int totalCountPrice(String id); // 카트에 담긴 총 물품 가격 
 	
 }

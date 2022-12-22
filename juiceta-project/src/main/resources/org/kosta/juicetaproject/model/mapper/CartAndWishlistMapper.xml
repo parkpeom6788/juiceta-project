@@ -11,6 +11,12 @@
 		FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
 		WHERE C.ID=#{value}
 	</select>
+	
+	<select id="totalCountPrice" parameterType="string" resultType="int">
+		SELECT SUM(P.PRICE) AS totalPrice
+		FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
+		WHERE C.ID=#{value}
+	</select>
 
 	<insert id="addWishlist" parameterType="map">
 		INSERT INTO juiceta_wishlist VALUES(#{ID},#{PRODUCT_NO})

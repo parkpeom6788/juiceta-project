@@ -73,3 +73,7 @@ DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';
 SELECT * FROM JUICETA_CART;
 
 SELECT * FROM ;
+
+SELECT SUM(p.price) AS 총합계
+FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
+WHERE C.ID='jtest3'
