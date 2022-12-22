@@ -226,6 +226,7 @@ SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiv
 FROM juiceta_order 
 WHERE id='java189';
 
+-- 주문번호로 
 commit
 
 
