@@ -55,7 +55,7 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	}
 	
 	@Override
-	public List<ProductVO> findCartAllListById(String id) {
+	public List<Map<String, Object>> findCartAllListById(String id) {
 		return cartAndWishlistMapper.findCartAllListById(id);
 	}
 	
