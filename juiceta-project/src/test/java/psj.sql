@@ -38,6 +38,8 @@ CREATE TABLE juiceta_review(
 )
 CREATE SEQUENCE juiceta_review_seq;
 SELECT * FROM juiceta_review;
+-- 아이디,주문번호,제품번호로 작성한 리뷰 갯수 출력 SQL (리뷰작성 O = 1 , 리뷰작성 X = 0)
+SELECT COUNT(*) FROM juiceta_review WHERE id='jtest3' AND order_no=5 AND product_no=326;
 
 -- 문의사항 ( check_answer 미답변 0 답변 1 )
 CREATE TABLE juiceta_question(

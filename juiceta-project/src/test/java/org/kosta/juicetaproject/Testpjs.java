@@ -117,6 +117,15 @@ class Testpjs {
 		List<Map<String, Object>> list=orderMapper.findOrderTotalPriceInfoByOrderNo(orderNo);
 		System.out.println(list);
 	}
+	//아이디,주문번호,제품번호로 작성한 리뷰 갯수 출력
+	@Test
+	void findTotalCountReview() {
+		String id="java189";
+		int orderNo=4;
+		int productNo=332;
+		int count=orderMapper.findTotalCountReview(id,orderNo,productNo);
+		System.out.println(count);
+	}
 }
 
 
