@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -30,11 +31,8 @@ public class CartAndWishlistController {
 	// 카트에 담긴 상품 리스트 출력 시키기 
 	@RequestMapping("/findCartAllListById") 
 	public String findCartAllListById(@AuthenticationPrincipal MemberVO memberVO , Model model) {		
-		// 세션을 이용하여 아이디를 가져옴 
-		List<ProductVO> productList= cartAndWishlistService.findCartAllListById(memberVO.getId());
-		int count = cartAndWishlistService.getTotalCartById(memberVO.getId());
-		model.addAttribute("productAllList", productList);
-		model.addAttribute("count",count);
+		model.addAttribute("cartAllList", cartAndWishlistService.findCartAllListById(memberVO.getId()));
+		model.addAttribute("cartTotal", cartAndWishlistService.totalCountPrice(memberVO.getId()));
 		return "/order/cart";
 	}
 

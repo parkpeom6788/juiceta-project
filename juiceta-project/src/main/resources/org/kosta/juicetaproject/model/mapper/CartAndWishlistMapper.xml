@@ -6,16 +6,18 @@
 		<result column="product_no"  property="productVO.productNo"/>
 	</resultMap> -->
 	
-	<select id="findCartAllListById" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		SELECT P.PRODUCT_NO,P.PRODUCT_NAME , P.PRODUCT_NAME , P.PRICE , P.PRODUCT_COUNT , P.PRODUCT_DETAIL , P.IMAGE , P.CATEGORY
-		FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
-		WHERE C.ID=#{value}
+	<select id="findCartAllListById" parameterType="string" resultType="map">
+		SELECT p.image, p.product_no, p.product_name,DBMS_LOB.SUBSTR(p.product_detail) AS product_detail,p.price,c.product_count,(p.price*c.product_count) AS total
+		FROM juiceta_cart c
+		INNER JOIN juiceta_product p ON c.product_no=p.product_no
+		WHERE id=#{value}
 	</select>
 	
 	<select id="totalCountPrice" parameterType="string" resultType="int">
-		SELECT SUM(P.PRICE) AS totalPrice
-		FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
-		WHERE C.ID=#{value}
+		SELECT SUM(p.price*c.product_count) AS cart_total
+		FROM juiceta_cart c
+		INNER JOIN juiceta_product p ON c.product_no=p.product_no
+		WHERE id=#{value}
 	</select>
 
 	<insert id="addWishlist" parameterType="map">

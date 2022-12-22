@@ -166,10 +166,17 @@ SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_n
 SELECT product_name FROM juiceta_product WHERE product_no=332;
 SELECT TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time FROM juiceta_order WHERE order_no=1;
 
+-- 장바구니 : 상품이미지, 상품이름, 상품가격, 수량, 합계
+SELECT p.image, p.product_no, p.product_name,DBMS_LOB.SUBSTR(p.product_detail) AS product_detail,p.price,c.product_count,(p.price*c.product_count) AS total
+FROM juiceta_cart c
+INNER JOIN juiceta_product p ON c.product_no=p.product_no
+WHERE id='jtest3';
 
-
-
-
+-- 장바구니 상품 총 합계금액
+SELECT SUM(p.price*c.product_count) AS cart_total
+FROM juiceta_cart c
+INNER JOIN juiceta_product p ON c.product_no=p.product_no
+WHERE id='jtest3';
 
 
 

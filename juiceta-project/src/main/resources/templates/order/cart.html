@@ -28,15 +28,15 @@
 					      </tr>
 					    </thead>
 					    
-					    <tbody th:each="productVO:${productAllList}">
+					    <tbody th:each="cart:${cartAllList}">
    					      <tr class="text-center">
-					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${productVO.productNo}"></span></a></td>
-					        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${productVO.image}" class="img-fluid" alt="Colorlib Template"></div></td>
+					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
+					        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
 					        <td class="product-name">
-					        	<h3 th:text="${productVO.productName}">상품명</h3>
-					        	<p th:text="${productVO.productDetail}">상품상세설명</p>
+					        	<h3 th:text="${cart.PRODUCT_NAME}">상품명</h3>
+					        	<p th:text="${cart.PRODUCT_DETAIL}">상품상세설명</p>
 					        </td>	
-					        <td class="price" th:text="${productVO.price}" th:value="${productVO.price}">상품가격</td>		
+					        <td class="price" th:text="${cart.PRICE}">상품가격</td>		
     					    <td class="quantity">
 					        	<div class="input-group mb-3">
 									<span class="input-group-btn mr-2">
@@ -44,7 +44,7 @@
 			                 				<i class="ion-ios-remove"></i>
 			              				</button>
 			          				</span>
-			           				<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="5">
+			           				<input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="5">
 			           				<span class="input-group-btn ml-2">
 			              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 			                   				<i class="ion-ios-add"></i>
@@ -52,8 +52,7 @@
 			           				</span>
 			        			</div>		     
 				          	</td>	
-					        <!-- <td class="total" th:text="${productVO.price * 1}">(상품가격*수량)합계</td> -->
-					        <td class="total" id="totalResult"></td>
+					        <td class="total" th:text="${cart.TOTAL}"></td>
 					      </tr>
 					    </tbody>
 					  </table>
@@ -66,12 +65,13 @@
   					<h3>Cart Totals</h3>
   					<hr>
   					<p class="d-flex total-price">
-  						<span th:text="${totalPrice}"원></span>
+  						<span>&#8361; </span><span id="cartTotal" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
   			</div>
   		</div>
+  		
     	<script type="text/javascript">
 	    	$(document).ready(function() {
 				$(".deleteBtn").click(function() {
@@ -84,40 +84,58 @@
 				});
 			});
     	</script>
+    	
     	<script type="text/javascript">
-			$(document).ready(function(){
-				let quantitiy=0;
-				$(".quantity-right-plus").click(function(e){	        
-			   		e.preventDefault();
-			   		quantity = parseInt($(this).parent().prev().val());			 
-			        alert(parseInt($(this).parent().parent().parent().prev().parent().val()));	
+    		$(document).ready(function() {
+    			let quantitiy = 0;
+    			let price = 0;
+    			let total = 0;
+    			
+    			$(".quantity-right-plus").click(function(e){
+    				alert($(this).parent().prev().prev().parent().parent().prev().prev().text());
+					// Stop acting like a button
+			        e.preventDefault();
+			        // Get the field name
+			        quantity = parseInt($(this).parent().prev().val());        
+			        // If is not undefined  
 			        $(this).parent().prev().val(quantity + 1);
-				 		$.ajax({
-				 			type:"get",
-							url:"/CartCountAjax",
-							data:"quantity="+parseInt($(this).parent().prev().val()),
-							success:function(result){
-								
-							}
-				 		});
-				    });
-		     	$(".quantity-left-minus").click(function(e){
-		        	e.preventDefault();
-		        	quantity = parseInt($(this).parent().next().val());	
+			        // Increment
+			        
+			        price = Number($(this).parent().prev().prev().parent().parent().prev().text());
+			        total = price*(quantity + 1);
+			        $(this).parent().parent().parent().next().text(total);
+			        
+			        let cartTotal = 0;
+				     $(".total").each(function(){
+				    	 cartTotal += Number($(this).text());			    	
+				     });
+				     $("#cartTotal").text(cartTotal);
+			    });
+    			
+			     $(".quantity-left-minus").click(function(e){
+				        // Stop acting like a button
+				        e.preventDefault();
+				        // Get the field name
+				        quantity = parseInt($(this).parent().next().val());
+				        // If is not undefined
+			            // Increment
+			            if(quantity>0){
+			            	$(this).parent().next().val(quantity - 1);
+			            }
+				        
+				        price = Number($(this).parent().parent().parent().prev().text());
+				        total = price*(quantity - 1);
+				        $(this).parent().next().next().parent().parent().next().text(total);		
+				        
+				        let cartTotal = 0;			        
+					     $(".total").each(function(){
+					    	cartTotal += Number($(this).text());
+					     });
+					     $("#cartTotal").text(cartTotal);
+		    	 });
 
-		        	if(quantity>0){
-		            	$(this).parent().next().val(quantity-1);
-		            	$.ajax({
-		            		type:"get",
-							url:"/CartCountAjax",
-							data:"quantity="+parseInt($(this).parent().next().val()),
-							success:function(result){
-								alert(result)
-							}
-		            	})
-		            }
-		    	});
-			});
+    		});
     	</script>
+   
 	</div>
 </html>

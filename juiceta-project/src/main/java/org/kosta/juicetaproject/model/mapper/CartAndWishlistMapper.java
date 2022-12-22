@@ -19,7 +19,7 @@ public interface CartAndWishlistMapper {
 
 	int getTotalCartById(String id); // 상품에 담긴 총 개수 
 
-	List<ProductVO> findCartAllListById(String id); // 장바구니에 장바구니에 담긴 목록 출력 
+	List<Map<String, Object>> findCartAllListById(String id); // 장바구니에 장바구니에 담긴 목록 출력 
 
 	int countCartById(String id); // 장바구니에 담긴 상품 카운트 개수 
 

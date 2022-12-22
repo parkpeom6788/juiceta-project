@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
@@ -13,7 +14,7 @@ public interface CartAndWishlistService {
 
 	int getTotalCartById(String id);
 
-	List<ProductVO> findCartAllListById(String id);
+	List<Map<String, Object>> findCartAllListById(String id);
 
 	List<ProductVO> findWishlistById(String id);
 
