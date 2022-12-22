@@ -16,4 +16,8 @@ public interface OrderService {
 
 	Map<String, Object> findOrderListByIdPagination(String pageNo, String id);
 	
+	OrderVO findOrderInfoByOrderNo(int orderNo);
+	
+	List<Map<String, Object>> findOrderTotalPriceInfoByOrderNo(int orderNo);
+	
 }

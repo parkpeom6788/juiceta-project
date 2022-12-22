@@ -226,8 +226,28 @@ SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiv
 FROM juiceta_order 
 WHERE id='java189';
 
--- 주문번호로 
+-- 주문번호에 대해 주문번호 주문날짜 배송주소를 출력하는 SQL
+SELECT order_no,TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time,receiver_address
+FROM juiceta_order 
+WHERE order_no=43;
+
+-- 주문번호를 통해 상품명,주문수량,총합계를 출력하는 SQL
+SELECT p.product_name,d.order_count,p.price
+FROM juiceta_order_detail d
+INNER JOIN juiceta_product p ON p.product_no=d.product_no
+WHERE p.product_no =326 AND d.order_no=1;
+
+-- SubQuery 를 이용해 주문한제품의 총가격까지 구하는 SQL
+SELECT product_name,order_count,(price*order_count) AS total
+FROM (
+SELECT p.product_name,d.order_count,p.price
+FROM juiceta_order_detail d
+INNER JOIN juiceta_product p ON p.product_no=d.product_no
+WHERE d.order_no=1
+)
+
 commit
+
 
 
 

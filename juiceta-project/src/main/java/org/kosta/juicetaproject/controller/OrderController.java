@@ -27,8 +27,9 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderDetail")
-	//@AuthenticationPrincipal MemberVO memberVO 시큐리티 적용시 세션을 찾아주는 역할
-	public String orderDetail() {
+	public String orderDetail(Model model,int orderNo) {
+		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
+		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
 		return "order/order-detail";
 	}
 	
@@ -43,6 +44,10 @@ public class OrderController {
 	public String placeAnOrderResult(int orderNo, Model model) {
 		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
+	}
+	@RequestMapping("reviewForm")
+	public String reviewForm() {
+		return "order/review-form";
 	}
 }
 

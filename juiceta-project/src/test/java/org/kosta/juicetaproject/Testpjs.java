@@ -1,6 +1,5 @@
 package org.kosta.juicetaproject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,13 +103,19 @@ class Testpjs {
 		int result=productMapper.findCountProductByKeyword(keyword);
 		System.out.println(result);
 	}
+	//주문번호에 대해 주문번호 주문날짜 배송주소를 출력
 	@Test
-	void findOrderDetailListById() {
-		String id="java189";
-		ArrayList<OrderVO> detailList = orderMapper.findOrderDetailListById(id);
-		for(OrderVO ovo:detailList) {
-			System.out.println(ovo);
-		}
+	void findOrderInfoByOrderNo() {
+		int orderNo=43;
+		OrderVO orderVO=orderMapper.findOrderInfoByOrderNo(orderNo);
+		System.out.println(orderVO);
+	}
+	//주문번호를 통해 상품명,주문수량,총합계를 출력
+	@Test
+	void findOrderTotalPriceInfoByOrderNo() {
+		int orderNo=1;
+		List<Map<String, Object>> list=orderMapper.findOrderTotalPriceInfoByOrderNo(orderNo);
+		System.out.println(list);
 	}
 }
 
