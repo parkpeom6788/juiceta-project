@@ -27,11 +27,9 @@ public class OrderController {
 	}
 
 	@RequestMapping("orderDetail")
-	public String orderDetail(Model model,int orderNo,@AuthenticationPrincipal MemberVO memberVO,int productNo) {
+	public String orderDetail(Model model,int orderNo) {
 		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
 		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
-		model.addAttribute("review",orderService.findTotalCountReview(memberVO.getId(), orderNo, productNo));
-		System.out.println(orderService.findTotalCountReview(memberVO.getId(), orderNo, productNo));
 		return "order/order-detail";
 	}
 	

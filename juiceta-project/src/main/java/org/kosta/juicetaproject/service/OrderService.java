@@ -20,6 +20,4 @@ public interface OrderService {
 	
 	List<Map<String, Object>> findOrderTotalPriceInfoByOrderNo(int orderNo);
 	
-	int findTotalCountReview(String id, int orderNo, int productNo);
-	
 }
