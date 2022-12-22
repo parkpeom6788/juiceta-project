@@ -27,6 +27,7 @@
 					        <th>Total</th>
 					      </tr>
 					    </thead>
+					    
 					    <tbody th:each="productVO:${productAllList}">
    					      <tr class="text-center">
 					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${productVO.productNo}"></span></a></td>
@@ -35,7 +36,7 @@
 					        	<h3 th:text="${productVO.productName}">상품명</h3>
 					        	<p th:text="${productVO.productDetail}">상품상세설명</p>
 					        </td>	
-					        <td class="price" th:text="${productVO.price}">상품가격</td>		
+					        <td class="price" th:text="${productVO.price}" th:value="${productVO.price}">상품가격</td>		
     					    <td class="quantity">
 					        	<div class="input-group mb-3">
 									<span class="input-group-btn mr-2">
@@ -49,10 +50,10 @@
 			                   				<i class="ion-ios-add"></i>
 			               				</button>
 			           				</span>
-			        			</div>
+			        			</div>		     
 				          	</td>	
-					        <td class="total" th:text="${productVO.price * 1}">(상품가격*수량)합계</td>
-					        <span id="findIdResult"></span>
+					        <!-- <td class="total" th:text="${productVO.price * 1}">(상품가격*수량)합계</td> -->
+					        <td class="total" id="totalResult"></td>
 					      </tr>
 					    </tbody>
 					  </table>
@@ -86,33 +87,32 @@
     	<script type="text/javascript">
 			$(document).ready(function(){
 				let quantitiy=0;
-				
-			   	$(".quantity-right-plus").click(function(e){	        
-			        e.preventDefault();
-			        quantity = parseInt($(this).parent().prev().val());			 
-			 		$(this).parent().prev().val(quantity + 1);
+				$(".quantity-right-plus").click(function(e){	        
+			   		e.preventDefault();
+			   		quantity = parseInt($(this).parent().prev().val());			 
+			        alert(parseInt($(this).parent().parent().parent().prev().parent().val()));	
+			        $(this).parent().prev().val(quantity + 1);
 				 		$.ajax({
 				 			type:"get",
 							url:"/CartCountAjax",
-							/* data:"quantity="+$(".quantity-right-plus").val(), */
 							data:"quantity="+parseInt($(this).parent().prev().val()),
 							success:function(result){
-								alert(result)
-								/* $("#findIdResult").html("result"); */
+								
 							}
 				 		});
 				    });
 		     	$(".quantity-left-minus").click(function(e){
 		        	e.preventDefault();
-		        	quantity = parseInt($(this).parent().next().val());			        
-		            if(quantity>0){
-		            	$(this).parent().next().val(quantity - 1);
+		        	quantity = parseInt($(this).parent().next().val());	
+
+		        	if(quantity>0){
+		            	$(this).parent().next().val(quantity-1);
 		            	$.ajax({
 		            		type:"get",
 							url:"/CartCountAjax",
-							data:"quantity="+$(".quantity-left-minus").val(),
+							data:"quantity="+parseInt($(this).parent().next().val()),
 							success:function(result){
-								alert("빼기");
+								alert(result)
 							}
 		            	})
 		            }
