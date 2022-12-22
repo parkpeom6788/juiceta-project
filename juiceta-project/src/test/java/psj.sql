@@ -38,8 +38,13 @@ CREATE TABLE juiceta_review(
 )
 CREATE SEQUENCE juiceta_review_seq;
 SELECT * FROM juiceta_review;
+
 -- 아이디,주문번호,제품번호로 작성한 리뷰 갯수 출력 SQL (리뷰작성 O = 1 , 리뷰작성 X = 0)
 SELECT COUNT(*) FROM juiceta_review WHERE id='jtest3' AND order_no=5 AND product_no=326;
+
+-- 아이디,리뷰번호로 작성한 리뷰 갯수 출력
+SELECT COUNT(*) FROM juiceta_review WHERE id='jtest3' AND review_no=2;
+
 
 -- 문의사항 ( check_answer 미답변 0 답변 1 )
 CREATE TABLE juiceta_question(
@@ -189,6 +194,7 @@ FROM juiceta_product
 AND rnum BETWEEN 1 AND 11
 ORDER BY rnum DESC
 
+SELECT * FROM juiceta_product
 -- 페이지네이션을 적용한 전체정보 출력 SQL
 SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
 FROM(
@@ -240,9 +246,9 @@ INNER JOIN juiceta_product p ON p.product_no=d.product_no
 WHERE p.product_no =326 AND d.order_no=1;
 
 -- SubQuery 를 이용해 주문한제품의 총가격까지 구하는 SQL
-SELECT product_name,order_count,(price*order_count) AS total
+SELECT product_no,product_name,order_count,(price*order_count) AS total
 FROM (
-SELECT p.product_name,d.order_count,p.price
+SELECT p.product_no,p.product_name,d.order_count,p.price
 FROM juiceta_order_detail d
 INNER JOIN juiceta_product p ON p.product_no=d.product_no
 WHERE d.order_no=1

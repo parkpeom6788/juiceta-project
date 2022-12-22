@@ -67,6 +67,12 @@ public class ProductController {
 		if(pageNo==null) {
 			pageNo="1";
 		}
+		if(productKeyword=="") {
+			Map<String, Object> paging = productService.productAllListByRnum(pageNo);
+			model.addAttribute("productList", paging.get("LIST"));
+			model.addAttribute("pagination", paging.get("PAGINATION"));
+			return "product/product-list";
+		}
 		Map<String, Object> paging=productService.findProductListByKeyword(productKeyword,pageNo);
 		model.addAttribute("productList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
