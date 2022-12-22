@@ -7,7 +7,6 @@ import java.util.Map;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
-import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -20,15 +19,21 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Map<String, Object> findProductAllList(String pageNo){
 		int totalProductCount = productMapper.getTotalProductCount();
-		ShopPagination shopPagination = null;
+		Pagination pagination = null;
 		if(pageNo==null)
-			shopPagination = new ShopPagination(totalProductCount);
+			pagination = new Pagination(totalProductCount);
 		else
-			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+		
+		pagination.setPostCountPerPage(8);
 		
 		Map<String, Object> paging = new HashMap<>();
-		paging.put("LIST", productMapper.findShopProductAllList(shopPagination));
-		paging.put("PAGINATION", shopPagination);
+		paging.put("LIST", productMapper.findShopProductAllList(pagination));
+		
+		if(totalProductCount==0)
+			pagination = null;
+		
+		paging.put("PAGINATION", pagination);
 		
 		return paging;
 	}
@@ -46,19 +51,25 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public Map<String, Object> findProductAllListByCategory(String category, String pageNo) {
 		int totalProductCount = productMapper.getTotalProductCountbyCategory(category);
-		ShopPagination shopPagination = null;
+		Pagination pagination = null;
 		if(pageNo==null)
-			shopPagination = new ShopPagination(totalProductCount);
+			pagination = new Pagination(totalProductCount);
 		else
-			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
+		
+		pagination.setPostCountPerPage(8);
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("PAGINATION", shopPagination);
+		map.put("PAGINATION", pagination);
 		map.put("CATEGORY", category);
 		
 		Map<String, Object> paging = new HashMap<>();
 		paging.put("LIST", productMapper.findProductAllListByCategory(map));
-		paging.put("PAGINATION", shopPagination);
+		
+		if(totalProductCount==0)
+			pagination = null;
+		
+		paging.put("PAGINATION", pagination);
 		
 		return paging;
 	}
@@ -89,28 +100,34 @@ public class ProductServiceImpl implements ProductService {
 		}
 		Map<String, Object> paging = new HashMap<>();
 		paging.put("LIST", productMapper.findAllProduct(pagination));
+		
+		if(totalCount==0)
+			pagination = null;
+		
 		paging.put("PAGINATION", pagination);
 		return paging;
 	}
 
 	@Override
 	public Map<String, Object> findProductListByKeyword(String productKeyword,String pageNo) {
-		
-		int totalProductCount =productMapper.findCountProductByKeyword(productKeyword);//
-		Pagination pagination = null;
-		
+		int totalProductCount =productMapper.findCountProductByKeyword(productKeyword);
+		Pagination pagination = null;	
 		if(pageNo=="")
 			pagination = new Pagination(totalProductCount);
 		else {
 			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
 		}
+		
 		Map<String, Object> map = new HashMap<>();
 		map.put("PAGINATION", pagination);
 		map.put("KEYWORD",productKeyword);
 		
-		List<ProductVO> list = productMapper.findProductListByKeyword(map);
 		Map<String, Object> paging =new HashMap<>();
-		paging.put("LIST", list);
+		paging.put("LIST", productMapper.findProductListByKeyword(map));
+		
+		if(totalProductCount==0)
+			pagination = null;
+		
 		paging.put("PAGINATION", pagination);
 		return paging;
 	}
@@ -126,23 +143,3 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

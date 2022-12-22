@@ -62,6 +62,10 @@ public class OrderServiceImpl implements OrderService {
 
 		Map<String, Object> paging = new HashMap<>();
 		paging.put("LIST", orderMapper.findOrderListByIdPagination(map));
+		
+		if(totalOrder==0)
+			pagination = null;
+		
 		paging.put("PAGINATION", pagination);
 
 		return paging;

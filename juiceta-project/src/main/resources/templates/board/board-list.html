@@ -31,6 +31,9 @@
 		<th:block sec:authorize="hasRole('ROLE_ADMIN')">
 		<button style="float: right;" onclick="location.href='boardWriteForm'" class="btn btn-outline-success">글 작성</button>
 		</th:block>
+		
+		<!--/* pagination 부분 */-->
+		<th:block th:if="${pagination}!=null">
 		<div class="row mt-5">
           <div class="col text-center">
             <div class="block-27">
@@ -45,5 +48,7 @@
             </div>
           </div>
         </div>
+        </th:block>
+        <!--/* pagination 부분 */-->
 	</div>
 </html>

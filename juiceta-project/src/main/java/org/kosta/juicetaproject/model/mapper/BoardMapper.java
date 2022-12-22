@@ -3,13 +3,13 @@ package org.kosta.juicetaproject.model.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.kosta.juicetaproject.model.vo.BoardPagination;
 import org.kosta.juicetaproject.model.vo.BoardVO;
+import org.kosta.juicetaproject.model.vo.Pagination;
 
 @Mapper
 public interface BoardMapper {
 
-	List<BoardVO> findBoardAllList(BoardPagination boardPagination);
+	List<BoardVO> findBoardAllList(Pagination pagination);
 
 	BoardVO boardDetail(int No);
 

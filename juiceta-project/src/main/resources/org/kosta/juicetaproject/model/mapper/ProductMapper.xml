@@ -19,7 +19,7 @@
 		SELECT COUNT(*) FROM juiceta_product
 	</select>
 	
-	<select id="findShopProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO" parameterType="org.kosta.juicetaproject.model.vo.ShopPagination">
+	<select id="findShopProductAllList" resultType="org.kosta.juicetaproject.model.vo.ProductVO" parameterType="org.kosta.juicetaproject.model.vo.Pagination">
 		SELECT rnum,product_no,product_name,price,product_count,product_detail,image,category
 		FROM(
 			SELECT ROW_NUMBER() OVER(ORDER BY product_no DESC) AS rnum,product_no,product_name,price,product_count,product_detail,image,category
