@@ -5,8 +5,10 @@ import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
+import org.kosta.juicetaproject.model.vo.ReviewVO;
 import org.kosta.juicetaproject.service.ProductService;
 import org.kosta.juicetaproject.service.QuestionService;
+import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 public class ProductController {
 	private final ProductService productService;
 	private final QuestionService QuestionService;
+	private final ReviewService reviewService;
 	
 	// 상품 상세 페이지로 이동 
 	@RequestMapping("/guest/DetailView")
@@ -26,6 +29,10 @@ public class ProductController {
 		// 상품상세정보
 		ProductVO productVO = productService.findProductByProductNo(productNo);
 		model.addAttribute("productVO", productVO);
+		
+		// 상품후기
+		List<ReviewVO> reviewList = reviewService.findReviewListByProductNo(productNo);
+		model.addAttribute("reviewList", reviewList);
 		
 		// 문의사항 게시판
 		List<QuestionVO> questionAllList= QuestionService.findQuestionAllListByProductNo(productNo);

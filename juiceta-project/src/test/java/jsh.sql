@@ -145,9 +145,22 @@ COMMIT
 	SELECT * FROM juiceta_order WHERE id='jtest3';
 	SELECT COUNT(*) FROM juiceta_order WHERE id='jtest3';
 
+-- 리뷰작성
+SELECT review_no,review_content,star,review_time,id,order_no,product_no FROM juiceta_review;
 
+SELECT * FROM juiceta_order WHERE id='jtest3';
 
+SELECT d. order_no, d.product_no FROM juiceta_order_detail d
+INNER JOIN juiceta_order o ON o.order_no=d.order_no 
+WHERE o.id='jtest3';
 
+INSERT INTO juiceta_review(review_no,review_content,star,review_time,id,order_no,product_no)
+VALUES(juiceta_review_seq.nextval,'맛있었어요~',4,SYSDATE,'jtest3',4,332);
+
+COMMIT
+
+-- 상품번호로 리뷰 조회 : 회원아이디, 상세리뷰글, 별점, 작성일
+SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_no=332;
 
 
 

@@ -10,10 +10,13 @@ import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.MemberMapper;
 import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.mapper.ReviewMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
+import org.kosta.juicetaproject.model.vo.OrderDetailVO;
 import org.kosta.juicetaproject.model.vo.OrderVO;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
+import org.kosta.juicetaproject.model.vo.ReviewVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -23,14 +26,16 @@ class Testjsh {
 	private final MemberMapper memberMapper;
 	private final CartAndWishlistMapper cartAndWishlistMapper;
 	private final OrderMapper orderMapper;
+	private final ReviewMapper reviewMapper;
 
 	@Autowired
-	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper, CartAndWishlistMapper cartAndWishlistMapper, OrderMapper orderMapper) {
+	public Testjsh(ProductMapper productMapper, MemberMapper memberMapper, CartAndWishlistMapper cartAndWishlistMapper, OrderMapper orderMapper, ReviewMapper reviewMapper) {
 		super();
 		this.productMapper = productMapper;
 		this.memberMapper = memberMapper;
 		this.cartAndWishlistMapper = cartAndWishlistMapper;
 		this.orderMapper = orderMapper;
+		this.reviewMapper = reviewMapper;
 	}
 
 	@Test
@@ -214,6 +219,32 @@ class Testjsh {
 			System.out.println(m.get("ORDER_TIME"));
 			System.out.println(m.get("TOTAL_PRICE"));
 		}
+	}
+	
+	@Test
+	void registerReview() {
+		MemberVO memberVO = new MemberVO();
+		memberVO.setId("jtest3");
+		OrderVO orderVO = new OrderVO();
+		orderVO.setOrderNo(5);
+		ProductVO productVO = new ProductVO();
+		productVO.setProductNo(326);
+		OrderDetailVO orderDetailVO = new OrderDetailVO();
+		orderDetailVO.setOrderVO(orderVO);
+		orderDetailVO.setProductVO(productVO);
+		
+		ReviewVO reviewVO = ReviewVO.builder().reviewContent("굉장히 맛있어요~^^").star(4).memberVO(memberVO).orderDetailVO(orderDetailVO).build();
+		
+		reviewMapper.registerReview(reviewVO);
+		System.out.println("실행");
+	}
+	
+	@Test
+	void findReviewListByProductNo() {
+		int productNo = 332;
+		List<ReviewVO> list = reviewMapper.findReviewListByProductNo(productNo);
+		for(ReviewVO vo : list)
+			System.out.println(vo);
 	}
 
 }

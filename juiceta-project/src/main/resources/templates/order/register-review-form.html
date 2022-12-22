@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+><!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>register-review-form</title>
+</head>
+	<div layout:fragment="content" class="container">
+		<div align="center">	
+			<h1>Review</h1>
+			<span>상품번호</span>&nbsp;<span>상품번호</span>&nbsp;&nbsp;<span>상품명</span>&nbsp;<span>상품명</span>&nbsp;&nbsp;<span>주문날짜</span>&nbsp;<span>주문날짜</span><br>
+			<form action="#" id="registerReviewForm" method="post">
+				<!--/* 별점 */-->
+				<div class="star-rating">
+				  <input type="radio" id="5-stars" name="rating" value=5 />
+				  <label for="5-stars" class="star">&#9733;</label>
+				  <input type="radio" id="4-stars" name="rating" value=4 />
+				  <label for="4-stars" class="star">&#9733;</label>
+				  <input type="radio" id="3-stars" name="rating" value=3 />
+				  <label for="3-stars" class="star">&#9733;</label>
+				  <input type="radio" id="2-stars" name="rating" value=2 />
+				  <label for="2-stars" class="star">&#9733;</label>
+				  <input type="radio" id="1-star" name="rating" value=1 />
+				  <label for="1-star" class="star">&#9733;</label>
+				</div><br>
+				<textarea cols="100" rows="10" id="reviewContent" name="reviewContent" placeholder="리뷰를 작성해주세요" required="required"></textarea><br>
+				<button type="reset" class="btn btn-outline-danger">취소</button>
+				<button type="button" id="registerReviewBtn" class="btn btn-outline-success">등록</button>
+			</form>
+		</div>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				let star = 0;
+				$(".star").click(function() {
+					star = $(this).prev().val();
+				});
+				
+				$("#registerReviewBtn").click(function() {
+					let reviewContent = $("reviewContent");
+					
+					if($("#reviewContent").val().trim()==""){
+						alert("리뷰를 작성해주세요");
+						reviewContent.val("").focus();
+						return false;
+					}
+					
+					if(star==0){
+						alert("별점을 선택해주세요");
+						return false;
+					}
+					
+					$("#registerReviewForm").submit();
+				});		
+			});
+		</script>
+	</div>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
