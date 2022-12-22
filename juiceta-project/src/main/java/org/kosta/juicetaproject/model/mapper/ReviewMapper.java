@@ -12,5 +12,9 @@ public interface ReviewMapper {
 
 	List<ReviewVO> findReviewListByProductNo(int productNo);
 
+	String findProductNameForReviewByProductNo(int productNo);
+
+	String findOrderTimeForReviewByOrderNo(int orderNo);
+
 
 }

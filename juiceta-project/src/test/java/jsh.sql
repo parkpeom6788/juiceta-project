@@ -162,7 +162,9 @@ COMMIT
 -- 상품번호로 리뷰 조회 : 회원아이디, 상세리뷰글, 별점, 작성일
 SELECT id, review_content, star, review_time FROM juiceta_review WHERE product_no=332;
 
-
+-- 리뷰작성 : 상품번호, 상품명, 주문날짜 (내가 아는 건 orderNo, productNo)
+SELECT product_name FROM juiceta_product WHERE product_no=332;
+SELECT TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time FROM juiceta_order WHERE order_no=1;
 
 
 

@@ -45,10 +45,7 @@ public class OrderController {
 		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
 	}
-	@RequestMapping("reviewForm")
-	public String reviewForm() {
-		return "order/review-form";
-	}
+
 }
 
 

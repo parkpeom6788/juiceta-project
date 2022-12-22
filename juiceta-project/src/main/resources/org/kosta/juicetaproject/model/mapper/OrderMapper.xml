@@ -76,12 +76,12 @@
 	</select>
 	
 	<select id="findOrderTotalPriceInfoByOrderNo" parameterType="int" resultType="map">
-		SELECT product_name,order_count,(price*order_count) AS total
+		SELECT product_no,product_name,order_count,(price*order_count) AS total
 		FROM (
-		SELECT p.product_name,d.order_count,p.price
-		FROM juiceta_order_detail d
-		INNER JOIN juiceta_product p ON p.product_no=d.product_no
-		WHERE d.order_no=#{value}
+			SELECT d.product_no,p.product_name,d.order_count,p.price
+			FROM juiceta_order_detail d
+			INNER JOIN juiceta_product p ON p.product_no=d.product_no
+			WHERE d.order_no=#{value}
 		)
 	</select>
 </mapper>

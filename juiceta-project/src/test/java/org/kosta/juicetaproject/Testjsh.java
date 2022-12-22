@@ -246,6 +246,19 @@ class Testjsh {
 		for(ReviewVO vo : list)
 			System.out.println(vo);
 	}
+	
+	@Test
+	void findOrderInfoForReviewByOrderNoAndProductNo() {
+		int orderNo = 1;
+		int productNo = 332;
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("PRODUCT_NAME", reviewMapper.findProductNameForReviewByProductNo(productNo));
+		map.put("ORDER_TIME", reviewMapper.findOrderTimeForReviewByOrderNo(orderNo));
+		
+		System.out.println(map.get("PRODUCT_NAME"));
+		System.out.println(map.get("ORDER_TIME"));
+	}
 
 }
 
