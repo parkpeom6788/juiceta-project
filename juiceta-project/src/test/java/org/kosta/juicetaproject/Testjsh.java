@@ -14,7 +14,6 @@ import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.OrderVO;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
-import org.kosta.juicetaproject.model.vo.ShopPagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -43,14 +42,14 @@ class Testjsh {
 	void findProductAllList() {
 		int totalProductCount = productMapper.getTotalProductCount();
 		String pageNo = "";
-		ShopPagination shopPagination = null;
+		Pagination pagination = null;
 		
 		if(pageNo=="")
-			shopPagination = new ShopPagination(totalProductCount);
+			pagination = new Pagination(totalProductCount);
 		else
-			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
 
-		List<ProductVO> list = productMapper.findShopProductAllList(shopPagination);
+		List<ProductVO> list = productMapper.findShopProductAllList(pagination);
 		for(ProductVO vo : list)
 			System.out.println(vo);
 	}
@@ -59,16 +58,16 @@ class Testjsh {
 	void findProductAllListByCateory() {
 		int totalProductCount = productMapper.getTotalProductCount();
 		String pageNo = "";
-		ShopPagination shopPagination = null;
+		Pagination pagination = null;
 		
 		if(pageNo=="")
-			shopPagination = new ShopPagination(totalProductCount);
+			pagination = new Pagination(totalProductCount);
 		else
-			shopPagination = new ShopPagination(Integer.parseInt(pageNo), totalProductCount);
+			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
 		
 		String category = "Tea";
 		Map<String, Object> map = new HashMap<>();
-		map.put("PAGINATION", shopPagination);
+		map.put("PAGINATION", pagination);
 		map.put("CATEGORY", category);
 		
 		List<ProductVO> list = productMapper.findProductAllListByCategory(map);

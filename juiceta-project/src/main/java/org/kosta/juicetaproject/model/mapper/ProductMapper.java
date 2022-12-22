@@ -6,14 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
-import org.kosta.juicetaproject.model.vo.ShopPagination;
 
 @Mapper
 public interface ProductMapper {
 
 	int getTotalProductCount();
 	
-	List<ProductVO> findShopProductAllList(ShopPagination shopPagination);
+	List<ProductVO> findShopProductAllList(Pagination pagination);
 	
 	ProductVO findProductByProductNo(int productNo);
 	

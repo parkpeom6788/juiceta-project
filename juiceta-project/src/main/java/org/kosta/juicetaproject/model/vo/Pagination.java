@@ -19,7 +19,11 @@ public class Pagination{
 	public int getNowPage() { // 현재페이지
 		return nowPage;
 	}
-	
+
+	public void setPostCountPerPage(int postCountPerPage) {
+		this.postCountPerPage = postCountPerPage;
+	}
+
 	public int getStartRowNumber() { // 시작번호
 		return (this.nowPage-1)*this.postCountPerPage+1;
 		// (현재페이지-1) * 페이지당 게시물수 +1 

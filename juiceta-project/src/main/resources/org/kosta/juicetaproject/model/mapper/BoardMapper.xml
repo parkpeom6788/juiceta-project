@@ -7,7 +7,7 @@
 <select id="getTotalBoardCount" resultType="int">
 select count(*) from juiceta_board
 </select>
-<select id="findBoardAllList" resultType="org.kosta.juicetaproject.model.vo.BoardVO" parameterType="org.kosta.juicetaproject.model.vo.BoardPagination">
+<select id="findBoardAllList" resultType="org.kosta.juicetaproject.model.vo.BoardVO" parameterType="org.kosta.juicetaproject.model.vo.Pagination">
 		SELECT rnum,board_no,board_title,board_content,board_time, hits
 		FROM(
 		SELECT ROW_NUMBER() OVER(ORDER BY board_no DESC) AS rnum,board_no,board_title,board_content,board_time, hits

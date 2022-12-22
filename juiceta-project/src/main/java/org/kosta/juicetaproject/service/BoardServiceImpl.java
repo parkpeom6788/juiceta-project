@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.BoardMapper;
-import org.kosta.juicetaproject.model.vo.BoardPagination;
 import org.kosta.juicetaproject.model.vo.BoardVO;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,20 +17,23 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Map<String, Object> findboardAllList(String pageNo) {
 		int totalBoardCount = boardMapper.getTotalBoardCount();
-		BoardPagination boardPagination = null;
+		Pagination pagination = null;
 		if(pageNo==null)
-			boardPagination = new BoardPagination(totalBoardCount);
+			pagination = new Pagination(totalBoardCount);
 		else
-			boardPagination = new BoardPagination(Integer.parseInt(pageNo), totalBoardCount);
+			pagination = new Pagination(Integer.parseInt(pageNo), totalBoardCount);
+		
+		pagination.setPostCountPerPage(10);
 		
 		Map<String, Object> paging = new HashMap<>();
-		paging.put("LIST", boardMapper.findBoardAllList(boardPagination));
-		paging.put("PAGINATION",boardPagination);
+		paging.put("LIST", boardMapper.findBoardAllList(pagination));
+		
+		if(totalBoardCount==0)
+			pagination = null;
+		
+		paging.put("PAGINATION",pagination);
 		return paging;
 	}
-//	public List<BoardVO> findProductAllList() {
-//		return boardMapper.findBoardAllList();
-//	}
 
 	@Override
 	public void registerBoard(BoardVO boardVO) {
@@ -56,7 +59,5 @@ public class BoardServiceImpl implements BoardService{
 	public void boardHitsCount(int no) {
 		boardMapper.boardHitsCount(no);
 	}
-
-	
 
 }
