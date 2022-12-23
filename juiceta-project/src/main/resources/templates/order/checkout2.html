@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>checkout</title>
+</head>
+	<div layout:fragment="content" class="container">
+		<div class="row justify-content-center">
+	    	<div class="col-xl-7 ftco-animate">
+				<form th:action="@{/placeAnOrder}" method="post" class="billing-form" id="orderForm">
+
+
+
+					<input type="hidden" name="productNo" th:value="${param.productNo}">
+					<input type="hidden" name="productCount" th:value="${param.productCount}">
+					
+					<h3 class="mb-4 billing-heading">Billing Details</h3>
+	     			<div class="row align-items-end">
+	     				<div class="col-md-6">
+	           				<div class="form-group">
+	           					<label for="firstname">Name</label>
+	             					<input type="text" class="form-control" name="receiverName" required="required">
+	           				</div>
+	         			</div>
+	          			<div class="w-100"></div>
+   				        <div class="col-md-6">
+	           				<div class="form-group">
+	           					<label for="phone">Phone</label>
+             					<input type="text" class="form-control" name="receiverPhone" required="required">
+	           				</div>
+	         			</div>
+				        <div class="w-100"></div>
+				        <div class="col-md-6">
+				           <div class="form-group">
+				           	<label for="phone">Address</label>
+				             <input type="text" class="form-control" name="receiverAddress" required="required">
+				           </div>
+				         </div>
+	          			<div class="w-100"></div>
+	       			</div>
+	     		</form>
+			</div>
+			<div class="col-xl-5">
+				<div class="row mt-5 pt-3">
+			      	<div class="col-md-12 d-flex mb-5">
+			      		<div class="cart-detail cart-total p-3 p-md-4">
+			      			<h3 class="billing-heading mb-4">Cart Total</h3>
+		 					<hr>
+		 					<p class="d-flex total-price">
+		 						<span>Total</span>
+		 						&#8361;&nbsp;&nbsp;<span th:text="${totalPrice}">총합계</span>
+		 					</p>
+						</div>
+			      	</div>
+			      	<div class="col-md-12">
+			      		<div class="cart-detail p-3 p-md-4">
+							
+							<span id="orderBtn" class="btn btn-primary py-3 px-4">Place an order</span>
+							
+							<script type="text/javascript">
+								$(document).ready(function() {
+									$("#orderBtn").click(function() {
+										$("#orderForm").submit();
+									});
+								});
+							</script>
+						</div>
+			      	</div>
+			    </div>
+	     	</div>
+    	</div>
+	</div>
+
+</html>

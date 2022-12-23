@@ -51,4 +51,6 @@
 	<delete id="deleteCartById" parameterType="map">
 		DELETE FROM juiceta_cart WHERE product_no = #{value}
 	</delete>
+	
+	
 </mapper>

@@ -68,10 +68,9 @@
   						<span>&#8361; </span><span id="cartTotal" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
-  				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+  				<p><a href="#" th:href="@{/checkoutForm2(cartTotal=${cartTotal},cartAllList=${cartAllList})}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
   			</div>
   		</div>
-  		
     	<script type="text/javascript">
 	    	$(document).ready(function() {
 				$(".deleteBtn").click(function() {

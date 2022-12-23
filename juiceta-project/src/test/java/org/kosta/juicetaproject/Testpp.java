@@ -133,4 +133,8 @@ class Testpp {
 		int price = cartAndWishlistMapper.totalCountPrice(id);
 		System.out.println(price);
 	}
+	
+	// 장바구니 담긴거 수정
+	
+	
 }

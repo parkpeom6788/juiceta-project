@@ -1,5 +1,4 @@
 package org.kosta.juicetaproject.model.vo;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class OrderDetailVO {
 	private OrderVO orderVO;
-	private ProductVO productVO;
+	private ProductVO productVO; // 카트에 주문서로 가져온걸 insert 해준다 .
 	private int orderCount;
 }

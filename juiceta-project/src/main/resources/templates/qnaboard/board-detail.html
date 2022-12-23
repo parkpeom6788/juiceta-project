@@ -51,7 +51,7 @@
 			</tbody>
 				<th:block th:if="${answerVO == null}">
 						<form action="" th:action="@{/registerAnswer}" id="writeForm" method="post">
-							<p><textarea cols="50" rows="10" name="answerContent"></textarea></p>
+							<p><textarea cols="50" rows="10" name="answerContent" sec:authorize="hasRole('ROLE_ADMIN')"></textarea></p>
 							<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
 								<button type="reset" sec:authorize="hasRole('ROLE_ADMIN')">취소(관리자)</button>
 								<button type="submit" id="registerBtn" sec:authorize="hasRole('ROLE_ADMIN')">등록(관리자)</button>
