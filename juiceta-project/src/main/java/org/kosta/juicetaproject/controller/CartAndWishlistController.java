@@ -1,7 +1,6 @@
 package org.kosta.juicetaproject.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;

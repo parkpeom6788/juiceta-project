@@ -26,8 +26,7 @@
 					        <th>Quantity</th>
 					        <th>Total</th>
 					      </tr>
-					    </thead>
-					    
+					    </thead>			    
 					    <tbody th:each="cart:${cartAllList}">
    					      <tr class="text-center">
 					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
@@ -54,7 +53,7 @@
 				          	</td>	
 					        <td class="total" th:text="${cart.TOTAL}"></td>
 					      </tr>
-					    </tbody>
+					    </tbody>			
 					  </table>
 		  		</div>
   			</div>
