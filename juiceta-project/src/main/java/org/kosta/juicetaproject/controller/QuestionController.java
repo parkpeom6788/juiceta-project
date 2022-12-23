@@ -5,6 +5,7 @@ import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.kosta.juicetaproject.service.ProductService;
 import org.kosta.juicetaproject.service.QuestionService;
+import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class QuestionController {
 	private final QuestionService questionService; 
 	private final ProductService productService;
+	private final ReviewService reviewService;
 		
 		// 상세페이지로 이동
 		@RequestMapping("guest/question-detail")
@@ -50,6 +52,7 @@ public class QuestionController {
 		 public String registerQuestionresultok(int productNo, Model model) {
 			 model.addAttribute("productVO", productService.findProductByProductNo(productNo));
 			 model.addAttribute("questionAllList", questionService.findQuestionAllListByProductNo(productNo));
+			 model.addAttribute("avgStar", reviewService.avgStarByProductNo(productNo));
 			 return "product/product-detail";
 		 }
 
