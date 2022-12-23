@@ -270,6 +270,13 @@ class Testjsh {
 		}
 		System.out.println(avgStar);
 	}
+	
+	@Test
+	void countProductInCartById() {
+		String id = "spring1";
+		int totalCount = cartAndWishlistMapper.countCartById(id);
+		System.out.println(totalCount);
+	}
 }
 
 

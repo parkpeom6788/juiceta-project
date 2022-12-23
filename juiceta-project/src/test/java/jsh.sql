@@ -188,11 +188,8 @@ COMMIT
 
 SELECT * FROM juiceta_customer
 
--- 장바구니에 없는 경우
-SELECT p.image, p.product_no, p.product_name,DBMS_LOB.SUBSTR(p.product_detail) AS product_detail,p.price,c.product_count,(p.price*c.product_count) AS total
-FROM juiceta_cart c
-INNER JOIN juiceta_product p ON c.product_no=p.product_no
-WHERE id='spring1';
+-- 장바구니에 상품이 없는 경우
+SELECT COUNT(*) FROM juiceta_cart c WHERE id='spring1';
 
 
 

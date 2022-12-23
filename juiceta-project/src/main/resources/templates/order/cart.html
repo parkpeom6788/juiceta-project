@@ -26,7 +26,9 @@
 					        <th>Quantity</th>
 					        <th>Total</th>
 					      </tr>
-					    </thead>			    
+					    </thead>			
+					    
+					    <th:block th:if="${cartAllList!=null}">    
 					    <tbody th:each="cart:${cartAllList}">
    					      <tr class="text-center">
 					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
@@ -53,7 +55,9 @@
 				          	</td>	
 					        <td class="total" th:text="${cart.TOTAL}"></td>
 					      </tr>
-					    </tbody>			
+					    </tbody>
+					    </th:block>
+					    			
 					  </table>
 		  		</div>
   			</div>
@@ -64,7 +68,7 @@
   					<h3>Cart Totals</h3>
   					<hr>
   					<p class="d-flex total-price">
-  						<span>&#8361; </span><span id="cartTotal" th:text="${cartTotal}">카트총합계</span>
+  						<span>&#8361; </span><span id="cartTotal" th:if="${cartTotal!=0}" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
   				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>

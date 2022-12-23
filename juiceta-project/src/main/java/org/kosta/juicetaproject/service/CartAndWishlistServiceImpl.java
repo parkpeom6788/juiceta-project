@@ -56,7 +56,11 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	
 	@Override
 	public List<Map<String, Object>> findCartAllListById(String id) {
-		return cartAndWishlistMapper.findCartAllListById(id);
+		List<Map<String, Object>> list = cartAndWishlistMapper.findCartAllListById(id);
+		int totalCount = cartAndWishlistMapper.countCartById(id);
+		if(totalCount==0)
+			list = null;
+		return list;
 	}
 	
 	@Override
@@ -76,7 +80,11 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	}
 	@Override
 	public int totalCountPrice(String id) {
-		return cartAndWishlistMapper.totalCountPrice(id);
+		int cartTotal = 0;
+		int totalCount = cartAndWishlistMapper.countCartById(id);
+		if(totalCount!=0)
+			cartTotal = cartAndWishlistMapper.totalCountPrice(id);
+		return cartTotal;
 	}
 }
 
