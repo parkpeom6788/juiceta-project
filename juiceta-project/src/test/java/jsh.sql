@@ -181,6 +181,7 @@ WHERE id='jtest3';
 -- 상품상세보기 평균별점
 SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=331;
 
+SELECT product_no, image, filepath FROM juiceta_product;
 
 
 

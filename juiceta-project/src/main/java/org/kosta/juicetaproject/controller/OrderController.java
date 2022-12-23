@@ -23,7 +23,7 @@ public class OrderController {
 	public String checkoutForm(int productNo, int productCount, Model model) {
 		ProductVO productVO = productService.findProductByProductNo(productNo);
 		model.addAttribute("totalPrice", productVO.getPrice()*productCount);
-		return "order/checkout";
+		return "order/checkout-form-single";
 	}
 
 	@RequestMapping("orderDetail")
