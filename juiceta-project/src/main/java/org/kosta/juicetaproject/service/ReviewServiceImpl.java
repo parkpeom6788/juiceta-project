@@ -50,6 +50,11 @@ public class ReviewServiceImpl implements ReviewService {
 	public int findCountByCheckReview(int orderNo, int productNo) {
 		return reviewMapper.findCountByCheckReview(orderNo, productNo);
 	}
+	
+	public int reviewCheck(int orderNo, int productNo) {
+		int check = reviewMapper.reviewCheck(orderNo, productNo);
+		return check;
+	}
 
 }
 

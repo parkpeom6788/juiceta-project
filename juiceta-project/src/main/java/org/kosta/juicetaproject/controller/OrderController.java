@@ -39,7 +39,6 @@ public class OrderController {
 	public String orderDetail(Model model,int orderNo) {
 		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
 		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
-		//model.addAttribute("wlstn",reviewService.findCountByCheckReview(orderNo, productNo));
 		return "order/order-detail";
 	}
 	

@@ -16,4 +16,6 @@ public interface ReviewService {
 	
 	int findCountByCheckReview(int orderNo, int productNo);
 
+	int reviewCheck(int orderNo, int productNo);
+
 }

@@ -1,0 +1,6 @@
+<script type="text/javascript" th:inline="javascript">
+
+let orderNo = /*[[${param.orderNo}]]*/
+alert("이미 작성하신 리뷰입니다");
+location.href="orderDetail?orderNo="+orderNo;
+</script>
