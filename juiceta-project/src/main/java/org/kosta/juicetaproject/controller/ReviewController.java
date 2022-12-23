@@ -19,9 +19,8 @@ public class ReviewController {
 	@RequestMapping("registerReviewForm")
 	public String registerReview(int orderNo, int productNo, Model model) {
 		int check = reviewService.reviewCheck(orderNo, productNo);
-		if(check>=1) {
-			
-			return "order/reviewCheckResultForm?orderNo="+orderNo;
+		if(check>=1) {			
+			return "order/reviewCheckResultForm";
 		}
 		model.addAttribute("orderInfo", reviewService.findOrderInfoForReviewByOrderNoAndProductNo(orderNo, productNo));
 		return "order/register-review-form";
