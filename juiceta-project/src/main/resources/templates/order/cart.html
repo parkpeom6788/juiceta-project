@@ -31,7 +31,7 @@
 					    <th:block th:if="${cartAllList!=null}">    
 					    <tbody th:each="cart:${cartAllList}">
    					      <tr class="text-center">
-					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
+					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close product-no" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
 					        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
 					        <td class="product-name">
 					        	<h3 th:text="${cart.PRODUCT_NAME}">상품명</h3>
@@ -45,7 +45,7 @@
 			                 				<i class="ion-ios-remove"></i>
 			              				</button>
 			          				</span>
-			           				<input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="5">
+			           				<input type="text" name="quantity" class="form-control input-number product-count" value="1" min="1" max="5">
 			           				<span class="input-group-btn ml-2">
 			              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 			                   				<i class="ion-ios-add"></i>
@@ -71,7 +71,7 @@
   						<span>&#8361; </span><span id="cartTotal" th:if="${cartTotal!=0}" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
-  				<p><a href="#" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+  				<p><a href="#" class="btn btn-primary py-3 px-4" id="checkoutBtn">Proceed to Checkout</a></p>
   			</div>
   		</div>
   		
@@ -114,7 +114,7 @@
 				     $("#cartTotal").text(cartTotal);
 			    });
     			
-			     $(".quantity-left-minus").click(function(e){
+			    $(".quantity-left-minus").click(function(e){
 				        // Stop acting like a button
 				        e.preventDefault();
 				        // Get the field name
@@ -134,10 +134,27 @@
 					    	cartTotal += Number($(this).text());
 					     });
 					     $("#cartTotal").text(cartTotal);
-		    	 });
-
+		    	 	});
+			     
+					$("#checkoutBtn").click(function() {
+						let productNoArr = [];
+						let productCountArr = [];
+						let cartTotal = $("#cartTotal").text();
+						
+						$(".product-no").each(function(){
+							productNoArr.push($(this).data("product"));
+						});
+						$(".product-count").each(function(){
+							productCountArr.push($(this).val());
+						});
+						
+						let productNo = productNoArr.join();
+						let productCount = productCountArr.join();
+						location.href="/checkoutFormFromCart?productNo="+productNo+"&productCount="+productCount+"&cartTotal="+cartTotal;
+						
+					});
     		});
-    	</script>
+   		</script>
    
 	</div>
 </html>

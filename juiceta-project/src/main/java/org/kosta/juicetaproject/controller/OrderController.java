@@ -25,6 +25,11 @@ public class OrderController {
 		model.addAttribute("totalPrice", productVO.getPrice()*productCount);
 		return "order/checkout-form-single";
 	}
+	
+	@RequestMapping("checkoutFormFromCart")
+	public String checkoutFormFromCart(String productNo,String productCount, int cartTotal) {
+		return "order/checkout-form-cart";
+	}
 
 	@RequestMapping("orderDetail")
 	public String orderDetail(Model model,int orderNo) {
@@ -44,6 +49,13 @@ public class OrderController {
 	public String placeAnOrderResult(int orderNo, Model model) {
 		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
+	}
+	
+	@PostMapping("placeAnOrderFromCart")
+	public String placeAnOrderFromCart(@AuthenticationPrincipal MemberVO memberVO, String name, String phone, String address, String productNo, String productCount) {
+		OrderVO orderVO = OrderVO.builder().receiverName(name).receiverPhone(phone).receiverAddress(address).build();
+		int orderNo = orderService.placeAnOrderFromCart(memberVO,orderVO,productNo,productCount);
+		return "redirect:placeAnOrderResult?orderNo="+orderNo;
 	}
 
 }

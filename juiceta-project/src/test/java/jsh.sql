@@ -191,8 +191,11 @@ SELECT * FROM juiceta_customer
 -- 장바구니에 상품이 없는 경우
 SELECT COUNT(*) FROM juiceta_cart c WHERE id='spring1';
 
+SELECT * FROM juiceta_order;
+SELECT * FROM juiceta_order_detail;
 
-
+-- 주문상세에 저장하기
+INSERT INTO 
 
 
 

@@ -19,5 +19,7 @@ public interface OrderService {
 	OrderVO findOrderInfoByOrderNo(int orderNo);
 	
 	List<Map<String, Object>> findOrderTotalPriceInfoByOrderNo(int orderNo);
+
+	int placeAnOrderFromCart(MemberVO memberVO, OrderVO orderVO, String productNo, String productCount);
 	
 }

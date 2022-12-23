@@ -81,8 +81,35 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.findOrderTotalPriceInfoByOrderNo(orderNo);
 	}
 
+	@Override
+	public int placeAnOrderFromCart(MemberVO memberVO, OrderVO orderVO, String productNo, String productCount) {
+		// 주문하기
+		orderVO.setMemberVO(memberVO);
+		orderMapper.placeAnOrder(orderVO);
+		
+		// 주문상세내역 
+		String[] productNoArr = productNo.split(",");
+		String[] productCountArr = productCount.split(",");
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("ORDER_NO", orderVO.getOrderNo());
+		
+		for(int i=0;i<productNoArr.length;i++) {
+			map.put("PRODUCT_NO", Integer.parseInt(productNoArr[i]));
+			map.put("PRODUCT_COUNT",  Integer.parseInt(productCountArr[i]));
+			orderMapper.placeAnOrderDetail(map);
+		}
+
+		return orderVO.getOrderNo();
+	}
 
 }
+
+		
+		
+		
+		
+
 
 
 
