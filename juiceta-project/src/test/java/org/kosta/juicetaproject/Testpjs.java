@@ -7,6 +7,7 @@ import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.OrderMapper;
 import org.kosta.juicetaproject.model.mapper.ProductMapper;
+import org.kosta.juicetaproject.model.mapper.ReviewMapper;
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.OrderDetailVO;
 import org.kosta.juicetaproject.model.vo.OrderVO;
@@ -20,11 +21,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 class Testpjs {
 	private final ProductMapper productMapper;
 	private final OrderMapper orderMapper;
+	private final ReviewMapper reviewMapper;
 	@Autowired
-	public Testpjs(ProductMapper productMapper,OrderMapper orderMapper) {
+	public Testpjs(ProductMapper productMapper,OrderMapper orderMapper,ReviewMapper reviewMapper) {
 		super();
 		this.productMapper = productMapper;
 		this.orderMapper= orderMapper;
+		this.reviewMapper=reviewMapper;
 	}
 	@Test
 	void productDetail() {
@@ -123,6 +126,13 @@ class Testpjs {
 		int orderNo=4;
 		int productNo=332;
 		int count=orderMapper.findTotalCountReview(id,orderNo,productNo);
+		System.out.println(count);
+	}
+	@Test
+	void findCountByCheckReview() {
+		int orderNo=5;
+		int productNo=326;
+		int count=reviewMapper.findCountByCheckReview(orderNo,productNo);
 		System.out.println(count);
 	}
 }

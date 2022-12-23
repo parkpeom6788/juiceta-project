@@ -257,6 +257,14 @@ INNER JOIN juiceta_product p ON p.product_no=d.product_no
 WHERE d.order_no=1
 )
 
+-- 주문번호와 상품번호로 생성된 리뷰 갯수 출력
+SELECT COUNT(*) FROM juiceta_review WHERE order_no=4 AND product_no=332;
+
+
+
+
+
+
 commit
 
 

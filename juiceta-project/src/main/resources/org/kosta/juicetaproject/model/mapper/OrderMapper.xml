@@ -89,6 +89,7 @@
 	<select id="findTotalCountReview" parameterType="map" resultType="int">
 		SELECT COUNT(*) FROM juiceta_review WHERE id=#{id} AND order_no=#{orderNo} AND product_no=#{productNo}
 	</select>
+	
 </mapper>
 
 

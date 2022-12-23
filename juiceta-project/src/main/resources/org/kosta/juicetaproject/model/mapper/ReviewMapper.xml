@@ -21,4 +21,34 @@
 	<select id="findOrderTimeForReviewByOrderNo" parameterType="int" resultType="string">
 		SELECT TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time FROM juiceta_order WHERE order_no=#{value}
 	</select>
+	
+	<select id="findCountByCheckReview" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM juiceta_review WHERE order_no=#{orderNo} AND product_no=#{productNo}
+	</select>
+	
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

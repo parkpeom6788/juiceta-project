@@ -46,6 +46,11 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewMapper.registerReview(reviewVO);
 	}
 
+	@Override
+	public int findCountByCheckReview(int orderNo, int productNo) {
+		return reviewMapper.findCountByCheckReview(orderNo, productNo);
+	}
+
 }
 
 

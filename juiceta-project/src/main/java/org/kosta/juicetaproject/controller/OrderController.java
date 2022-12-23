@@ -5,6 +5,7 @@ import org.kosta.juicetaproject.model.vo.OrderVO;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.service.OrderService;
 import org.kosta.juicetaproject.service.ProductService;
+import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class OrderController {
 	private final ProductService productService;
 	private final OrderService orderService;
+	private final ReviewService reviewService;
 	
 	@RequestMapping("checkoutForm")
 	public String checkoutForm(int productNo, int productCount, Model model) {
@@ -30,6 +32,7 @@ public class OrderController {
 	public String orderDetail(Model model,int orderNo) {
 		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
 		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
+		//model.addAttribute("wlstn",reviewService.findCountByCheckReview(orderNo, productNo));
 		return "order/order-detail";
 	}
 	
@@ -45,7 +48,6 @@ public class OrderController {
 		model.addAttribute("orderVO", orderService.findOrderByOrderNo(orderNo));
 		return "order/checkoutResult";
 	}
-
 }
 
 
