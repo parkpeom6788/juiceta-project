@@ -46,6 +46,12 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewMapper.registerReview(reviewVO);
 	}
 
+	@Override
+	public int reviewCheck(int orderNo, int productNo) {
+		int check = reviewMapper.reviewCheck(orderNo, productNo);
+		return check;
+	}
+
 }
 
 

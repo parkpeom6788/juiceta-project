@@ -30,6 +30,7 @@ public class OrderController {
 	public String orderDetail(Model model,int orderNo) {
 		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
 		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
+		
 		return "order/order-detail";
 	}
 	
@@ -37,6 +38,7 @@ public class OrderController {
 	public String placeAnOrder(@AuthenticationPrincipal MemberVO memberVO, String name, String phone, String address, int productNo, int productCount) {
 		OrderVO orderVO = OrderVO.builder().receiverName(name).receiverPhone(phone).receiverAddress(address).build();
 		int orderNo = orderService.placeAnOrder(memberVO,orderVO,productNo,productCount);
+		
 		return "redirect:placeAnOrderResult?orderNo="+orderNo;
 	}
 	

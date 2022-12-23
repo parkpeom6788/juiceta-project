@@ -49,3 +49,6 @@ SELECT P.PRODUCT_NO,P.PRODUCT_NAME , P.PRODUCT_NAME , P.PRICE , P.PRODUCT_COUNT 
 		
 select p.product_no, product_name, p.product_detail, p.image, p.category from juiceta_product p inner join juiceta_wishlist w on p.product_no = w.product_no
 where w.id ='zzzzz';
+
+select * from juiceta_review
+select count(*) from juiceta_review where order_No=5 and product_No=326

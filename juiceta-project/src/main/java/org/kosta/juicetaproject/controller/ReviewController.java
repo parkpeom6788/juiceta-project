@@ -2,6 +2,7 @@ package org.kosta.juicetaproject.controller;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ReviewVO;
+import org.kosta.juicetaproject.service.OrderService;
 import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,11 @@ public class ReviewController {
 	
 	@RequestMapping("registerReviewForm")
 	public String registerReview(int orderNo, int productNo, Model model) {
+		int check = reviewService.reviewCheck(orderNo, productNo);
+		if(check>=1) {
+			
+			return "order/reviewCheckResultForm?orderNo="+orderNo;
+		}
 		model.addAttribute("orderInfo", reviewService.findOrderInfoForReviewByOrderNoAndProductNo(orderNo, productNo));
 		return "order/register-review-form";
 	}

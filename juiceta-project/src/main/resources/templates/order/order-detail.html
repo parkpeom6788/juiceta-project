@@ -7,7 +7,11 @@
 <head>
 	<title>order-detail</title>
 </head>
-
+	<th:block th:if="${check}>=1">
+		<script type="text/javascript">
+			alert("이미작성하신 리뷰입니다");
+	</script>
+	</th:block>
 	<div layout:fragment="content" class="container">
 		<div class="col-md-4 offset-md-4">
 		  <h2>상세주문내역</h2>

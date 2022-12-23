@@ -14,4 +14,6 @@ public interface ReviewService {
 
 	void registerReview(MemberVO memberVO, ReviewVO reviewVO, String orderNo, String productNo);
 
+	int reviewCheck(int orderNo, int productNo);
+
 }
