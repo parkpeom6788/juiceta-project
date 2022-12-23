@@ -187,6 +187,7 @@ UPDATE juiceta_product SET filepath='images/product-11.jpg' WHERE product_no BET
 COMMIT
 
 SELECT * FROM juiceta_customer
+SELECT * FROM juiceta_product;
 
 -- 장바구니에 상품이 없는 경우
 SELECT COUNT(*) FROM juiceta_cart c WHERE id='spring1';
@@ -196,6 +197,22 @@ SELECT * FROM juiceta_order_detail;
 
 -- 주문상세에 저장하기
 INSERT INTO 
+
+-- 주문 후에는 구매수량만큼 수량에서 감소시킴
+UPDATE juiceta_product SET product_count=product_count-2 WHERE product_no=64;
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
