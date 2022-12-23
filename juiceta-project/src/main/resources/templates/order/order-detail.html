@@ -20,9 +20,20 @@
 		    	<span style="display: inline-block; width: 100px; height: 30px">상품명</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="${list.PRODUCT_NAME}">상품명</span><br>
 		    	<span style="display: inline-block; width: 100px; height: 30px">주문수량</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="|${list.ORDER_COUNT}BOX|">주문수량</span><br>
 		    	<span style="display: inline-block; width: 100px; height: 30px">주문금액</span>&nbsp;&nbsp;<span style="display: inline-block; width: 200px; height: 30px" th:text="|${list.TOTAL}원|">주문금액</span><br>
-				<span style="float: right"><a href="#" th:href="@{/registerReviewForm(orderNo=${param.orderNo},productNo=${list.PRODUCT_NO})}">리뷰작성하기</a></span><br><br>
+				<span style="float: right"><a href="#" th:href="@{/registerReviewForm(orderNo=${param.orderNo},productNo=${list.PRODUCT_NO})}" id="reviewBtn" class="reviewForm">리뷰작성하기</a></span><br><br>
 			</th:block>
 		</div>
 	</div>
-
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

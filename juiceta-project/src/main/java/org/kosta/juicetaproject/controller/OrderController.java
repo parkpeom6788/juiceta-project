@@ -9,6 +9,7 @@ import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.service.CartAndWishlistService;
 import org.kosta.juicetaproject.service.OrderService;
 import org.kosta.juicetaproject.service.ProductService;
+import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +25,7 @@ public class OrderController {
 	private final ProductService productService;
 	private final OrderService orderService;
 	private final CartAndWishlistService cartAndWishlistServce;
+	private final ReviewService reviewService;
 	
 	@PostMapping("checkoutForm2")
 	public String checkoutForm2(@AuthenticationPrincipal MemberVO memberVO , Model model,int productNO,int cartTotal) {
@@ -31,6 +33,14 @@ public class OrderController {
 		// 카트정보를 업데이트 시킨다. 
 		
 		return "redirect:order/checkout2";
+	}
+
+	@RequestMapping("orderDetail")
+	public String orderDetail(Model model,int orderNo) {
+		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
+		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
+		//model.addAttribute("wlstn",reviewService.findCountByCheckReview(orderNo, productNo));
+		return "order/order-detail";
 	}
 	
 	@PostMapping("placeAnOrder")
@@ -60,12 +70,6 @@ public class OrderController {
 		return "order/checkout";
 	}
 
-	@RequestMapping("orderDetail")
-	public String orderDetail(Model model,int orderNo) {
-		model.addAttribute("orderInfo", orderService.findOrderInfoByOrderNo(orderNo));
-		model.addAttribute("list", orderService.findOrderTotalPriceInfoByOrderNo(orderNo));
-		return "order/order-detail";
-	}
 	
 	
 

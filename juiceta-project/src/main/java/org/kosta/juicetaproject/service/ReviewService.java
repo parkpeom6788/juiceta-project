@@ -13,5 +13,7 @@ public interface ReviewService {
 	Map<String, String> findOrderInfoForReviewByOrderNoAndProductNo(int orderNo, int productNo);
 
 	void registerReview(MemberVO memberVO, ReviewVO reviewVO, String orderNo, String productNo);
+	
+	int findCountByCheckReview(int orderNo, int productNo);
 
 }
