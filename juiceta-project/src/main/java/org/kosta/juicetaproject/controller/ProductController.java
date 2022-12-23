@@ -50,7 +50,6 @@ public class ProductController {
 		return "/guest/Detail";
 	}
 	
-	
 	// 상품관리 전체 리스트 조회
 	@RequestMapping("productAdmin")
 	public String productAdmin(Model model,String pageNo) {
@@ -59,8 +58,6 @@ public class ProductController {
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";
 	}
-	
-	
 	
 	// 상품관리 검색
 	@RequestMapping("productSelect")
@@ -79,8 +76,6 @@ public class ProductController {
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-list";
 	}
-	
-	
 	
 	// 상품등록 폼 제공
 	@RequestMapping("registerProductForm")

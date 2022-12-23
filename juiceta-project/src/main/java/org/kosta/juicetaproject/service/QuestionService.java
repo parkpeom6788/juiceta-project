@@ -1,6 +1,8 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
+import java.util.Map;
+
 import org.kosta.juicetaproject.model.vo.AnswerVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.stereotype.Service;
@@ -19,5 +21,8 @@ public interface QuestionService {
 	public void deleteReview(String id, int questionNo);
 	// 답변등록 
 	public void registerAnswer(AnswerVO answerVO);
+	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
+	
+	
 }

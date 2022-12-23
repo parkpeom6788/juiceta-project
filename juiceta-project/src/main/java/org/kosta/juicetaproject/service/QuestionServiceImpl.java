@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
@@ -52,4 +53,5 @@ public class QuestionServiceImpl implements QuestionService {
 	// 삭제
 	public void deleteReview(String id, int questionNo) {
 	}
+	
 }

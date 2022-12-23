@@ -142,5 +142,29 @@ SELECT * FROM JUICETA_CUSTOMER;
 
 DELETE FROM juiceta_cart WHERE id='jtest3' and product_no = '332';
 
+SELECT * FROM juiceta_question;
 
-SELECT * FROM juiceta_product;
+SELECT COUNT(*) FROM juiceta_question WHERE product_no=332;
+
+
+SELECT P.PRODUCT_NO,P.PRODUCT_NAME , P.PRODUCT_NAME , P.PRICE , P.PRODUCT_COUNT , P.PRODUCT_DETAIL , P.IMAGE , P.CATEGORY
+FROM juiceta_product P INNER JOIN juiceta_cart C ON P.PRODUCT_NO = C.PRODUCT_NO
+WHERE C.ID='jtest3';
+-- 
+SELECT rnum,product_no,product_name,price,product_count
+FROM (
+	SELECT row_number() over(ORDER BY product_no ASC) AS rnum,product_no,product_name,price
+	FROM juiceta_product
+) WHERE product_no = 332
+AND rnum BETWEEN 1 AND 11
+ORDER BY rnum DESC;
+
+SELECT rnum , QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER,ID,PRODUCT_NO
+FROM(
+	SELECT row_number() over(ORDER BY question_no DESC) AS rnum , QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
+	 ,ID,PRODUCT_NO 
+	FROM juiceta_question
+	WHERE product_no=332
+)
+WHERE rnum BETWEEN 1 AND 11 
+

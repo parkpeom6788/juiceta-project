@@ -1,6 +1,7 @@
 package org.kosta.juicetaproject.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
@@ -29,4 +30,9 @@ public interface QuestionMapper {
 	// 답변여부 0 -> 1 로 수정 
 	void updateQuestion(int questionNo);
 
+	// 상품에 대한 문의사항 개수 
+	int findQuestionCountByProductNo(int productNo);
+
+	// row number 페이징 네이션 처리
+	List<QuestionVO> findQuestionByRowNumber(Map<String, Object> map);
 }
