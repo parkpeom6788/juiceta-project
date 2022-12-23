@@ -31,6 +31,9 @@ public class OrderServiceImpl implements OrderService {
 		map.put("PRODUCT_COUNT", productCount);
 		map.put("ORDER_NO", orderVO.getOrderNo());
 		orderMapper.placeAnOrderDetail(map);
+		
+		// 주문 후 수량만큼 상품수량 감소
+		orderMapper.reduceProductCountAfterOrder(map);
 
 		return orderVO.getOrderNo();
 	}
@@ -82,6 +85,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
+	@Transactional
 	public int placeAnOrderFromCart(MemberVO memberVO, OrderVO orderVO, String productNo, String productCount) {
 		// 주문하기
 		orderVO.setMemberVO(memberVO);
@@ -98,6 +102,9 @@ public class OrderServiceImpl implements OrderService {
 			map.put("PRODUCT_NO", Integer.parseInt(productNoArr[i]));
 			map.put("PRODUCT_COUNT",  Integer.parseInt(productCountArr[i]));
 			orderMapper.placeAnOrderDetail(map);
+			
+			// 주문 후 수량만큼 상품수량 감소
+			orderMapper.reduceProductCountAfterOrder(map);
 		}
 
 		return orderVO.getOrderNo();
