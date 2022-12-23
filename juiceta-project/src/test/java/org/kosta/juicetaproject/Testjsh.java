@@ -241,7 +241,7 @@ class Testjsh {
 	
 	@Test
 	void findReviewListByProductNo() {
-		int productNo = 332;
+		int productNo = 331;
 		List<ReviewVO> list = reviewMapper.findReviewListByProductNo(productNo);
 		for(ReviewVO vo : list)
 			System.out.println(vo);
@@ -260,6 +260,23 @@ class Testjsh {
 		System.out.println(map.get("ORDER_TIME"));
 	}
 
+	@Test
+	void avgStarByProductNo() {
+		int productNo = 331;
+		int avgStar = 0;
+		List<ReviewVO> list = reviewMapper.findReviewListByProductNo(productNo);
+		if(list.size()!=0) {
+			avgStar = reviewMapper.avgStarByProductNo(productNo);
+		}
+		System.out.println(avgStar);
+	}
+	
+	@Test
+	void countProductInCartById() {
+		String id = "spring1";
+		int totalCount = cartAndWishlistMapper.countCartById(id);
+		System.out.println(totalCount);
+	}
 }
 
 

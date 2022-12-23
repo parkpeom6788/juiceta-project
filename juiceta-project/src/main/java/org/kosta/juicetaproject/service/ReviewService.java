@@ -18,4 +18,6 @@ public interface ReviewService {
 
 	int reviewCheck(int orderNo, int productNo);
 
+	int avgStarByProductNo(int productNo);
+
 }

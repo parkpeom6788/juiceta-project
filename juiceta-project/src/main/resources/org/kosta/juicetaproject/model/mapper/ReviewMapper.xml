@@ -31,5 +31,12 @@
 	<select id="reviewCheck" resultType="int" parameterType="int">
 		select count(*) from juiceta_review where order_no = #{orderNo} and product_no=#{productNo}
 	</select>
+	
+	<select id="avgStarByProductNo" parameterType="int" resultType="int">
+		SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=#{value}
+	</select>
+	
 </mapper>
+
+
 

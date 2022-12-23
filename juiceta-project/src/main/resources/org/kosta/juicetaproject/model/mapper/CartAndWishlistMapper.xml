@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper">
-	
-	<!-- <resultMap type="org.kosta.juicetaproject.model.vo.CartVO" id="cartResultMap">
-		<result column="product_no"  property="productVO.productNo"/>
-	</resultMap> -->
-	
+
 	<select id="findCartAllListById" parameterType="string" resultType="map">
 		SELECT p.image, p.product_no, p.product_name,DBMS_LOB.SUBSTR(p.product_detail) AS product_detail,p.price,c.product_count,(p.price*c.product_count) AS total
 		FROM juiceta_cart c
@@ -51,6 +47,9 @@
 	<delete id="deleteCartById" parameterType="map">
 		DELETE FROM juiceta_cart WHERE product_no = #{value}
 	</delete>
-	
-	
+
+	<select id="countCartById" parameterType="string" resultType="int">
+		SELECT COUNT(*) FROM juiceta_cart c WHERE id=#{value}
+	</select>
+
 </mapper>

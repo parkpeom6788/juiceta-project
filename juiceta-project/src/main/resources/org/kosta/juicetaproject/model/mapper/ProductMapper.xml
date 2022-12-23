@@ -34,7 +34,7 @@
 	</insert>
 	
 	<select id="findProductByProductNo" parameterType="int" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		<include refid="selectProduct"></include> WHERE product_no=#{value}
+		<include refid="selectProduct"></include> WHERE product_no=#{value} ORDER BY product_no DESC
 	</select>
 	
 	<select id="findProductAllListByCategory" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.ProductVO">

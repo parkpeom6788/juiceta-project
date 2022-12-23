@@ -178,16 +178,24 @@ FROM juiceta_cart c
 INNER JOIN juiceta_product p ON c.product_no=p.product_no
 WHERE id='jtest3';
 
+-- 상품상세보기 평균별점
+SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=331;
 
+SELECT product_no, image, filepath FROM juiceta_product WHERE filepath IS NULL;
+UPDATE juiceta_product SET filepath='images/product-11.jpg' WHERE product_no BETWEEN 340 AND 361;
 
+COMMIT
 
+SELECT * FROM juiceta_customer
 
+-- 장바구니에 상품이 없는 경우
+SELECT COUNT(*) FROM juiceta_cart c WHERE id='spring1';
 
+SELECT * FROM juiceta_order;
+SELECT * FROM juiceta_order_detail;
 
-
-
-
-
+-- 주문상세에 저장하기
+INSERT INTO 
 
 
 

@@ -26,35 +26,38 @@
 					        <th>Quantity</th>
 					        <th>Total</th>
 					      </tr>
-					    </thead>
+					    </thead>			
 					    
-					    <tbody th:each="cart:${cartAllList}">
-   					      <tr class="text-center">
-					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
-					        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
-					        <td class="product-name">
-					        	<h3 th:text="${cart.PRODUCT_NAME}">상품명</h3>
-					        	<p th:text="${cart.PRODUCT_DETAIL}">상품상세설명</p>
-					        </td>	
-					        <td class="price" th:text="${cart.PRICE}">상품가격</td>		
-    					    <td class="quantity">
-					        	<div class="input-group mb-3">
-									<span class="input-group-btn mr-2">
-			              				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
-			                 				<i class="ion-ios-remove"></i>
-			              				</button>
-			          				</span>
-			           				<input type="text" name="quantity" class="form-control input-number" value="1" min="1" max="5">
-			           				<span class="input-group-btn ml-2">
-			              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
-			                   				<i class="ion-ios-add"></i>
-			               				</button>
-			           				</span>
-			        			</div>		     
-				          	</td>	
-					        <td class="total" th:text="${cart.TOTAL}"></td>
-					      </tr>
-					    </tbody>
+					    <th:block th:if="${cartAllList!=null}">    
+						    <tbody th:each="cart:${cartAllList}">
+	   					      <tr class="text-center">
+						        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close product-no" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
+						        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
+						        <td class="product-name">
+						        	<h3 th:text="${cart.PRODUCT_NAME}">상품명</h3>
+						        	<p th:text="${cart.PRODUCT_DETAIL}">상품상세설명</p>
+						        </td>	
+						        <td class="price" th:text="${cart.PRICE}">상품가격</td>		
+	    					    <td class="quantity">
+						        	<div class="input-group mb-3">
+										<span class="input-group-btn mr-2">
+				              				<button type="button" class="quantity-left-minus btn"  data-type="minus" data-field="">
+				                 				<i class="ion-ios-remove"></i>
+				              				</button>
+				          				</span>
+				           				<input type="text" name="quantity" class="form-control input-number product-count" value="1" min="1" max="5">
+				           				<span class="input-group-btn ml-2">
+				              				<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
+				                   				<i class="ion-ios-add"></i>
+				               				</button>
+				           				</span>
+				        			</div>		     
+					          	</td>	
+						        <td class="total" th:text="${cart.TOTAL}"></td>
+						      </tr>
+						    </tbody>
+					    </th:block>
+					    			
 					  </table>
 		  		</div>
   			</div>
@@ -65,12 +68,13 @@
   					<h3>Cart Totals</h3>
   					<hr>
   					<p class="d-flex total-price">
-  						<span>&#8361; </span><span id="cartTotal" th:text="${cartTotal}">카트총합계</span>
+  						<span>&#8361; </span><span id="cartTotal" th:if="${cartTotal!=0}" th:text="${cartTotal}">카트총합계</span>
   					</p>
   				</div>
-  				<p><a href="#" th:href="@{/checkoutForm2(cartTotal=${cartTotal},cartAllList=${cartAllList})}" class="btn btn-primary py-3 px-4">Proceed to Checkout</a></p>
+  				<p><a href="#" class="btn btn-primary py-3 px-4" id="checkoutBtn">Proceed to Checkout</a></p>
   			</div>
   		</div>
+  		
     	<script type="text/javascript">
 	    	$(document).ready(function() {
 				$(".deleteBtn").click(function() {
@@ -110,7 +114,7 @@
 				     $("#cartTotal").text(cartTotal);
 			    });
     			
-			     $(".quantity-left-minus").click(function(e){
+			    $(".quantity-left-minus").click(function(e){
 				        // Stop acting like a button
 				        e.preventDefault();
 				        // Get the field name
@@ -130,10 +134,27 @@
 					    	cartTotal += Number($(this).text());
 					     });
 					     $("#cartTotal").text(cartTotal);
-		    	 });
-
+		    	 	});
+			     
+					$("#checkoutBtn").click(function() {
+						let productNoArr = [];
+						let productCountArr = [];
+						let cartTotal = $("#cartTotal").text();
+						
+						$(".product-no").each(function(){
+							productNoArr.push($(this).data("product"));
+						});
+						$(".product-count").each(function(){
+							productCountArr.push($(this).val());
+						});
+						
+						let productNo = productNoArr.join();
+						let productCount = productCountArr.join();
+						location.href="/checkoutFormFromCart?productNo="+productNo+"&productCount="+productCount+"&cartTotal="+cartTotal;
+						
+					});
     		});
-    	</script>
+   		</script>
    
 	</div>
 </html>

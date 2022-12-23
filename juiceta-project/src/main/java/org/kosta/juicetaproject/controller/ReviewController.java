@@ -2,7 +2,6 @@ package org.kosta.juicetaproject.controller;
 
 import org.kosta.juicetaproject.model.vo.MemberVO;
 import org.kosta.juicetaproject.model.vo.ReviewVO;
-import org.kosta.juicetaproject.service.OrderService;
 import org.kosta.juicetaproject.service.ReviewService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;

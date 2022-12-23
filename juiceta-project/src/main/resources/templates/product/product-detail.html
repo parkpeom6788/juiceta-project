@@ -21,12 +21,13 @@
 				<h3 th:text="${productVO.productName}">상품명</h3>
 				<div class="rating d-flex">
 					<p class="text-left mr-4">
-						<span class="mr-2" style="color: green">평균별점</span>
-						<span class="ion-ios-star" style="color: green"></span>
-						<span class="ion-ios-star-outline" style="color: green"></span>
-						<span class="ion-ios-star-outline" style="color: green"></span>
-						<span class="ion-ios-star-outline" style="color: green"></span>
-						<span class="ion-ios-star-outline" style="color: green"></span>
+						<span class="mr-2" style="color: green" th:text="${avgStar}">평균별점</span>
+						<th:block th:each="num : ${#numbers.sequence(1,avgStar)}" th:if="${avgStar}!=0">
+							<span class="ion-ios-star" style="color: green"></span>
+						</th:block>
+						<th:block th:each="num : ${#numbers.sequence(1,(5-avgStar))}" th:if="${avgStar}!=5">
+							<span class="ion-ios-star-outline" style="color: green"></span>
+						</th:block>
 					</p>
 				</div>
 				<p class="price"><span>&#8361; </span><span th:text="${productVO.price}">상품가격</span></p>
