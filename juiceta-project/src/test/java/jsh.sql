@@ -178,7 +178,8 @@ FROM juiceta_cart c
 INNER JOIN juiceta_product p ON c.product_no=p.product_no
 WHERE id='jtest3';
 
-
+-- 상품상세보기 평균별점
+SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=331;
 
 
 

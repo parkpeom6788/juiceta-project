@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
-import org.kosta.juicetaproject.model.vo.ReviewVO;
 import org.kosta.juicetaproject.service.ProductService;
 import org.kosta.juicetaproject.service.QuestionService;
 import org.kosta.juicetaproject.service.ReviewService;
@@ -28,12 +27,13 @@ public class ProductController {
 	@RequestMapping("/guest/DetailView")
 	public String productDetail(int productNo,Model model) {
 		// 상품상세정보
-		ProductVO productVO = productService.findProductByProductNo(productNo);
-		model.addAttribute("productVO", productVO);
+		model.addAttribute("productVO", productService.findProductByProductNo(productNo));
+		
+		// 상품평균별점
+		model.addAttribute("avgStar", reviewService.avgStarByProductNo(productNo));
 		
 		// 상품후기
-		List<ReviewVO> reviewList = reviewService.findReviewListByProductNo(productNo);
-		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("reviewList", reviewService.findReviewListByProductNo(productNo));
 		
 		// 문의사항 게시판
 		List<QuestionVO> questionAllList= QuestionService.findQuestionAllListByProductNo(productNo);

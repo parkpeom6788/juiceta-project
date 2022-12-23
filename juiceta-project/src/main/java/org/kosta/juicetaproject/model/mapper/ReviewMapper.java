@@ -16,5 +16,7 @@ public interface ReviewMapper {
 
 	String findOrderTimeForReviewByOrderNo(int orderNo);
 
+	int avgStarByProductNo(int productNo);
+
 
 }

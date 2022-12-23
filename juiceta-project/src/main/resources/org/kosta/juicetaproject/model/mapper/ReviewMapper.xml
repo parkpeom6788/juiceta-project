@@ -21,4 +21,10 @@
 	<select id="findOrderTimeForReviewByOrderNo" parameterType="int" resultType="string">
 		SELECT TO_CHAR(order_time,'YYYY-MM-DD HH24:MI:SS') AS order_time FROM juiceta_order WHERE order_no=#{value}
 	</select>
+	
+	<select id="avgStarByProductNo" parameterType="int" resultType="int">
+		SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=#{value}
+	</select>
 </mapper>
+
+

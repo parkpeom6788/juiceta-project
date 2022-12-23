@@ -46,6 +46,16 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewMapper.registerReview(reviewVO);
 	}
 
+	@Override
+	public int avgStarByProductNo(int productNo) {
+		int avgStar = 0;
+		List<ReviewVO> list = reviewMapper.findReviewListByProductNo(productNo);
+		if(list.size()!=0) {
+			avgStar = reviewMapper.avgStarByProductNo(productNo);
+		}
+		return avgStar;
+	}
+
 }
 
 
