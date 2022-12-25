@@ -22,4 +22,10 @@ public interface ReviewMapper {
 
 	int avgStarByProductNo(int productNo);
 
+	List<ReviewVO> getAllReviewList(String id);
+
+	int updateReview(ReviewVO reviewVO);
+
+	int deleteReview(int reviewNo);
+
 }

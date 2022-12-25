@@ -66,4 +66,19 @@ public class ReviewServiceImpl implements ReviewService {
 		return avgStar;
 	}
 
+	@Override
+	public List<ReviewVO> getAllReviewList(String id) {
+		return reviewMapper.getAllReviewList(id);
+	}
+
+	@Override
+	public int updateReview(ReviewVO reviewVO) {
+		return reviewMapper.updateReview(reviewVO);
+	}
+
+	@Override
+	public int deleteReview(int reviewNo) {
+		return reviewMapper.deleteReview(reviewNo);
+	}
+
 }

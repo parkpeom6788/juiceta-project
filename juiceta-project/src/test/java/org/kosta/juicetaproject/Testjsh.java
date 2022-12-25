@@ -277,6 +277,14 @@ class Testjsh {
 		int totalCount = cartAndWishlistMapper.countCartById(id);
 		System.out.println(totalCount);
 	}
+	
+	@Test
+	void getAllReviewList() {
+		String id = "spring1";
+		List<ReviewVO> list = reviewMapper.getAllReviewList(id);
+		for(ReviewVO vo : list)
+			System.out.println(vo);
+	}
 }
 
 

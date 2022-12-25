@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+> <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
+<head>
+	<title>Login</title>
+</head>
+	<div layout:fragment="content" class="container">
+
+		<span style="font-size: large; font-weight: bolder;">My Review List</span>&nbsp;&nbsp;<button type="button" class="btn btn-outline-dark" id="getListBtn">리뷰리스트 조회</button><br><br>
+		<table class="table" id="reviewListTable" style="display: none">
+			<thead>
+				<tr>
+					<th>리뷰번호</th>
+					<th>내용</th>
+					<th>별점</th>
+					<th>작성일</th>
+				</tr>
+			</thead>
+			<tbody id="reviewListView">
+			</tbody>
+		</table><br><br>
+		
+		<span style="font-size: large; font-weight: bolder;">My Review 수정</span>&nbsp;&nbsp;<button type="button" class="btn btn-outline-dark" id="updateBtn">리뷰수정</button><br><br>
+		<form id="updateReviewForm">
+			<ul>
+				<li>
+					리뷰번호&nbsp;&nbsp;<input type="number" name="reviewNo">&nbsp;&nbsp;
+					리뷰내용&nbsp;&nbsp;<input type="text" name="reviewContent" size="50">&nbsp;&nbsp;
+					별점&nbsp;&nbsp;<input type="number" name="star">
+				</li>
+			</ul>
+		</form><br><br>
+		
+		<span style="font-size: large; font-weight: bolder;">My Review 삭제</span>&nbsp;&nbsp;<button type="button" class="btn btn-outline-dark" id="deleteBtn">리뷰삭제</button><br><br>
+		<form id="deleteReviewForm">
+			<ul>
+				<li>리뷰번호&nbsp;&nbsp;<input type="number" name="reviewNo" id="reviewNo"></li>
+			</ul>
+		</form>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$.ajaxSetup({
+					success:function(data){
+					 	alert(data);
+					 },
+					 error:function(xhr,status,error){
+						 if(xhr.status==404)
+							 alert("정보가 존재하지 않아 서비스 불가");
+					 }
+				});
+				
+				$("#getListBtn").click(function() {
+					$("#reviewListTable").show();
+					$("#reviewListView").empty();
+					$.ajax({
+						type:"get",
+						url:"reviews",
+						success:function(reviewList){
+							let data = "";
+							$.each(reviewList,function(i,review){
+								data += "<tr>";
+								data += "<td>"+review.reviewNo+"</td>";
+								data += "<td>"+review.reviewContent+"</td>";
+								data += "<td>"+review.star+"</td>";
+								data += "<td>"+review.reviewTime+"</td>";
+								data += "</tr>";
+							});
+							$("#reviewListView").append(data);
+						}
+					});
+				});
+				
+				// ajax post csrf token 을 위한 설정 
+				let token = $("meta[name='_csrf']").attr("content"); 
+				let header = $("meta[name='_csrf_header']").attr("content");
+				
+				$("#updateBtn").click(function() {
+					if($("#updateReviewForm :input[name=reviewNo]").val().trim()==""||$("#updateReviewForm :input[name=reviewContent]").val().trim()==""||$("#updateReviewForm :input[name=star]").val().trim()==""){
+						alert("수정할 사항을 입력해주세요");
+						return;
+					}
+					
+					$.ajax({
+						type:"put",
+						url:"reviews",
+						data:$("#updateReviewForm").serialize(),
+						beforeSend : function(xhr){  
+		                    xhr.setRequestHeader(header,token);
+		                },
+						success:function(result){
+							alert(result);
+							$("#getListBtn").trigger("click");
+						}
+					}).always(function() {
+						$("#updateReviewForm")[0].reset();
+					});
+				});
+				
+				$("#deleteBtn").click(function() {
+					$.ajax({
+						type:"delete",
+						url:"reviews",
+						data:"reviewNo="+$("#reviewNo").val(),
+						beforeSend : function(xhr){  
+		                    xhr.setRequestHeader(header,token);
+		                },
+						success:function(result){
+							alert(result);
+							$("#getListBtn").trigger("click");
+						}
+					}).always(function() {
+						$("#reviewNo").val("");
+					});
+				});
+				
+			});
+		</script>
+		
+	</div>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

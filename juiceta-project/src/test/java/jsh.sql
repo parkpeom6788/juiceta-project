@@ -206,9 +206,12 @@ SELECT * FROM juiceta_cart WHERE id='java2';
 DELETE FROM juiceta_cart WHERE id='java2';
 COMMIT
 
+-- REST 리뷰리스트 조회
+SELECT review_no,review_content,star,review_time FROM juiceta_review WHERE id='spring1';
 
-
-
+-- REST 리뷰 수정
+UPDATE juiceta_review SET review_content='우와', star=5 WHERE review_no=47;
+COMMIT
 
 
 
