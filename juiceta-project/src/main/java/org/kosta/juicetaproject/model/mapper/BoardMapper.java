@@ -23,5 +23,4 @@ public interface BoardMapper {
 
 	void boardHitsCount(int no);
 
-
 }

@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-	
 	private final MemberService memberService;
 	private final OrderService orderService;
 	
@@ -153,18 +152,3 @@ public class MemberController {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

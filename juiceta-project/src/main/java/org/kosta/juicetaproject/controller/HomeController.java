@@ -41,6 +41,7 @@ public class HomeController {
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "index";
 	}
+	
 	/*	
 	 	csrf 토큰을 발급받지 않고 post 방식으로 요청했을 때 
 	 	및 

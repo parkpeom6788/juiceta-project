@@ -23,5 +23,4 @@ public interface QuestionService {
 	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
 	
-	
 }

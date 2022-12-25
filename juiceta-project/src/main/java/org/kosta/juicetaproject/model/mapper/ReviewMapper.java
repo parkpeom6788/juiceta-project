@@ -22,5 +22,4 @@ public interface ReviewMapper {
 
 	int avgStarByProductNo(int productNo);
 
-
 }

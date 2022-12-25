@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class BoardServiceImpl implements BoardService{
 	private final BoardMapper boardMapper;
+	
 	@Override
 	public Map<String, Object> findboardAllList(String pageNo) {
 		int totalBoardCount = boardMapper.getTotalBoardCount();
