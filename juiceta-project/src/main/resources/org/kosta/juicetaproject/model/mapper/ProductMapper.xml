@@ -79,7 +79,7 @@
 	</select>
 	
 	<select id="findProductByProductNameKeyword" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ProductVO">
-		<include refid="selectProduct"></include> WHERE product_name LIKE '%'||#{value}||'%'
+		<include refid="selectProduct"></include> WHERE product_name LIKE '%'||#{value}||'%' ORDER BY product_no DESC
 	</select>
 	
 	<select id="findAllProduct" resultType="org.kosta.juicetaproject.model.vo.ProductVO">

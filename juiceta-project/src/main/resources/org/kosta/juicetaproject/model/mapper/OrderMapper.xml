@@ -94,6 +94,9 @@
 		UPDATE juiceta_product SET product_count=product_count-#{PRODUCT_COUNT} WHERE product_no=#{PRODUCT_NO}
 	</select>
 	
+	<delete id="deleteProductFromCart" parameterType="string">
+		DELETE FROM juiceta_cart WHERE id=#{value}
+	</delete>
 </mapper>
 
 

@@ -10,67 +10,77 @@
 </head>
 	<div layout:fragment="content" class="container">
 		<div align="center">
-		<table class="table table-boardered">
-			<thead>
-			<tr>
-				<th>Q&A글번호</th>
-				<th>Q&A글제목</th>
-				<th>작성자아이디</th>
-				<th>작성일</th>
-			</tr>
-			</thead>
-			<tbody>
+			<table class="table table-boardered">
+				<thead>
 				<tr>
+					<th>Q&A글번호</th>
+					<th>Q&A글제목</th>
+					<th>작성자아이디</th>
+					<th>작성일</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
 						<td th:text="${questionVO.questionNo}" class = "col-sm-2"></td>
 						<td class= "col-sm-3"><a th:text="${questionVO.questionTitle}"></a></td>
 						<td th:text="${questionVO.memberVO.id}" class = "col-sm-2"></td>
 						<td th:text="${questionVO.questionTime}" class = "col-sm-2"></td>
-				</tr>
-				<tr>
-						<td th:text="${questionVO.questionContent}" readonly="readonly"></td>
-				</tr>
-			</tbody>
-		</table>
-		 <div align="center">
-		<table class="table table-boardered">
-			<thead>
-			<tr>
-				<th>답변 글번호</th>
-				<th>답변 내용</th>
-				<th>답변 시간</th>
-			</tr>
-			</thead>
-			<tbody>
-				<th:block th:if="${answerVO != null}">
-					<tr>
-							<td th:text="${answerVO.questionNo}" class = "col-sm-2"></td>
-							<td th:text="${answerVO.answerContent}"></td>
-							<td th:text="${answerVO.answerTime}" class = "col-sm-2"></td>
 					</tr>
-				</th:block>
-			</tbody>
-				<th:block th:if="${answerVO == null}">
-						<form action="" th:action="@{/registerAnswer}" id="writeForm" method="post">
-							<p><textarea cols="50" rows="10" name="answerContent" sec:authorize="hasRole('ROLE_ADMIN')"></textarea></p>
-							<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
-								<button type="reset" sec:authorize="hasRole('ROLE_ADMIN')">취소(관리자)</button>
-								<button type="submit" id="registerBtn" sec:authorize="hasRole('ROLE_ADMIN')">등록(관리자)</button>
-						</form>
-				</th:block>
-		</table>
+					<tr>
+						<td th:text="${questionVO.questionContent}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div><br>
+		
+		 <div align="center">
+			<table class="table table-boardered" th:if="${answerVO != null}">
+				<thead>
+					<tr>
+						<th>답변 글번호</th>
+						<th>답변 내용</th>
+						<th>답변 시간</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td th:text="${answerVO.questionNo}" class = "col-sm-2"></td>
+						<td th:text="${answerVO.answerContent}"></td>
+						<td th:text="${answerVO.answerTime}" class = "col-sm-2"></td>
+					</tr>
+				</tbody>
+			</table><br><br>
+			
+			<th:block th:if="${answerVO == null}">
+				<form action="" th:action="@{/registerAnswer}" id="writeForm" method="post">
+					<input type="hidden" th:value="${questionVO.questionNo}" name="questionNo">
+					<textarea cols="100" rows="10" name="answerContent" sec:authorize="hasRole('ROLE_ADMIN')" placeholder="관리자 답변을 작성하세요"></textarea><br>
+					<div align="center">
+						<button type="reset" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-danger" style="width: 100px">취소</button>&nbsp;&nbsp;
+						<button type="button" id="registerBtn" sec:authorize="hasRole('ROLE_ADMIN')" class="btn btn-outline-success" style="width: 100px">등록</button>
+					</div>
+				</form>
+			</th:block>
 		</div>
+		
 		<script type="text/javascript">
 			$(document).ready(function(){
 				$("#registerBtn").click(function(){
-					let result = confirm("등록하시겠습니까?");
-					if(result == true) {
-						$("#registerBtn")
+					if($("#writeForm :input[name=answerContent]").val().trim()==""){
+						alert("관리자 답변을 입력해주세요");
+						return;
 					}
+					
+					let result = confirm("등록 하시겠습니까?");
+					if(result!=true){
+						return;
+					}
+					
+					$("#writeForm").submit();
 				})
 			})		
 		</script>		
-	</div>
+		
 	</div>
 </html>
-
 

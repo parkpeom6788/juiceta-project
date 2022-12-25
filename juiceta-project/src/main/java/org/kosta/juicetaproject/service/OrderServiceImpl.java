@@ -105,6 +105,9 @@ public class OrderServiceImpl implements OrderService {
 			
 			// 주문 후 수량만큼 상품수량 감소
 			orderMapper.reduceProductCountAfterOrder(map);
+			
+			// 장바구니에서 구매상품 삭제
+			orderMapper.deleteProductFromCart(memberVO.getId());
 		}
 
 		return orderVO.getOrderNo();

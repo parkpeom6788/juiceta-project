@@ -201,8 +201,10 @@ INSERT INTO
 -- 주문 후에는 구매수량만큼 수량에서 감소시킴
 UPDATE juiceta_product SET product_count=product_count-2 WHERE product_no=64;
 
-
-
+-- 장바구니에서 구매 후 장바구니 상품 삭제
+SELECT * FROM juiceta_cart WHERE id='java2';
+DELETE FROM juiceta_cart WHERE id='java2';
+COMMIT
 
 
 

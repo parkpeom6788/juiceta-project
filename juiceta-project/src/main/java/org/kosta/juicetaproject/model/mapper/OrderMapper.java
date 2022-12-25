@@ -31,4 +31,6 @@ public interface OrderMapper {
 
 	void reduceProductCountAfterOrder(Map<String, Integer> map);
 
+	void deleteProductFromCart(String id);
+
 }
