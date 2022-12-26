@@ -206,14 +206,13 @@
 					<td th:text="${question.id}" class = "col-sm-2"></td>
 					<td class= "col-sm-3"><a th:text="${question.questionTitle}" th:href="@{/guest/question-detail?questionNo=}+${question.questionNo}"></a></td>
 					<td th:text="${question.questionTime}" class = "col-sm-2"></td>
-					<td th:text="${question.checkAnswer}" class = "col-sm-2"></td>
+					<td th:text="${question.checkAnswer} == 0 ? |미답변|:|답변완료|" class = "col-sm-2"></td>
 				</tr>
 			</tbody>
 		</table>
 		<div align="right">
 			<a href="#" th:href="@{/question-write(productNo=${productVO.productNo})}">글 쓰기</a>
 		</div>
-		
 		<!--/* Pagination 부분 */-->
     	<th:block th:if="${pagination}!=null">
  		<div class="row mt-5">
@@ -225,8 +224,8 @@
 			             <li th:if="${pageNo==pagination.nowPage}" class="active"><a href="#" th:href="@{/guest/DetailView(productNo=${productVO.productNo},pageNo=${pageNo})}" th:text="${pageNo}">pageNo</a></li>
 			             <li th:unless="${pageNo==pagination.nowPage}"><a href="#" th:href="@{/guest/DetailView(productNo=${productVO.productNo},pageNo=${pageNo})}" th:text="${pageNo}">pageNo</a></li>
 		             </th:block>
-		             <li th:if="${pagination.nextPageGroup}"><a href="#" th:href="@{/guest/DetailView(productNo=${productVO.productNo},pageNo=${pagination.endPageOfPageGroup+1})}">&gt;</a></li>
-		           </ul>
+		         	    <li th:if="${pagination.nextPageGroup}"><a href="#" th:href="@{/guest/DetailView(productNo=${productVO.productNo},pageNo=${pagination.endPageOfPageGroup+1})}">&gt;</a></li>
+		          	 </ul>
          		</div>
        		</div>
    		</div>
