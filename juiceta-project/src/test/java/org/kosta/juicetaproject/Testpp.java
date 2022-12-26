@@ -1,11 +1,14 @@
 package org.kosta.juicetaproject;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -134,7 +137,130 @@ class Testpp {
 		System.out.println(price);
 	}
 	
-	// 장바구니 담긴거 수정
+	@Test
+	public void findQuestionCountByProductNo() {
+		int productNo=332;
+//		int count = questionMapper.findQuestionCountByProductNo(productNo);
+//		System.out.println(count);
+	}
+
+	@Test
+	public void findQuestionByRowNumber() {
+		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+		String pageNo="";
+		Pagination pagination = null;
+		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
+//	@Test
+//	public void findQuestionCountByProductNo() {
+//		int productNo=332;
+//		int count = questionMapper.findQuestionCountByProductNo(productNo);
+//		System.out.println(count);
+//	}
+
+//	@Test
+//	public void findQuestionByRowNumber() {
+//		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+//		String pageNo="";
+//		Pagination pagination = null;
+//		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
+//	@Test
+//	public void findQuestionCountByProductNo() {
+//		int productNo=332;
+//		int count = questionMapper.findQuestionCountByProductNo(productNo);
+//		System.out.println(count);
+//	}
+
+//	@Test
+//	public void findQuestionByRowNumber() {
+//		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+//		String pageNo="";
+//		Pagination pagination = null;
+//		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
+//	@Test
+//	public void findQuestionCountByProductNo() {
+//		int productNo=332;
+//		int count = questionMapper.findQuestionCountByProductNo(productNo);
+//		System.out.println(count);
+//	}
+
+//	@Test
+//	public void findQuestionByRowNumber() {
+//		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+//		String pageNo="";
+//		Pagination pagination = null;
+//		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
+//	@Test
+//	public void findQuestionCountByProductNo() {
+//		int productNo=332;
+//		int count = questionMapper.findQuestionCountByProductNo(productNo);
+//		System.out.println(count);
+//	}
+
+//	@Test
+//	public void findQuestionByRowNumber() {
+//		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+//		String pageNo="";
+//		Pagination pagination = null;
+//		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
 	
+		
+/*		@Test
+	public void findQuestionCountByProductNo() {
+		int productNo=332;
+		int count = questionMapper.findQuestionCountByProductNo(productNo);
+		System.out.println(count);
+	}
+*/
+//	@Test
+//	public void findQuestionByRowNumber() {
+//		int productNo = 332;
+//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
+//		String pageNo="";
+//		Pagination pagination = null;
+//		
+//		if(pageNo == "") 
+//			pagination = new Pagination(TotalQuestionCount);
+//		else 
+//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+//		Map<String,Object> map = new HashMap<>();
 	
+//		map.put("PAGINATION",pagination);
+////		map.put("PRODUCT_NO", productNo);
+////		
+////		List<QuestionVO> list = questionMapper.findQuestionByRowNumber(map);
+//		
+////		for(QuestionVO vo : list) {
+////			System.out.println(vo);
+////		}
+	}
 }
