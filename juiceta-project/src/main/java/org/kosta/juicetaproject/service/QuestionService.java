@@ -16,8 +16,7 @@ public interface QuestionService {
 	// 수정
 	// 답변 0->1
 	public void updateQuestion(int questionNo);
-	// 삭제
-	public void deleteReview(String id, int questionNo);
+
 	// 답변등록 
 	public void registerAnswer(AnswerVO answerVO);
 	

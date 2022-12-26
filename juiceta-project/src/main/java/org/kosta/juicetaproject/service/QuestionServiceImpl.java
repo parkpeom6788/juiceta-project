@@ -15,13 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
 	private final QuestionMapper questionmapper;
-	
-//	// 리스트 출력 
-//	public List<QuestionVO> findQuestionAllListByProductNo(int productNo) {
-//		return questionmapper.findQuestionAllListByProductNo(productNo);
-//	}
-	
-	// questionDetail(in questionNo:int): QuestionVO
+
 	// 글 상세
 	public QuestionVO questionDetail(int questionNo) {
 		QuestionVO questionVO= questionmapper.questionDetail(questionNo);
@@ -53,21 +47,9 @@ public class QuestionServiceImpl implements QuestionService {
 		questionmapper.updateQuestion(questionNo);
 	}
 
-	@Override
-	public void deleteReview(String id, int questionNo) {
-	}
-	
-//	// 답변 카운트
-//	@Override
-//	public int findQuestionCountByProductNo(int productNo) {
-//		return 0;
-//	}
-	
-	
 	// 페이지 네이션 
 	@Override
 	public Map<String, Object> findQuestionByRowNumber(int productNo,String pageNo) {
-		
 		int TotalQuestionCount = questionmapper.findQuestionCountByProductNo(productNo);
 		Pagination pagination = null;
 		
