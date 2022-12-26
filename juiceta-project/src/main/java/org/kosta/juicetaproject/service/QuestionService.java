@@ -1,7 +1,6 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.AnswerVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
@@ -23,6 +22,5 @@ public interface QuestionService {
 	public void registerAnswer(AnswerVO answerVO);
 	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
-	
 	
 }

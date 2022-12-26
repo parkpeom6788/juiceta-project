@@ -100,8 +100,8 @@
 	 						<div class="d-flex">
 	 							<div class="pricing">
 	   								<p class="price">
-	   									<span class="mr-2 price-dc" th:if="${product.productCount<1}" th:text="${product.price}">품절상품가격</span>
-	   									<span class="price-sale" th:if="${product.productCount>0}" th:text="${product.price}">상품가격</span>
+	   									<span th:if="${product.productCount<1}" ><span class="price-dc">&#8361; </span><span class="mr-2 price-dc" th:text="${product.price}">품절상품가격</span></span>
+	   									<span th:if="${product.productCount>0}"><span>&#8361; </span><span class="price-sale" th:text="${product.price}">상품가격</span></span>
 	   								</p>
 	   							</div>
 	  						</div>

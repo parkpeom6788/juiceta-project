@@ -3,9 +3,10 @@
   xmlns:th="http://www.thymeleaf.org"
   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
   layout:decorate="~{layouts/layout}"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
-   <title>checkout</title>
+   <title>delete-board-reuslt</title>
 </head>
 
    <div layout:fragment="content" class="container">
@@ -14,6 +15,6 @@
 			alert("삭제가 완료되었습니다");
 			location.href="board";
 		</script>
+		
    </div>
-
 </html>

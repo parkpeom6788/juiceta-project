@@ -14,7 +14,7 @@
 	        <ul class="navbar-nav ml-auto">
 	        	<li class="nav-item active"><a href="#" th:href="@{/}" class="nav-link">Home</a></li>
 	        	<th:block sec:authorize="isAuthenticated()">
-		        	<li class="nav-item"><span class="nav-link" sec:authentication="principal.name" id="name">이름</span></li>
+		        	<li class="nav-item"><span class="nav-link" sec:authentication="principal.name" id="name" style="color: green; font-weight: bolder;">이름</span></li>
 		        	<li class="nav-item"><a href="#" th:href="@{/mypage}" class="nav-link">MyPage</a></li>
 		        	<li class="nav-item"><a href="#" th:href="@{/shop}" class="nav-link">Shop</a></li>
 		        	<li class="nav-item"><a href="#" th:href="@{/wishlist}" class="nav-link">Wishlist</a></li>

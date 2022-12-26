@@ -5,17 +5,38 @@
   layout:decorate="~{layouts/layout}"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
-   <title>checkout</title>
+   <title>write-board</title>
 </head>
    <div layout:fragment="content" class="container">
-<form action="" th:action="@{/guest/boardWrite}" method="post">
-		<h2>공지 사항 작성</h2>
-		글 제목 :   &nbsp; <input style="width: 35%" type="text" name="boardTitle" >
-		<br><br>
-		내용
-		<textarea inputmode="text" style="border-bottom : solid; border-top:ridge; padding: 20px;  height: 500px; width: 100%"; name="boardContent" ></textarea>	
-		<button type="submit">등록완료</button>
-</form>
-
+   
+		<h2>Notice 작성</h2>
+		<form action="" th:action="@{/guest/boardWrite}" method="post" id="registerBoard">
+			<input style="width: 35%" type="text" name="boardTitle" placeholder="글제목"><br><br>
+			<textarea cols="150" rows="10" name="boardContent" placeholder="글내용을 입력하세요"></textarea>
+			<div align="center">
+				<button type="reset" class="btn btn-outline-danger" style="width: 100px">취소</button>&nbsp;&nbsp;
+				<button type="button" id="Writebtn" class="btn btn-outline-success" style="width: 100px">등록</button>
+			</div>
+		</form>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#Writebtn").click(function() {
+					if($("#registerBoard :input[name=boardTitle]").val().trim()==""||$("#registerBoard :input[name=boardContent]").val().trim()==""){
+						alert("공지사항 제목 또는 내용을 입력해주세요");
+						return;
+					}
+					
+					let result = confirm("등록 하시겠습니까?");
+					if(result!=true){
+						return;
+					}
+					
+					$("#registerBoard").submit();
+				})
+			});
+		</script>
+		
 	</div>
 </html>
+

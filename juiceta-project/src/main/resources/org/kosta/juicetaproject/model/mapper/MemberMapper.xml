@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Sql Mapper -->
-<!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.kosta.juicetaproject.model.mapper.MemberMapper">
+
  	<sql id="selectMember">
  		select id,password,name,address,phone from juiceta_customer
  	</sql>
@@ -11,34 +9,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  	<select id="getAddressList" resultType="string">
  		select distinct address from juiceta_customer
  	</select>
+ 	
  	<select id="findMemberListByAddress" resultType="org.kosta.juicetaproject.model.vo.MemberVO">
  		select id,name from juiceta_customer
  		where address=#{value}
  	</select>
- 	<!-- <select id="login" resultType="MemberVO" parameterType="MemberVO">
- 		<include refid="selectMember"></include>
- 		where id=#{id} and password=#{password}
- 	</select> -->
+
  	<select id="getMemberCount" resultType="int">
  		select count(*) from juiceta_customer
  	</select>
+ 	
  	<update id="updateMember" parameterType="org.kosta.juicetaproject.model.vo.MemberVO">
 		update juiceta_customer set password=#{password},name=#{name},address=#{address},phone=#{phone}
 		where id=#{id}
 	</update>
+	
 	<insert id="registerMember" parameterType="org.kosta.juicetaproject.model.vo.MemberVO">
 		insert into juiceta_customer(id,password,name,address,phone)
 		values(#{id},#{password},#{name},#{address},#{phone})
 	</insert>
+	
 	<select id="idcheck" resultType="int">
 		select count(*) from juiceta_customer where id=#{value}
 	</select>
-	<!--  -->
+
 	<insert id="registerRole" parameterType="org.kosta.juicetaproject.model.vo.Authority">
 		insert into juiceta_authorities(id,authority) values(#{id},#{authority})
 	</insert>
-	<!-- Spring Security에서 로그인 인증시 사용 : 
-	      사용가능한(enabled 1) 계정일 경우만 조회. 
+	
+	<!-- 
+		Spring Security에서 로그인 인증시 사용 : 
+	     사용가능한(enabled 1) 계정일 경우만 조회. 
 	 -->
 	<select id="findMemberById" resultType="org.kosta.juicetaproject.model.vo.MemberVO">
  		SELECT	id, 	password,name, address, phone, enabled
@@ -46,29 +47,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE 	id=#{value}	
 		AND		enabled=1 		
  	</select>
+ 	
 	<!-- Spring Security에서 권한 체크를 위해 사용 -->
 	<select id="findAuthorityById"  resultType="org.kosta.juicetaproject.model.vo.Authority">
 		SELECT	id,authority
 		FROM	juiceta_authorities
 		WHERE	id=#{id}
 	</select>
+	
 	<update id="deleteMember" parameterType="string">
 		UPDATE juiceta_customer SET enabled=0 WHERE id=#{value}
 	</update>
+	
 	<select id="findMemberId" parameterType="org.kosta.juicetaproject.model.vo.MemberVO" resultType="string">
 		SELECT id FROM juiceta_customer WHERE name=#{name} AND phone=#{phone} AND enabled=1
 	</select>
+	
 	<select id="findMemberPassword" parameterType="org.kosta.juicetaproject.model.vo.MemberVO" resultType="int">
 		SELECT COUNT(*) FROM juiceta_customer WHERE id=#{id} AND name=#{name} AND phone=#{phone} AND enabled=1
 	</select>
+	
 </mapper>
-
-
-
-
-
-
-
-
-
-

@@ -43,7 +43,6 @@ public class OrderController {
 	public String placeAnOrder(@AuthenticationPrincipal MemberVO memberVO, String name, String phone, String address, int productNo, int productCount) {
 		OrderVO orderVO = OrderVO.builder().receiverName(name).receiverPhone(phone).receiverAddress(address).build();
 		int orderNo = orderService.placeAnOrder(memberVO,orderVO,productNo,productCount);
-		System.out.println(orderVO);
 		return "redirect:placeAnOrderResult?orderNo="+orderNo;
 	}
 	
@@ -66,20 +65,3 @@ public class OrderController {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

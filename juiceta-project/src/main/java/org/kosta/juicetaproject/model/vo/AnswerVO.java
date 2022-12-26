@@ -1,15 +1,12 @@
 package org.kosta.juicetaproject.model.vo;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@RequestMapping
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 public class AnswerVO {
 	private int questionNo;
 	private String answerContent;

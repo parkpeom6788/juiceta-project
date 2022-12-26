@@ -31,6 +31,7 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 		}
 		return result;
 	}
+	
 	@Override
 	public String addCart(MemberVO memberVO, int productNo, int productCount) {
 		Map<String, Object> map = new HashMap<>();
@@ -78,6 +79,7 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 	public void deleteCartById(int productNo) {
 		cartAndWishlistMapper.deleteCartById(productNo);
 	}
+	
 	@Override
 	public int totalCountPrice(String id) {
 		int cartTotal = 0;
@@ -86,28 +88,5 @@ public class CartAndWishlistServiceImpl implements CartAndWishlistService {
 			cartTotal = cartAndWishlistMapper.totalCountPrice(id);
 		return cartTotal;
 	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

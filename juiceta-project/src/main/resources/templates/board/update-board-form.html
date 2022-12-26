@@ -5,21 +5,42 @@
   layout:decorate="~{layouts/layout}"
 > <!--/* 위 선언은 타임리프 레이아웃을 사용하기 위한 설정   */-->
 <head>
-   <title>checkout</title>
+   <title>update-board-form</title>
 </head>
-   <div layout:fragment="content" class="container">
-<form action="" th:action="@{/guest/boardUpdate}" method="post">
-		<h2>공지 사항 수정</h2>
-		<div style="border-top:solid; padding: 20px;" class="row">
-		<div  class="col-2" th:text="'글 번호 : '+${boardUpdate.boardNo}"  align="center">글 번호</div>
-		<input type="hidden" th:value="${boardUpdate.boardNo}" name="boardNo" >
-		글 제목 :   &nbsp;<input style="width: 35%" type="text"  th:value="${boardUpdate.boardTitle}" name="boardTitle">
-		<div class="col-3" th:text="'작성 일 : '+ ${boardUpdate.boardTime}" align="center">작성 일</div>
-		<div class="col-2" th:text="'조회 수 : '+ ${boardUpdate.hits}">조회 수</div>
-	</div>
-	<textarea inputmode="text" th:value="${boardUpdate.boardContent}" th:text="${boardUpdate.boardContent}"style="border-bottom : solid; border-top:ridge; padding: 20px; width: 100%"; name="boardContent" ></textarea>	
-	<button type="submit">수정완료</button>
-    </form>
 
+	<div layout:fragment="content" class="container">
+		<form action="" th:action="@{/guest/boardUpdate}" method="post" id="updateForm">
+			<h2>공지사항 수정</h2>
+			<div style="border-top:solid; padding: 20px;" class="row">
+				<div  class="col-sm-2" th:text="'글 번호 : '+${boardUpdate.boardNo}"  align="center">글 번호</div>
+				<input type="hidden" th:value="${boardUpdate.boardNo}" name="boardNo" >
+				글 제목 :   &nbsp;<input style="width: 35%" type="text"  th:value="${boardUpdate.boardTitle}" name="boardTitle">
+				<div class="col-sm-3" th:text="|작성일 : ${boardUpdate.boardTime}|" align="center">작성일</div>
+				<div class="col-sm-2" th:text="|조회수 : ${boardUpdate.hits}|">조회수</div>
+			</div>
+			<textarea th:value="${boardUpdate.boardContent}" th:text="${boardUpdate.boardContent}" cols="150" rows="10" name="boardContent"></textarea><br>
+			<div align="right">
+				<button type="button" class="btn btn-outline-success" style="width: 100px" id="updateBtn">수정완료</button>
+			</div>
+	    </form>
+	    
+   		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#updateBtn").click(function() {
+					if($("#updateForm :input[name=boardTitle]").val().trim()==""||$("#updateForm :input[name=boardContent]").val().trim()==""){
+						alert("공지사항 제목 또는 내용을 입력해주세요");
+						return;
+					}
+					
+					let result = confirm("수정 하시겠습니까?");
+					if(result!=true){
+						return;
+					}
+					
+					$("#updateForm").submit();
+				})
+			});
+		</script>
+		
 	</div>
 </html>

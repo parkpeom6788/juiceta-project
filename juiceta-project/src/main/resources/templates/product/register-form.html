@@ -8,8 +8,8 @@
 <head>
 	<title>register-form</title>
 </head>
-
 	<div layout:fragment="content" class="container">
+	
 		<div class="row">
 			 <div class="col-md-4 offset-md-4">
 			 	<h1>상품등록</h1>
@@ -22,7 +22,7 @@
 					<input type="text" name="productName" placeholder="상품명" required="required" size="42"><br><br>
 					<input type="text" name="price" placeholder="가격" required="required" size="42"><br><br>
 					<input type="text" name="productCount" placeholder="수량(BOX)" required="required" size="42"><br><br>
-					<input type="file" name="file">
+					<input type="file" name="file"><br><br>
 					<textarea rows="5" cols="46" name="productDetail" placeholder="상세설명글" required="required"></textarea><br><br>
 					<button type="submit" id="registerOkBtn" class="btn btn-outline-success btn-block">등록</button>
 					<button type="reset" id="registerCancleBtn" class="btn btn-outline-danger btn-block">취소</button>
@@ -43,6 +43,7 @@
 				});//click
 			});//ready
 		</script>
+		
 	</div>
 </html>
 

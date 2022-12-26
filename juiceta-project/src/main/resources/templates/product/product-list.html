@@ -9,15 +9,14 @@
 	<title>product-list</title>
 </head>
 	<div layout:fragment="content" class="container">
+	
 		<h1>상품관리</h1>
 		<form action="" th:action="@{/productSelect}">
-		  <input type="text" name="productKeyword" placeholder="상품명" id="keyword">
-		  <button type="submit" id="selectProduct" class="btn btn-outline-success">상품검색</button>&nbsp;&nbsp;&nbsp;
-		</form><br>
-		  <form action="" th:action="@{/registerProductForm}">
-		  <button type="submit" class="btn btn-outline-success">상품등록</button>
-		  </form>
-		<br><br>
+		  	<input type="text" name="productKeyword" placeholder="상품명" id="keyword">
+		  	<button type="submit" id="selectProduct" class="btn btn-outline-success">상품검색</button>
+		</form>
+		<a th:href="@{/registerProductForm}" class="btn btn-success" style="float: right; width: 150px">상품등록</a><br><br>
+		
 		 <table class="table table-bordered">
 		 	<thead style="background-color: gold">
 		 		<tr>
@@ -50,6 +49,7 @@
 		 		</tr>
 		 	</tbody>
 		 </table>
+		 
 		<script type="text/javascript">
 			$(document).ready(function() {
 			$(document).on("click","button[name='updateBtn']",function() {

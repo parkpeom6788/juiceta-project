@@ -10,7 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductVO {
-	
 	private int productNo;
 	private String productName;
 	private int price;

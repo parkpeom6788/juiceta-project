@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper
-	namespace="org.kosta.juicetaproject.model.mapper.QuestionMapper">
+<mapper namespace="org.kosta.juicetaproject.model.mapper.QuestionMapper">
 
 	<resultMap type="org.kosta.juicetaproject.model.vo.QuestionVO" id="questionResultMap">
 		<result column="id" property="memberVO.id"/>
@@ -9,15 +8,13 @@
 	</resultMap>
 	
 	<select id="findQuestionAllListByProductNo" parameterType="int" resultMap="questionResultMap"> 
-		 SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
-		 ,ID,PRODUCT_NO
+		 SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER,ID,PRODUCT_NO
 		 FROM juiceta_question
 		 WHERE product_no=#{value} ORDER BY QUESTION_NO DESC
 	</select>
 	
 	<select id="questionDetail" parameterType="int" resultMap="questionResultMap">
-		SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
-		 ,id,product_no
+		SELECT QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER,id,product_no
 		 FROM juiceta_question
 		 WHERE question_no=#{value}
 	</select>
@@ -55,4 +52,5 @@
 	)
 	WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber} 
 	</select>
+	
 </mapper>

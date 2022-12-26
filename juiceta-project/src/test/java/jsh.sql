@@ -201,12 +201,17 @@ INSERT INTO
 -- 주문 후에는 구매수량만큼 수량에서 감소시킴
 UPDATE juiceta_product SET product_count=product_count-2 WHERE product_no=64;
 
+-- 장바구니에서 구매 후 장바구니 상품 삭제
+SELECT * FROM juiceta_cart WHERE id='java2';
+DELETE FROM juiceta_cart WHERE id='java2';
+COMMIT
 
+-- REST 리뷰리스트 조회
+SELECT review_no,review_content,star,review_time FROM juiceta_review WHERE id='spring1';
 
-
-
-
-
+-- REST 리뷰 수정
+UPDATE juiceta_review SET review_content='우와', star=5 WHERE review_no=47;
+COMMIT
 
 
 

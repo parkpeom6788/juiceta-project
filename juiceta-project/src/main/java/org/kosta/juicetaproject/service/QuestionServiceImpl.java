@@ -1,7 +1,6 @@
 package org.kosta.juicetaproject.service;
 
 import java.util.List;
-import java.util.Map;
 
 import org.kosta.juicetaproject.model.mapper.QuestionMapper;
 import org.kosta.juicetaproject.model.vo.AnswerVO;
@@ -13,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
-
 	private final QuestionMapper questionmapper;
 	
 	// 리스트 출력 
@@ -27,11 +25,13 @@ public class QuestionServiceImpl implements QuestionService {
 		QuestionVO questionVO= questionmapper.questionDetail(questionNo);
 		return questionVO;
 	}
+	
 	// 게시물 작성 
 	@Override
 	public void registerQuestion(String questionTitle,String questionContent,int productNo,String id) {
-			questionmapper.registerQuestion(questionTitle,questionContent,productNo,id);
+		questionmapper.registerQuestion(questionTitle,questionContent,productNo,id);
 	}
+	
 	// 답변 등록
 	@Override
 	public void registerAnswer(AnswerVO answerVO) {
@@ -44,13 +44,14 @@ public class QuestionServiceImpl implements QuestionService {
 		AnswerVO answerVO = (AnswerVO) questionmapper.findAnswerByQuestionNo(questionNo);
 		return answerVO;
 	}
+	
 	// updateQuestion(in questionVO:QuestionVO)
 	// 수정 -> 답변여부를 0에서1로 바꿈
 	public void updateQuestion(int questionNo) {
 		questionmapper.updateQuestion(questionNo);
 	}
-	// deleteReview(in id:String, in questionNo:int)
-	// 삭제
+
+	@Override
 	public void deleteReview(String id, int questionNo) {
 	}
 	
