@@ -43,16 +43,7 @@ public class QuestionController {
 		 public String registerQuestion(@AuthenticationPrincipal MemberVO memberVO, String questionTitle,String questionContent,int productNo) {
 			 questionService.registerQuestion(questionTitle,questionContent,productNo,memberVO.getId());
 			 
-			 return "redirect:registerQuestionresultok?productNo="+productNo;
-		 }
-		
-		 // 글쓰기 결과
-		 @RequestMapping("registerQuestionresultok")
-		 public String registerQuestionresultok(int productNo, Model model) {
-			 model.addAttribute("productVO", productService.findProductByProductNo(productNo));
-			 model.addAttribute("questionAllList", questionService.findQuestionAllListByProductNo(productNo));
-			 model.addAttribute("avgStar", reviewService.avgStarByProductNo(productNo));
-			 return "product/product-detail";
+			 return "redirect:/guest/DetailView?productNo="+productNo;
 		 }
 
 		 // 관리자 답변

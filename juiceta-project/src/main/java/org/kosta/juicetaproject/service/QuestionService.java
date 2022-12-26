@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface QuestionService {
-	public List<QuestionVO> findQuestionAllListByProductNo(int productNo);
+//	public List<QuestionVO> findQuestionAllListByProductNo(int productNo);
 	// 상세 게시물
 	public QuestionVO questionDetail(int questionNo);
 	// 등록
@@ -24,5 +24,10 @@ public interface QuestionService {
 	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
 	
+	public int findQuestionCountByProductNo(int productNo);
+	
+	// 페이지 네이션
+	Map<String, Object> findQuestionByRowNumber(int questionNo, String pageNo);
+
 	
 }

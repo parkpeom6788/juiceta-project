@@ -24,12 +24,12 @@ public class BoardController {
 
 	@RequestMapping("guest/board")
 	public String board(Model model, String pageNo){
-		
 		Map<String, Object> paging = boardService.findboardAllList(pageNo);
 		model.addAttribute("boardAllList", paging.get("LIST"));
 		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "board/board-list";
 	}
+	
 	@RequestMapping("guest/boardResult")
 	public String boardResult() {
 		return "board/board-detail";
@@ -51,11 +51,7 @@ public class BoardController {
 			}else {
 				model.addAttribute("boardDetail",boardService.boardDetail(No));
 				return "board/board-detail";	
-				
-			}
-			
-			
-			
+			}	
 		}
 	}
 	

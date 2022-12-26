@@ -13,7 +13,7 @@ public interface QuestionMapper {
 	void registerQuestion(QuestionVO questionVO);
 
 	// 게시물 전체 리스트 조회
-	List<QuestionVO> findQuestionAllListByProductNo(int productNo);
+	List<QuestionVO> findQuestionAllListByProductNo(Map<String,Object> map);
 	
 	// 상세게시물
 	QuestionVO questionDetail(int questionNo);
@@ -34,5 +34,7 @@ public interface QuestionMapper {
 	int findQuestionCountByProductNo(int productNo);
 
 	// row number 페이징 네이션 처리
+	List<QuestionVO> findQuestionByRowNumber(int questionNo,String pageNo);
+
 	List<QuestionVO> findQuestionByRowNumber(Map<String, Object> map);
 }

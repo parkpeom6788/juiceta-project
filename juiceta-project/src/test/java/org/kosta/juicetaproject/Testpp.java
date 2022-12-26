@@ -25,8 +25,7 @@ class Testpp {
 		this.cartAndWishlistMapper = cartAndWishlistMapper;
 	}
 	
-	
-	// 문의사항 등록
+// 문의사항 등록
 //	@Test
 //	public void registerQuestion() {
 //		MemberVO memberVO = new MemberVO("pjs","a",null,null,null,null);
@@ -34,20 +33,20 @@ class Testpp {
 //		QuestionVO questionVO = new QuestionVO(1,"제목입니다2","답변입니다2","2022-12-16",0,memberVO,productVO);
 //		questionMapper.registerQuestion(questionVO);
 //	}
-
 	// findQuestionAllListByProductNo(in productNo:int): List
 	// 문의사항 목록 조회
-	@Test
-	public void findQuestionAllListByProductNo() {
-		// findQuestionAllListByProductNo(in productNo:int): List
-		// in productNo:int): List
-		int productNo = 1;
-		List<QuestionVO> list = questionMapper.findQuestionAllListByProductNo(productNo);
-		System.out.println(list);
-		for(int i = 0 ; i < list.size(); i++) {
-			System.out.println(list.get(i));
-		}
-	}
+//	@Test
+//	public void findQuestionAllListByProductNo() {
+//		// findQuestionAllListByProductNo(in productNo:int): List
+//		// in productNo:int): List
+//		int productNo = 1;
+//		List<QuestionVO> list = questionMapper.findQuestionAllListByProductNo(productNo);
+//		System.out.println(list);
+//		for(int i = 0 ; i < list.size(); i++) {
+//			System.out.println(list.get(i));
+//		}
+//	}
+	
 	// 게시물 상세 조회
 	@Test
 	public void questionDetail() {
@@ -99,14 +98,15 @@ class Testpp {
 	
 	// 장바구니 상세 목록 출력 리스트형식으로 
 	// findCartAllListById(in id:String): List
-//	@Test
-//	public void findCartAllListById() {
-//		String id = "jtest3";
-//		List<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
-//		for(int i = 0; i < list.size(); i++) {
-//			System.out.println(list.get(i));
-//		}
-//	}
+	//	@Test
+	//	public void findCartAllListById() {
+	//		String id = "jtest3";
+	//		List<ProductVO> list = cartAndWishlistMapper.findCartAllListById(id);
+	//		for(int i = 0; i < list.size(); i++) {
+	//			System.out.println(list.get(i));
+	//		}
+	//	}
+	
 	// SELECT * FROM juiceta_car 총 개수 구하는 메서드
 	@Test
 	public void countCartById() {
@@ -114,6 +114,7 @@ class Testpp {
 		int count = cartAndWishlistMapper.countCartById(id);
 		System.out.println(count);
 	}
+	
 	// 장바구니 삭제
 	@Test
 	public void deleteCartById() {
@@ -136,131 +137,34 @@ class Testpp {
 		int price = cartAndWishlistMapper.totalCountPrice(id);
 		System.out.println(price);
 	}
-	
+		
+	// findQuestionCountByProductNo 5개 
+	// getTotalProductCountbyCategory
 	@Test
 	public void findQuestionCountByProductNo() {
-		int productNo=332;
-//		int count = questionMapper.findQuestionCountByProductNo(productNo);
-//		System.out.println(count);
-	}
-
-	@Test
-	public void findQuestionByRowNumber() {
-		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-		String pageNo="";
-		Pagination pagination = null;
-		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-//	@Test
-//	public void findQuestionCountByProductNo() {
-//		int productNo=332;
-//		int count = questionMapper.findQuestionCountByProductNo(productNo);
-//		System.out.println(count);
-//	}
-
-//	@Test
-//	public void findQuestionByRowNumber() {
-//		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-//		String pageNo="";
-//		Pagination pagination = null;
-//		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-//	@Test
-//	public void findQuestionCountByProductNo() {
-//		int productNo=332;
-//		int count = questionMapper.findQuestionCountByProductNo(productNo);
-//		System.out.println(count);
-//	}
-
-//	@Test
-//	public void findQuestionByRowNumber() {
-//		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-//		String pageNo="";
-//		Pagination pagination = null;
-//		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-//	@Test
-//	public void findQuestionCountByProductNo() {
-//		int productNo=332;
-//		int count = questionMapper.findQuestionCountByProductNo(productNo);
-//		System.out.println(count);
-//	}
-
-//	@Test
-//	public void findQuestionByRowNumber() {
-//		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-//		String pageNo="";
-//		Pagination pagination = null;
-//		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-//	@Test
-//	public void findQuestionCountByProductNo() {
-//		int productNo=332;
-//		int count = questionMapper.findQuestionCountByProductNo(productNo);
-//		System.out.println(count);
-//	}
-
-//	@Test
-//	public void findQuestionByRowNumber() {
-//		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-//		String pageNo="";
-//		Pagination pagination = null;
-//		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-	
-		
-/*		@Test
-	public void findQuestionCountByProductNo() {
-		int productNo=332;
-		int count = questionMapper.findQuestionCountByProductNo(productNo);
+		int productNo1=332;
+		int count = questionMapper.findQuestionCountByProductNo(productNo1);
 		System.out.println(count);
 	}
-*/
-//	@Test
-//	public void findQuestionByRowNumber() {
-//		int productNo = 332;
-//		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo);
-//		String pageNo="";
-//		Pagination pagination = null;
-//		
-//		if(pageNo == "") 
-//			pagination = new Pagination(TotalQuestionCount);
-//		else 
-//			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
-//		Map<String,Object> map = new HashMap<>();
-	
-//		map.put("PAGINATION",pagination);
-////		map.put("PRODUCT_NO", productNo);
-////		
-////		List<QuestionVO> list = questionMapper.findQuestionByRowNumber(map);
-//		
-////		for(QuestionVO vo : list) {
-////			System.out.println(vo);
-////		}
+	//findQuestionCountByProductNo
+	@Test
+	public void findQuestionByRowNumber() {
+		int productNo1 = 332;
+		int TotalQuestionCount= questionMapper.findQuestionCountByProductNo(productNo1);
+		String pageNo="";
+		Pagination pagination = null;
+		if(pageNo == "") 
+			pagination = new Pagination(TotalQuestionCount);
+		else 
+			pagination = new Pagination(Integer.parseInt(pageNo), TotalQuestionCount);
+		Map<String,Object> map = new HashMap<>();
+
+		map.put("PAGINATION",pagination);
+		map.put("PRODUCT_NO", productNo1);	
+		List<QuestionVO> list = questionMapper.findQuestionByRowNumber(map);	
+		
+		for(QuestionVO vo : list) {
+			System.out.println(vo);
+		}
 	}
 }

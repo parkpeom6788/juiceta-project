@@ -3,6 +3,7 @@ package org.kosta.juicetaproject.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.kosta.juicetaproject.model.vo.Pagination;
 import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.model.vo.QuestionVO;
 import org.kosta.juicetaproject.service.ProductService;
@@ -25,7 +26,7 @@ public class ProductController {
 	
 	// 상품 상세 페이지로 이동 
 	@RequestMapping("/guest/DetailView")
-	public String productDetail(int productNo,Model model) {
+	public String productDetail(int productNo,Model model,String pageNo) {
 		// 상품상세정보
 		model.addAttribute("productVO", productService.findProductByProductNo(productNo));
 		
@@ -36,9 +37,13 @@ public class ProductController {
 		model.addAttribute("reviewList", reviewService.findReviewListByProductNo(productNo));
 		
 		// 문의사항 게시판
-		List<QuestionVO> questionAllList= QuestionService.findQuestionAllListByProductNo(productNo);
-		model.addAttribute("questionAllList", questionAllList);
-		model.addAttribute("productNo", productNo);
+//		List<QuestionVO> questionAllList= QuestionService.findQuestionAllListByProductNo(productNo);
+//		model.addAttribute("questionAllList", questionAllList);
+//		model.addAttribute("productNo", productNo);     
+		Map<String,Object> paging = QuestionService.findQuestionByRowNumber(productNo, pageNo);
+		model.addAttribute("questionAllList", paging.get("LIST"));
+		System.out.println(paging.get("LIST"));
+		model.addAttribute("pagination", paging.get("PAGINATION"));
 		return "product/product-detail";
 	}
 

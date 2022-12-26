@@ -77,9 +77,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		if(totalProductCount==0)
 			pagination = null;
-		
 		paging.put("PAGINATION", pagination);
-		
 		return paging;
 	}
 
