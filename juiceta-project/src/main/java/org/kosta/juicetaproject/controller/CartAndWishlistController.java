@@ -1,9 +1,6 @@
 package org.kosta.juicetaproject.controller;
 
-import java.util.List;
-
 import org.kosta.juicetaproject.model.vo.MemberVO;
-import org.kosta.juicetaproject.model.vo.ProductVO;
 import org.kosta.juicetaproject.service.CartAndWishlistService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -23,8 +20,7 @@ public class CartAndWishlistController {
 	@PostMapping("addWishlistAjax")
 	@ResponseBody
 	public String addWishlist(@AuthenticationPrincipal MemberVO memberVO, int productNo) {
-		String result = cartAndWishlistService.addWishlist(memberVO,productNo);	// fail (이미 존재함), ok (찜목록에 추가함)
-		return result;
+		return cartAndWishlistService.addWishlist(memberVO,productNo);	// fail (이미 존재함), ok (찜목록에 추가함)
 	}
 	
 	// 카트에 담긴 상품 리스트 출력 시키기 
@@ -39,19 +35,13 @@ public class CartAndWishlistController {
 	@PostMapping("addCartAjax")
 	@ResponseBody
 	public String addCart(@AuthenticationPrincipal MemberVO memberVO, int productNo, int productCount) {
-		String result = cartAndWishlistService.addCart(memberVO,productNo,productCount);
-		return result;
+		return cartAndWishlistService.addCart(memberVO,productNo,productCount);
 	}
 
 	@RequestMapping("getTotalCartByIdAjax")
 	@ResponseBody
 	public int getTotalCartById(@AuthenticationPrincipal MemberVO memberVO) {
 		return cartAndWishlistService.getTotalCartById(memberVO.getId());
-	}
-	
-	@RequestMapping("findWishlistAllListById")
-	public String findWishlistAllListById() {
-		return "";
 	}
 
 	@PostMapping("removeWishlist")
@@ -67,8 +57,7 @@ public class CartAndWishlistController {
 	
 	@RequestMapping("wishlist")
 	public String Wishlist(@AuthenticationPrincipal MemberVO memberVO , Model model) {
-		List<ProductVO> wishlist = cartAndWishlistService.findWishlistById(memberVO.getId());
-		model.addAttribute("wishlistAllList",wishlist);
+		model.addAttribute("wishlistAllList",cartAndWishlistService.findWishlistById(memberVO.getId()));
 		return "/order/wishlist";
 	}
 	
