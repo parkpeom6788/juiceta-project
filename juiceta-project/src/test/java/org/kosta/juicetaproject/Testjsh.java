@@ -70,7 +70,7 @@ class Testjsh {
 		else
 			pagination = new Pagination(Integer.parseInt(pageNo), totalProductCount);
 		
-		String category = "Tea";
+		String category = "tea";
 		Map<String, Object> map = new HashMap<>();
 		map.put("PAGINATION", pagination);
 		map.put("CATEGORY", category);
@@ -83,8 +83,8 @@ class Testjsh {
 	@Test
 	void findMemberId() {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setName("jtest");
-		memberVO.setPhone("000000000");
+		memberVO.setName("java");
+		memberVO.setPhone("01000000000");
 		String id = memberMapper.findMemberId(memberVO);
 		System.out.println(id);
 	}
@@ -92,17 +92,17 @@ class Testjsh {
 	@Test
 	void findMemberPassword() {
 		MemberVO memberVO = new MemberVO();
-		memberVO.setId("jtest0");
-		memberVO.setName("아이유");
-		memberVO.setPhone("000000000");		
+		memberVO.setId("java");
+		memberVO.setName("관리자");
+		memberVO.setPhone("01000000000");		
 		int result = memberMapper.findMemberPassword(memberVO);
 		Assertions.assertEquals(1, result);
 	}
 	
 	@Test
 	void findWishlistByIdAndProductNo() {
-		String id = "jtest1";
-		int productNo = 126;
+		String id = "java";
+		int productNo = 1;
 		Map<String, Object> map = new HashMap<>();
 		map.put("ID",id);
 		map.put("PRODUCT_NO", productNo);
@@ -120,8 +120,8 @@ class Testjsh {
 	
 	@Test
 	void findCartByIdAndProductNo() {
-		String id = "jtest3";
-		int productNo = 332;
+		String id = "java";
+		int productNo = 1;
 		Map<String, Object> map = new HashMap<>();
 		map.put("ID", id);
 		map.put("PRODUCT_NO", productNo);
@@ -286,24 +286,4 @@ class Testjsh {
 			System.out.println(vo);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

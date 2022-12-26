@@ -9,6 +9,7 @@ CREATE TABLE juiceta_customer(
 )
 SELECT * FROM juiceta_customer;
 ALTER TABLE juiceta_customer DROP COLUMN authority;
+DELETE FROM juiceta_customer;
 
 -- 권한 ( authority 관리자, 회원, 비회원 )
 CREATE TABLE juiceta_authorities(
@@ -18,6 +19,8 @@ CREATE TABLE juiceta_authorities(
 	CONSTRAINT pk_authorities PRIMARY KEY(authority,id)
 )
 SELECT * FROM juiceta_authorities;
+DELETE FROM juiceta_authorities;
+INSERT INTO juiceta_authorities(authority,id) VALUES('ROLE_ADMIN','java');
 
 -- 리뷰
 CREATE TABLE juiceta_review(
@@ -34,6 +37,8 @@ CREATE TABLE juiceta_review(
 )
 CREATE SEQUENCE juiceta_review_seq;
 SELECT * FROM juiceta_review;
+DELETE FROM juiceta_review;
+DROP SEQUENCE juiceta_review_seq;
 
 -- 문의사항 ( check_answer 미답변 0 답변 1 )
 CREATE TABLE juiceta_question(
@@ -49,6 +54,8 @@ CREATE TABLE juiceta_question(
 )
 CREATE SEQUENCE juiceta_question_seq;
 SELECT * FROM juiceta_question;
+DELETE FROM juiceta_question;
+DROP SEQUENCE juiceta_question_seq;
 
 -- 문의사항 답변
 CREATE TABLE juiceta_answer(
@@ -58,6 +65,7 @@ CREATE TABLE juiceta_answer(
 	CONSTRAINT fk_answer_question_no FOREIGN KEY(question_no) REFERENCES juiceta_question(question_no) ON DELETE CASCADE
 )
 SELECT * FROM juiceta_answer;
+DELETE FROM juiceta_answer;
 
 -- 주문
 CREATE TABLE juiceta_order(
@@ -71,6 +79,8 @@ CREATE TABLE juiceta_order(
 )
 SELECT * FROM juiceta_order;
 CREATE SEQUENCE juiceta_order_seq;
+DELETE FROM juiceta_order;
+DROP SEQUENCE juiceta_order_seq;
 
 -- 주문상세
 CREATE TABLE juiceta_order_detail(
@@ -82,6 +92,7 @@ CREATE TABLE juiceta_order_detail(
 	CONSTRAINT pk_order_detail PRIMARY KEY(order_no,product_no)
 )
 SELECT * FROM juiceta_order_detail;
+DELETE FROM juiceta_order_detail;
 
 -- 장바구니
 CREATE TABLE juiceta_cart(
@@ -93,6 +104,7 @@ CREATE TABLE juiceta_cart(
 	CONSTRAINT pk_cart PRIMARY KEY(id,product_no)
 )
 SELECT * FROM juiceta_cart;
+DELETE FROM juiceta_cart;
 
 -- 찜목록
 CREATE TABLE juiceta_wishlist(
@@ -103,6 +115,7 @@ CREATE TABLE juiceta_wishlist(
 	CONSTRAINT pk_wishlist PRIMARY KEY(id,product_no)
 )
 SELECT * FROM juiceta_wishlist;
+DELETE FROM juiceta_wishlist;
 
 -- 상품
 CREATE TABLE juiceta_product(
@@ -116,6 +129,12 @@ CREATE TABLE juiceta_product(
 )
 CREATE SEQUENCE juiceta_product_seq;
 SELECT * FROM juiceta_product;
+DELETE FROM juiceta_product;
+DROP SEQUENCE juiceta_product_seq;
+
+INSERT INTO juiceta_product(product_no,product_name,price,product_count,product_detail,image,category,filepath)
+SELECT juiceta_product_seq.nextval,product_name,price,product_count,product_detail,image,category,filepath FROM juiceta_product;
+COMMIT
 
 -- 공지사항
 CREATE TABLE juiceta_board(
@@ -127,8 +146,8 @@ CREATE TABLE juiceta_board(
 )
 CREATE SEQUENCE juiceta_board_seq;
 SELECT * FROM juiceta_board;
-
-SELECT * FROM JUICETA_CUSTOMER;
+DELETE FROM juiceta_board;
+DROP SEQUENCE juiceta_board_seq;
 
 
 
