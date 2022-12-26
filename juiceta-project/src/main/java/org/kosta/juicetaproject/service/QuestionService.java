@@ -1,6 +1,5 @@
 package org.kosta.juicetaproject.service;
 
-import java.util.List;
 import java.util.Map;
 
 import org.kosta.juicetaproject.model.vo.AnswerVO;
@@ -24,10 +23,7 @@ public interface QuestionService {
 	
 	public AnswerVO findAnswerByQuestionNo(int questionNo);
 	
-	public int findQuestionCountByProductNo(int productNo);
-	
 	// 페이지 네이션
 	Map<String, Object> findQuestionByRowNumber(int questionNo, String pageNo);
 
-	
 }

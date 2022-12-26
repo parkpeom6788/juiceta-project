@@ -36,7 +36,16 @@
 		SELECT ROUND(AVG(star)) FROM juiceta_review WHERE product_no=#{value}
 	</select>
 	
+	<select id="getAllReviewList" parameterType="string" resultType="org.kosta.juicetaproject.model.vo.ReviewVO">
+		SELECT review_no,review_content,star,review_time FROM juiceta_review WHERE id=#{value} ORDER BY review_no DESC
+	</select>
+	
+	<update id="updateReview" parameterType="org.kosta.juicetaproject.model.vo.ReviewVO">
+		UPDATE juiceta_review SET review_content=#{reviewContent}, star=#{star} WHERE review_no=#{reviewNo}
+	</update>
+	
+	<delete id="deleteReview" parameterType="int">
+		DELETE FROM juiceta_review WHERE review_no=#{value}
+	</delete>
+	
 </mapper>
-
-
-

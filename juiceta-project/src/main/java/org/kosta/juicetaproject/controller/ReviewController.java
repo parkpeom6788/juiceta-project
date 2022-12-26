@@ -36,11 +36,10 @@ public class ReviewController {
 	public String registerReviewResult() {
 		return "order/register-review-result";
 	}
+	
+	@RequestMapping("mypageReivewForm")
+	public String mypageReivewForm() {
+		return "member/mypage-review-form";
+	}
 
 }
-
-
-
-
-
-

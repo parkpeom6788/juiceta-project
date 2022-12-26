@@ -59,6 +59,7 @@ public class CartAndWishlistController {
 		cartAndWishlistService.removeWishlist(productNo);
 		return "redirect:removeWishlistResult";
 	}
+	
 	@RequestMapping("removeWishlistResult")
 	public String removeWishlistResult() {
 		return "/order/wishlistRemoveResult";
@@ -67,7 +68,6 @@ public class CartAndWishlistController {
 	@RequestMapping("wishlist")
 	public String Wishlist(@AuthenticationPrincipal MemberVO memberVO , Model model) {
 		List<ProductVO> wishlist = cartAndWishlistService.findWishlistById(memberVO.getId());
-		//System.out.println(wishlist);
 		model.addAttribute("wishlistAllList",wishlist);
 		return "/order/wishlist";
 	}
@@ -83,4 +83,5 @@ public class CartAndWishlistController {
 	public String removeCartResult() {
 		return "/order/cartRemoveResult";
 	}
+	
 }

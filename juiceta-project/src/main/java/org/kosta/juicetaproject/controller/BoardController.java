@@ -60,33 +60,40 @@ public class BoardController {
 		model.addAttribute("boardUpdate",boardService.boardDetail(No));
 		return "board/update-board-form";
 	}
+	
 	@PostMapping("guest/boardUpdate")
 	public String updateBoard(BoardVO boardVO){
 		boardService.updateBoard(boardVO);
 		return "redirect:updateBoardResult";
 	}
+	
 	@RequestMapping("guest/updateBoardResult")
 	public String updateBoardResult() {
 		return "board/update-board-result";
 	}
+	
 	@RequestMapping("guest/boardWriteForm")
 	public String baordWrite() {
 		return "board/write-board";
 	}
+	
 	@PostMapping("guest/boardWrite")
 	public String boardWrite(Model model,BoardVO boardVO) {
 		boardService.registerBoard(boardVO);
 		return "redirect:boardWriteResult";
 	}
+	
 	@RequestMapping("guest/boardWriteResult")
 	public String boardWriteResult() {
 		return "board/register-board-result.html";
 	}
+	
 	@PostMapping("guest/boardDelete")
 	public String boardDelete(Model model, int boardNo) {
 		boardService.deleteBoard(boardNo);
 		return "redirect:deleteBoardResult";
 	}
+	
 	@RequestMapping("guest/deleteBoardResult")
 	public String deleteBoardResult() {
 		return "board/delete-board-reuslt";

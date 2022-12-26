@@ -48,7 +48,6 @@ public class ProductController {
 	}
 
 	// 글 상세 페이지
-	//questionDetail(in questionNo:int): QuestionVO
 	@RequestMapping("/guest/Detail")
 	public String questionDetail(int productNo,Model model) {
 		model.addAttribute("productNo", productNo);
@@ -87,23 +86,27 @@ public class ProductController {
 	public String registerProductForm() {
 		return "product/register-form";
 	}
+	
 	// 상품등록
 	@PostMapping("registerProduct")
 	public String registerProduct(ProductVO productVO,MultipartFile file) throws Exception {
 		productService.registerProduct(productVO,file);
 		return "redirect:registerProductResult";
 	}
+	
 	// 상품등록 후 결과
 	@RequestMapping("registerProductResult")
 	public String registerProductResult() {
 		return "product/register-result";
 	}
+	
 	// 상품수정 폼 제공
 	@RequestMapping("updateProductForm")
 	public String updateProductForm(Model model, int productNo) {
 		model.addAttribute("productVO",productService.findProductByProductNo(productNo));
 		return "product/update-form";
 	}
+	
 	// 상품수정
 	@PostMapping("update")
 	public String updateProduct(ProductVO productVO) {
@@ -111,21 +114,19 @@ public class ProductController {
 		return "redirect:updateProductResult";
 	}
 	
-	/*
-	 * @PostMapping("updateProduct") public String updateProduct() { return
-	 * "redirect:update"; }
-	 */
 	// 상품수정 후 결과
 	@RequestMapping("updateProductResult")
 	public String updateResult() {
 		return "/product/update-result";
 	}
+	
 	// 상품삭제
 	@PostMapping("deleteProduct")
 	public String deleteProduct(int productNo) {
 		productService.deleteProduct(productNo);
 		return "redirect:deleteResult";
 	}
+	
 	// 상품삭제 후 결과 
 	@RequestMapping("deleteResult")
 	public String deleteResult() {
@@ -153,10 +154,6 @@ public class ProductController {
 		model.addAttribute("productList", productService.findProductByProductNameKeyword(searchKeyword));
 		return "product/product-search-keyword";
 	}
+	
 }
-
-
-
-
-
 
