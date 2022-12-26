@@ -58,6 +58,22 @@
 			}
 		});
 		
+		$("#regForm :input[name=password]").keyup(function() {
+			let password = $("#memberPasswordCheck").val();
+			if(password!=""){
+				if(password!=$(this).val()){
+					$("#passwordCheckView").html("** 비밀번호가 일치하지 않습니다 **").css("color","red");
+					checkResultPassword="";
+				}else{
+					$("#passwordCheckView").html("** 비밀번호가 일치합니다 **").css("color","green");
+					checkResultPassword=password;
+				}
+			}
+			if($(this).val()==""){
+				$("#passwordCheckView").text("");
+			}
+		});
+		
 		$("#regForm :input[name=id]").keyup(function(){
 			let id=$(this).val().trim();
 			if(id.length<0){

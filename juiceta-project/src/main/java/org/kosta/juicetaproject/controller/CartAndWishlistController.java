@@ -28,7 +28,7 @@ public class CartAndWishlistController {
 	public String findCartAllListById(@AuthenticationPrincipal MemberVO memberVO , Model model) {		
 		model.addAttribute("cartAllList", cartAndWishlistService.findCartAllListById(memberVO.getId()));
 		model.addAttribute("cartTotal", cartAndWishlistService.totalCountPrice(memberVO.getId()));
-		return "/order/cart";
+		return "order/cart";
 	}
 
 	// 카트에 추가하는 Ajax 
@@ -52,13 +52,13 @@ public class CartAndWishlistController {
 	
 	@RequestMapping("removeWishlistResult")
 	public String removeWishlistResult() {
-		return "/order/wishlistRemoveResult";
+		return "order/wishlistRemoveResult";
 	}
 	
 	@RequestMapping("wishlist")
 	public String Wishlist(@AuthenticationPrincipal MemberVO memberVO , Model model) {
 		model.addAttribute("wishlistAllList",cartAndWishlistService.findWishlistById(memberVO.getId()));
-		return "/order/wishlist";
+		return "order/wishlist";
 	}
 	
 	// 카트에 담긴 물품 삭제
@@ -70,7 +70,7 @@ public class CartAndWishlistController {
 	
 	@RequestMapping("removeCartResult")
 	public String removeCartResult() {
-		return "/order/cartRemoveResult";
+		return "order/cartRemoveResult";
 	}
 	
 }

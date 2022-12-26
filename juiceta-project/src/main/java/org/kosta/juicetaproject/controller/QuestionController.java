@@ -38,7 +38,7 @@ public class QuestionController {
 	 @PostMapping("registerQuestion")
 	 public String registerQuestion(@AuthenticationPrincipal MemberVO memberVO, String questionTitle,String questionContent,int productNo) {
 		 questionService.registerQuestion(questionTitle,questionContent,productNo,memberVO.getId());
-		 return "redirect:/guest/DetailView?productNo="+productNo;
+		 return "redirect:guest/DetailView?productNo="+productNo;
 	 }
 
 	 // 관리자 답변

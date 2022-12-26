@@ -22,7 +22,7 @@ public class ProductController {
 	private final ReviewService reviewService;
 	
 	// 상품 상세 페이지로 이동 
-	@RequestMapping("/guest/DetailView")
+	@RequestMapping("guest/DetailView")
 	public String productDetail(int productNo,Model model,String pageNo) {
 		// 상품상세정보
 		model.addAttribute("productVO", productService.findProductByProductNo(productNo));
@@ -41,10 +41,10 @@ public class ProductController {
 	}
 
 	// 글 상세 페이지
-	@RequestMapping("/guest/Detail")
+	@RequestMapping("guest/Detail")
 	public String questionDetail(int productNo,Model model) {
 		model.addAttribute("productNo", productNo);
-		return "/guest/Detail";
+		return "guest/Detail";
 	}
 	
 	// 상품관리 전체 리스트 조회
@@ -110,7 +110,7 @@ public class ProductController {
 	// 상품수정 후 결과
 	@RequestMapping("updateProductResult")
 	public String updateResult() {
-		return "/product/update-result";
+		return "product/update-result";
 	}
 	
 	// 상품삭제

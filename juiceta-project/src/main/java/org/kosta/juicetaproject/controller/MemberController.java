@@ -96,7 +96,7 @@ public class MemberController {
 	@PostMapping("guest/registerMember")
 	public String register(MemberVO memberVO) {
 		memberService.registerMember(memberVO);//등록시 service에서 비밀번호를 암호화 한다 
-		return "redirect:/guest/registerResult";
+		return "redirect:guest/registerResult";
 	}
 
 	@GetMapping("guest/registerResult")
@@ -126,7 +126,7 @@ public class MemberController {
 	@PostMapping("deleteMemberAction")
 	public String deleteMemberAction(@AuthenticationPrincipal MemberVO memberVO) {
 		memberService.deleteMemberAction(memberVO);
-		return "redirect:/deleteMemberResult";
+		return "redirect:deleteMemberResult";
 	}
 	
 	@GetMapping("deleteMemberResult")
