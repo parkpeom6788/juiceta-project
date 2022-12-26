@@ -34,7 +34,6 @@ public class QuestionController {
 		// 글쓰기 폼으로 
 		 @RequestMapping("question-write")
 		 public String questionWrite(int productNo, Model model) {
-			 System.out.println("asdsad");
 			 model.addAttribute("productNo", productNo);
 			 return "qnaboard/board-write-form";
 		 }

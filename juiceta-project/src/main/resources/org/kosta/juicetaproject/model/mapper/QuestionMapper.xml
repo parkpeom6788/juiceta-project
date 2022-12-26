@@ -40,4 +40,19 @@
 	<update id="updateQuestion" parameterType="int">
 		UPDATE juiceta_question SET CHECK_ANSWER = 1 WHERE question_no = #{questionNo}
 	</update>
+	
+	<select id="findQuestionCountByProductNo" resultType="int" parameterType="int">
+	    SELECT COUNT(*) FROM juiceta_question WHERE product_no=#{value}
+	</select>
+	
+	<select id="findQuestionByRowNumber" parameterType="map" resultType="org.kosta.juicetaproject.model.vo.QuestionVO">
+		SELECT rnum , QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER,ID,PRODUCT_NO
+		FROM(
+		SELECT row_number() over(ORDER BY question_no DESC) AS rnum , QUESTION_NO,QUESTION_TITLE,QUESTION_CONTENT,QUESTION_TIME , CHECK_ANSWER
+		 ,ID,PRODUCT_NO 
+		FROM juiceta_question
+		WHERE product_no=#{PRODUCT_NO}
+	)
+	WHERE rnum BETWEEN #{PAGINATION.startRowNumber} AND #{PAGINATION.endRowNumber} 
+	</select>
 </mapper>

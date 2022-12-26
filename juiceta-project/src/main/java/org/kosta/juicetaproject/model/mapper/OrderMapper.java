@@ -29,4 +29,6 @@ public interface OrderMapper {
 
 	int findTotalCountReview(String id, int orderNo, int productNo);
 
+	void reduceProductCountAfterOrder(Map<String, Integer> map);
+
 }

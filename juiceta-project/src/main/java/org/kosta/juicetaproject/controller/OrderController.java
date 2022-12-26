@@ -20,13 +20,6 @@ public class OrderController {
 	private final ProductService productService;
 	private final OrderService orderService;
 	
-	@PostMapping("checkoutForm2")
-	public String checkoutForm2(@AuthenticationPrincipal MemberVO memberVO , Model model,int productNO,int cartTotal) {
-		model.addAttribute("cartTotal", cartTotal);
-		// 카트정보를 업데이트 시킨다. 
-		return "redirect:order/checkout2";
-	}
-	
 	@RequestMapping("checkoutForm")
 	public String checkoutForm(int productNo, int productCount, Model model) {
 		ProductVO productVO = productService.findProductByProductNo(productNo);
@@ -47,9 +40,10 @@ public class OrderController {
 	}
 	
 	@PostMapping("placeAnOrder")
-	public String placeAnOrder(@AuthenticationPrincipal MemberVO memberVO, String receiverName, String receiverPhone, String receiverAddress, int productNo, int productCount) {
-		OrderVO orderVO = OrderVO.builder().receiverName(receiverName).receiverPhone(receiverPhone).receiverAddress(receiverAddress).build();
+	public String placeAnOrder(@AuthenticationPrincipal MemberVO memberVO, String name, String phone, String address, int productNo, int productCount) {
+		OrderVO orderVO = OrderVO.builder().receiverName(name).receiverPhone(phone).receiverAddress(address).build();
 		int orderNo = orderService.placeAnOrder(memberVO,orderVO,productNo,productCount);
+		System.out.println(orderVO);
 		return "redirect:placeAnOrderResult?orderNo="+orderNo;
 	}
 	

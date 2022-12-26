@@ -90,6 +90,10 @@
 		SELECT COUNT(*) FROM juiceta_review WHERE id=#{id} AND order_no=#{orderNo} AND product_no=#{productNo}
 	</select>
 	
+	<select id="reduceProductCountAfterOrder" parameterType="map">
+		UPDATE juiceta_product SET product_count=product_count-#{PRODUCT_COUNT} WHERE product_no=#{PRODUCT_NO}
+	</select>
+	
 </mapper>
 
 
