@@ -71,8 +71,8 @@
 				});
 				
 				$(".addCart").click(function() {
-				let productNo = $(this).prev().prev().val();
-				let productCount = $(this).prev().val();
+					let productNo = $(this).prev().prev().val();
+					let productCount = $(this).prev().val();
 					$.ajax({
 						type:"post",
 						url:"/addCartAjax",
@@ -85,6 +85,7 @@
 								alert("이미 장바구니목록에 추가된 상품입니다");
 							else{
 								alert("장바구니 목록에 추가하였습니다");
+								$("#totalCartCount").text(Number($("#totalCartCount").text())+1);
 							}
 						}
 					});
