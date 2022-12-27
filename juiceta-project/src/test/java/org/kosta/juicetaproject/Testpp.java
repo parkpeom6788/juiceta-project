@@ -1,16 +1,5 @@
 package org.kosta.juicetaproject;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.junit.jupiter.api.Test;
-import org.kosta.juicetaproject.model.mapper.CartAndWishlistMapper;
-import org.kosta.juicetaproject.model.mapper.QuestionMapper;
-import org.kosta.juicetaproject.model.vo.AnswerVO;
-import org.kosta.juicetaproject.model.vo.Pagination;
-import org.kosta.juicetaproject.model.vo.QuestionVO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
