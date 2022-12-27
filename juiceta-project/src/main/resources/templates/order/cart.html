@@ -148,6 +148,11 @@
 							productCountArr.push($(this).val());
 						});
 						
+						if(productNoArr==""){
+							alert("장바구니에 담긴 상품이 없습니다.");
+							return;
+						}
+						
 						let productNo = productNoArr.join();
 						let productCount = productCountArr.join();
 						location.href="/checkoutFormFromCart?productNo="+productNo+"&productCount="+productCount+"&cartTotal="+cartTotal;
