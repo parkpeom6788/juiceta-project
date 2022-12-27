@@ -24,7 +24,7 @@ public class MemberController {
 	
 	//비인증 상태에서도 접근 가능하도록 /guest/ 이하로 url 등록 
 	//org.kosta.myproject.config.security.WebSecurityConfig 설정되어 있음 
-	@RequestMapping("guest/findMemberById")
+	@RequestMapping("/guest/findMemberById")
 	public String findMemberById(String id,Model model) {		
 		MemberVO vo = memberService.findMemberById(id);
 		if (vo == null)
@@ -96,7 +96,7 @@ public class MemberController {
 	@PostMapping("guest/registerMember")
 	public String register(MemberVO memberVO) {
 		memberService.registerMember(memberVO);//등록시 service에서 비밀번호를 암호화 한다 
-		return "redirect:guest/registerResult";
+		return "redirect:/guest/registerResult";
 	}
 
 	@GetMapping("guest/registerResult")

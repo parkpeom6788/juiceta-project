@@ -103,6 +103,12 @@
 				}//callback			
 			});//ajax
 		});//keyup
+		
+		$("#regForm :input[type=reset]").click(function() {
+			$("#passwordCheckView").text("");
+			$("#idCheckView").text("");
+		});
+		
 	});//ready 
 </script>
 </div>
