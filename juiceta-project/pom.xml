@@ -9,11 +9,12 @@
 	</parent>
 	<groupId>org.kosta.juiceta-project</groupId>
 	<artifactId>juiceta-project</artifactId>
-	<version>1.0.3</version>
+	<version>1.0.5</version>
 	<name>juiceta-project</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
+		<maven.test.skip>true</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>
