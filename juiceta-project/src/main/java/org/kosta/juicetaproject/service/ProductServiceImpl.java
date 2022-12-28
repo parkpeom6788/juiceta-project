@@ -47,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public void registerProduct(ProductVO productVO,MultipartFile file) throws Exception {
-        String projectpath = System.getProperty("user.dir")+"/src/main/resources/static/images"; 
+        String projectpath = "C:/kosta250/juicetaImg/"; 
      // 시스템의 프로젝트 path에 해당하는 디렉토리가 없다면 동적으로 생성하도록 한다
         File dir=new File(projectpath);
         if(dir.exists()==false) {
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
        File saveFile = new File(projectpath, filename); 
        file.transferTo(saveFile);
        productVO.setImage(filename);
-       productVO.setFilePath("images/"+filename);
+       productVO.setFilePath("juicetaImg/"+filename);
        productMapper.registerProduct(productVO);
 	}
 	

@@ -150,9 +150,9 @@ DELETE FROM juiceta_board;
 DROP SEQUENCE juiceta_board_seq;
 
 
+DELETE FROM juiceta_product WHERE filepath LIKE 'images2%'
 
-
-
+UPDATE juiceta_product set filepath
 
 
 

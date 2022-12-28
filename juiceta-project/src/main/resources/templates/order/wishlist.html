@@ -31,7 +31,7 @@
 					    <tbody th:each="productVO:${wishlistAllList}">				    
 					      <tr class="text-center">
 					        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close" th:data-product="${productVO.productNo}"></span></a></td>
-					        <td class="image-prod"><div class="img"><img class="img-fluid" src="" th:src="@{/images/}+${productVO.image}" alt="Colorlib Template"></div></td>				        
+					        <td class="image-prod"><div class="img"><img class="img-fluid" src="" th:src="@{/juicetaImg/}+${productVO.image}" alt="Colorlib Template"></div></td>				        
 					        <td class="product-name">
 					        	<h3 th:text="${productVO.productName}">상품명</h3>
 					        	<p th:text="${productVO.productDetail}">상품상세설명</p>

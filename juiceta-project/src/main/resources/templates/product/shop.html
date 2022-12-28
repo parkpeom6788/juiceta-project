@@ -22,7 +22,7 @@
  		<div class="row">
  			<div class="col-md-6 col-lg-3 ftco-animate" th:each="product:${productAllList}">
  				<div class="product">
- 					<a href="#" th:href="@{/guest/DetailView(productNo=${product.productNo})}" class="img-prod"><img class="img-fluid" src="" th:src="@{/images/}+${product.image}" alt="Colorlib Template" style="width: 300px; height: 300px;">
+ 					<a href="#" th:href="@{/guest/DetailView(productNo=${product.productNo})}" class="img-prod"><img class="img-fluid" src="" th:src="@{/}+${product.filePath}" alt="Colorlib Template" style="width: 300px; height: 300px;">
  						<span class="status" th:if="${product.productCount<1}">품절</span>
  						<div class="overlay"></div>
  					</a>

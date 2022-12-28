@@ -32,7 +32,7 @@
 						    <tbody th:each="cart:${cartAllList}">
 	   					      <tr class="text-center">
 						        <td class="product-remove deleteBtn"><a href="#"><span class="ion-ios-close product-no" th:data-product="${cart.PRODUCT_NO}"></span></a></td>
-						        <td class="image-prod"><div class="img"><img src="" th:src="@{/images/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
+						        <td class="image-prod"><div class="img"><img src="" th:src="@{/juicetaImg/}+${cart.IMAGE}" class="img-fluid" alt="Colorlib Template"></div></td>
 						        <td class="product-name">
 						        	<h3 th:text="${cart.PRODUCT_NAME}">상품명</h3>
 						        	<p th:text="${cart.PRODUCT_DETAIL}">상품상세설명</p>
